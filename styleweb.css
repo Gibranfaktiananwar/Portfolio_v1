@@ -1,0 +1,589 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #fff;
+    background: #0f8278;
+    /* fallback solid */
+    background: linear-gradient(135deg, #083d3b 0%, #0f8278 55%, #14b8a6 100%);
+    min-height: 100vh;
+}
+
+body.no-scroll {
+    overflow: hidden;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:.75rem;
+}
+
+.navbar {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar .brand{
+  margin-left: 0 !important;
+  gap: .6rem;                 /* jarak ikon ↔ teks */
+}
+
+.navbar .brand .back-btn{
+  position: static !important;         /* ikut flow, sejajar judul */
+  background: none !important;         /* hilangkan gradient/bulatan */
+  border: 0 !important;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  margin-right: .2rem;                 /* spasi kecil dari teks */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  border-radius: 0;
+}
+
+.navbar .brand .back-btn i{
+  font-size: 24px;
+  line-height: 1;
+}
+
+.navbar .brand .back-btn:hover{
+  background: rgba(255,255,255,.12);   /* efek hover tipis (opsional) */
+}
+
+/* container tetap pakai padding kiri/kanan 2rem */
+.nav-container{
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.navbar .back-btn{
+  width: 2rem;                 /* sama dengan padding kiri container */
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;     /* ikon berada di tengah slot */
+  background: transparent !important; /* hilangkan bulatan */
+  border: none;
+  padding: 0;
+  color: #fff;
+  border-radius: 6px;          /* hanya untuk efek hover halus */
+}
+
+.navbar .back-btn i{
+  font-size: 1.35rem;          /* ~22px, pas di tengah slot 2rem */
+  line-height: 1;
+}
+
+.navbar .back-btn:hover{
+  background: rgba(255,255,255,.12);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+}
+
+.logo:hover {
+    opacity: .9;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    transition: opacity .2s
+}
+
+.nav-links a:hover {
+    opacity: .85
+}
+
+.main-content {
+    margin-top: 80px;
+    padding: 2rem
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto
+}
+
+.detail-header {
+    text-align: center;
+    margin-bottom: 3rem
+}
+
+.detail-header h1 {
+    font-size: 3rem;
+    margin-bottom: .75rem
+}
+
+.detail-header .subtitle {
+    font-size: 1.1rem;
+    opacity: .9
+}
+
+.skills-section {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.skills-section h2 {
+    margin-bottom: 1.5rem;
+    font-size: 2rem
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem
+}
+
+.skill-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 10px
+}
+
+.skill-item h3 {
+    color: #4fd1c7;
+    margin-bottom: .5rem
+}
+
+.projects-section {
+    margin-bottom: 3rem
+}
+
+.projects-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    align-items: stretch;
+}
+
+.project-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform .25s, box-shadow .25s;
+    display: flex;
+    /* <- agar seragam tingginya */
+    flex-direction: column;
+    /* <- konten vertikal */
+    height: 100%;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .3)
+}
+
+.project-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    /* <- rasio konsisten */
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    background: #e6f7f5;
+    /* fallback jika tanpa gambar */
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .25);
+    /* tampilan rapi seperti card certificate */
+    border: 6px solid rgba(255, 255, 255, .85);
+    /* bingkai putih bersih */
+    position: relative;
+    /* supaya tombol bisa absolute */
+    overflow: hidden;
+}
+
+/* tombol panah di atas gambar */
+.project-image .img-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, .35);
+    color: #fff;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity .2s;
+}
+
+.project-image .img-nav.left {
+    left: 10px;
+}
+
+.project-image .img-nav.right {
+    right: 10px;
+}
+
+.project-card:hover .project-image .img-nav {
+    opacity: 1;
+}
+
+/* muncul saat hover */
+/* titik indikator */
+.project-image .img-dots {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 8px;
+    display: flex;
+    gap: 6px;
+}
+
+.project-image .img-dots .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .6);
+}
+
+.project-image .img-dots .dot.active {
+    background: #fff;
+}
+
+.project-card h3 {
+    margin-bottom: .5rem;
+    font-size: 1.5rem;
+    color: #fff
+}
+
+.project-card p {
+    color: rgba(255, 255, 255, .9);
+    margin-bottom: 1rem
+}
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin-bottom: 1rem
+}
+
+.tech-tag {
+    background: rgba(79, 209, 199, .3);
+    color: #fff;
+    padding: .3rem .8rem;
+    border-radius: 20px;
+    font-size: .8rem
+}
+
+.project-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+}
+
+/* tombol selalu di bawah */
+.btn {
+    background: linear-gradient(45deg, #4fd1c7, #667eea);
+    color: #fff;
+    padding: .5rem 1rem;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: .9rem;
+    transition: transform .2s;
+}
+
+.btn:hover {
+    transform: translateY(-2px)
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 2px solid #4fd1c7;
+    color: #fff
+}
+
+.back-btn {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  background: linear-gradient(45deg, #4fd1c7, #667eea);
+  color: #fff;
+  padding: 1rem;
+  border-radius: 50%;
+  text-decoration: none;
+  font-size: 1.2rem;
+  z-index: 1000;
+  transition: transform .2s;
+}
+
+.back-btn:hover {
+    transform: scale(1.1)
+}
+
+.chips {
+    display: flex;
+    gap: .5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: .5rem
+}
+
+.chip {
+    background: rgba(255, 255, 255, .12);
+    border: 1px solid rgba(255, 255, 255, .25);
+    padding: .25rem .6rem;
+    border-radius: 999px;
+    font-size: .8rem
+}
+
+/* Lightbox */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 2rem;
+}
+
+.lightbox.open {
+    display: grid;
+    /* override rule sebelumnya yang pakai flex */
+    grid-template-columns: minmax(24px, 1fr) auto minmax(24px, 1fr);
+    align-items: center;
+}
+
+/* wadah gambar + caption */
+.lb-body {
+    grid-column: 2;
+}
+
+/* Frame untuk menjaga rasio 16:9 */
+.lb-frame {
+    width: 100%;
+    height: auto;
+    max-height: 70vh;
+    border-radius: 8px;
+    overflow: visible;
+    position: relative;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+/* kartu caption */
+.lb-caption {
+    width: 100%;
+    background: rgba(255, 255, 255, .96);
+    color: #0f172a;
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin-top: 1rem;
+    max-height: 20vh;
+    /* Batasi tinggi caption */
+    overflow-y: auto;
+    /* Tambah scroll jika konten terlalu panjang */
+}
+
+.lb-tools {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+}
+
+.lb-tools .sep {
+    width: 1px;
+    height: 16px;
+    background: #c7c7c7;
+    margin: 0 4px;
+}
+
+.lb-tools button {
+    background: #f1f5f9;
+    /* slate-100 */
+    border: 1px solid #cbd5e1;
+    /* slate-300 */
+    border-radius: 8px;
+    padding: 4px 8px;
+    font-size: .9rem;
+    cursor: pointer;
+}
+
+.lb-tools button:hover {
+    background: #e2e8f0;
+}
+
+.lb-text {
+    font-size: 16px;
+    /* default, bisa dioverride dari code */
+    line-height: 1.55;
+    word-break: break-word;
+}
+
+
+/* beri ruang untuk caption (kurangi tinggi maksimal gambar) */
+#lbImg {
+    display: block;
+    max-width: 100%;
+    max-height: 70vh;
+    /* Sesuaikan dengan lb-frame */
+    height: auto;
+    width: auto;
+    margin: 0 auto;
+    object-fit: contain;
+}
+
+.lb-caption::-webkit-scrollbar {
+    width: 8px;
+}
+
+.lb-caption::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.lb-caption::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.lb-caption::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.lightbox button {
+    position: absolute;
+    background: rgba(0, 0, 0, .45);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, .35);
+    border-radius: 12px;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    transition: transform .15s, background .15s;
+    z-index: 2001;
+}
+
+
+.lightbox button:hover {
+    transform: scale(1.06);
+    background: rgba(0, 0, 0, .6);
+}
+
+/* YANG BARU — samakan dengan ID di HTML */
+#lbClose {
+    top: 20px;
+    right: 20px;
+    position: absolute;
+    z-index: 2002;
+}
+
+#lbPrev,
+#lbNext {
+    position: static;
+    /* override absolute */
+    top: auto;
+    left: auto;
+    right: auto;
+    transform: none;
+    /* hilangkan translateY */
+    margin: 0 8px;
+    /* jarak kecil dari tepi gambar */
+    width: 42px;
+    height: 42px;
+}
+
+#lbPrev {
+    grid-column: 1;
+    justify-self: end;
+}
+
+#lbNext {
+    grid-column: 3;
+    justify-self: start;
+}
+
+#lbPrev:hover,
+#lbNext:hover {
+    background: rgba(0, 0, 0, .6);
+}
+
+
+@media (max-width:768px) {
+    .nav-links {
+        display: none
+    }
+
+    .detail-header h1 {
+        font-size: 2rem
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr
+    }
+}
+
+@media (max-width:768px) {
+    .lightbox.open {
+        grid-template-columns: minmax(12px, 1fr) auto minmax(12px, 1fr);
+    }
+
+    #lbPrev,
+    #lbNext {
+        width: 38px;
+        height: 38px;
+    }
+}
+
+@media (min-width: 1400px){
+  .navbar .brand{ margin-left: -2rem; }
+}

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="styleML.css">
+  <title>Machine Learning - Portfolio</title>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">Details</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#services">Experiences</a></li>
+        <li><a href="index.html#testimonial">Certificate</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <div class="container">
+      <div class="detail-header">
+        <h1>Machine Learning</h1>
+        <p class="subtitle">End-to-end ML/NLP: dari pembuatan dataset, pelatihan model, evaluasi, hingga serving & web demo.</p>
+      </div>
+
+      <section class="skills-section">
+        <h2>Teknologi & Tools</h2>
+        <div class="skills-grid">
+          <div class="skill-item">
+            <h3>Bahasa & Framework</h3>
+            <p>Python, PyTorch, scikit-learn, FastAPI, Docker, Git, Linux CLI.</p>
+          </div>
+          <div class="skill-item">
+            <h3>NLP & Modeling</h3>
+            <p>Tokenization (SentencePiece), XLNet/BERT, BiLSTM, CRF decoding, class weights, label masking.</p>
+          </div>
+          <div class="skill-item">
+            <h3>Training & Evaluasi</h3>
+            <p>Train/val/test split, early stopping, scheduler, Precision/Recall/F1, Confusion Matrix, label distribution.</p>
+          </div>
+          <div class="skill-item">
+            <h3>MLOps & Serving</h3>
+            <p>REST API (FastAPI), Dockerization, caching token, batch inference, logging & export hasil ke CSV.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="projects-section">
+        <h2>Project ML</h2>
+        <div class="projects-grid">
+          <!-- 1 NER -->
+          <div class="project-card">
+            <div class="project-image">NER Bahasa Indonesia (XLNet-BiLSTM-CRF)</div>
+            <h3>Named Entity Recognition</h3>
+            <p>Pengembangan model NER Bahasa Indonesia menggunakan backbone XLNet, lapisan BiLSTM, dan CRF untuk decoding label BIO (PER/ORG/LOC).</p>
+            <div class="tech-stack">
+              <span class="tech-tag">PyTorch</span>
+              <span class="tech-tag">XLNet</span>
+              <span class="tech-tag">BiLSTM</span>
+              <span class="tech-tag">CRF</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn">Paper/Notes</a>
+              <a href="#" class="btn btn-secondary">Repo</a>
+            </div>
+          </div>
+
+          <!-- 2 Serving -->
+          <div class="project-card">
+            <div class="project-image">FastAPI + Docker Serving</div>
+            <h3>Model Serving & API</h3>
+            <p>Menyajikan model melalui FastAPI, dengan endpoint prediksi token-level dan highlight entitas. Dockerized untuk deploy, termasuk mekanisme token caching 1 jam.</p>
+            <div class="tech-stack">
+              <span class="tech-tag">FastAPI</span>
+              <span class="tech-tag">Docker</span>
+              <span class="tech-tag">REST API</span>
+              <span class="tech-tag">NLP</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn">API Docs</a>
+              <a href="#" class="btn btn-secondary">Repo</a>
+            </div>
+          </div>
+
+          <!-- 3 Dataset -->
+          <div class="project-card">
+            <div class="project-image">Crawling & Labeling</div>
+            <h3>Pembuatan Dataset NER</h3>
+            <p>Crawling data (X/Twitter), pembersihan teks, labeling semi-otomatis memakai gazetteer, lalu kurasi manual agar konsisten dengan skema BIO.</p>
+            <div class="tech-stack">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Pandas</span>
+              <span class="tech-tag">Gazetteer</span>
+              <span class="tech-tag">BIO</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn">Notebook</a>
+              <a href="#" class="btn btn-secondary">Dataset</a>
+            </div>
+          </div>
+
+          <!-- 4 Evaluation -->
+          <div class="project-card">
+            <div class="project-image">Evaluation & Reporting</div>
+            <h3>Evaluasi Model</h3>
+            <p>Perhitungan Precision/Recall/F1 per entitas, token-level metrics, dan Confusion Matrix. Monitoring overfitting via kurva loss & akurasi validasi.</p>
+            <div class="tech-stack">
+              <span class="tech-tag">Metrics</span>
+              <span class="tech-tag">Confusion Matrix</span>
+              <span class="tech-tag">Visualization</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn">Report</a>
+              <a href="#" class="btn btn-secondary">Notebook</a>
+            </div>
+          </div>
+
+          <!-- 5 Web Demo -->
+          <div class="project-card">
+            <div class="project-image">Web Demo Highlight</div>
+            <h3>Web Demo NER</h3>
+            <p>Form HTML untuk input teks/unggah file (.txt/.csv), menampilkan highlight warna per entitas (PER/ORG/LOC), dan ekspor hasil prediksi ke CSV.</p>
+            <div class="tech-stack">
+              <span class="tech-tag">HTML/JS</span>
+              <span class="tech-tag">FastAPI</span>
+              <span class="tech-tag">CSV Export</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn">Demo</a>
+              <a href="#" class="btn btn-secondary">Code</a>
+            </div>
+          </div>
+
+          <!-- 6 Batch Inference -->
+          <div class="project-card">
+            <div class="project-image">Batch Inference</div>
+            <h3>Pipeline Prediksi Massal</h3>
+            <p>Pipeline untuk memproses ribuan kalimat secara batch, rekonsiliasi token-label, dan penyimpanan hasil dalam format standar (CSV/JSONL).</p>
+            <div class="tech-stack">
+              <span class="tech-tag">Batch</span>
+              <span class="tech-tag">Pandas</span>
+              <span class="tech-tag">JSON/CSV</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn">Notebook</a>
+              <a href="#" class="btn btn-secondary">Repo</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <a href="index.html#MLservices" class="back-btn" aria-label="Kembali">←</a>
+</body>
+</html>

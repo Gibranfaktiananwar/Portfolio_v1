@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="styleserver.css">
+  <title>Server Related - Portfolio</title>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">Details</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#services">Experiences</a></li>
+        <li><a href="index.html#testimonial">Certificate</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <div class="container">
+      <div class="detail-header">
+        <h1>Server Related</h1>
+        <p class="subtitle">Membangun home server, instal & konfigurasi SNMP, reverse proxy, HTTPS, serta hardening security headers.</p>
+      </div>
+
+      <section class="skills-section">
+        <h2>Teknologi & Tools</h2>
+        <div class="skills-grid">
+          <div class="skill-item">
+            <h3>Sistem Operasi & Admin</h3>
+            <p>Ubuntu/Debian Server, SSH hardening, manajemen user & permission, systemd, logrotate.</p>
+          </div>
+          <div class="skill-item">
+            <h3>Web Server & Proxy</h3>
+            <p>Nginx & Apache (virtual host, reverse proxy), HTTP/2, load basic, caching, compression.</p>
+          </div>
+          <div class="skill-item">
+            <h3>Monitoring & Security</h3>
+            <p>SNMP (snmpd, snmpwalk), UFW/iptables, Fail2ban, TLS/HTTPS (Let's Encrypt), Security Headers.</p>
+          </div>
+          <div class="skill-item">
+            <h3>Automation & Backup</h3>
+            <p>Bash scripting, cron, rsync/restic, Docker & Docker Compose untuk layanan mandiri.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="projects-section">
+        <h2>Project Server</h2>
+        <div class="projects-grid">
+          <!-- 1 -->
+          <div class="project-card">
+            <div class="project-image">Home Server & Networking</div>
+            <h3>Setup Home Server</h3>
+            <p>Instalasi Ubuntu Server, konfigurasi SSH, UFW, struktur direktori layanan, dan reverse proxy untuk multi-app.</p>
+            <div class="tech-stack">
+              <span class="tech-tag">Ubuntu</span>
+              <span class="tech-tag">Nginx</span>
+              <span class="tech-tag">UFW</span>
+              <span class="tech-tag">SSH</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn">Docs</a>
+              <a href="#" class="btn btn-secondary">Config</a>
+            </div>
+          </div>
+          <!-- 2 -->
+          <div class="project-card">
+            <div class="project-image">SNMP Monitoring</div>
+            <h3>SNMP + Observability</h3>
+            <p>Konfigurasi snmpd, pengujian dengan <code>snmpwalk</code>, dan integrasi ke dashboard (Grafana/Cacti) untuk memantau resource.</p>
+            <div class="tech-stack">
+              <span class="tech-tag">SNMP</span>
+              <span class="tech-tag">snmpd</span>
+              <span class="tech-tag">snmpwalk</span>
+              <span class="tech-tag">Grafana</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn">Docs</a>
+              <a href="#" class="btn btn-secondary">Config</a>
+            </div>
+          </div>
+          <!-- 3 -->
+          <div class="project-card">
+            <div class="project-image">Security Headers</div>
+            <h3>HTTP Security Hardening</h3>
+            <p>Penerapan HSTS, X-Content-Type-Options, X-Frame-Options, Referrer-Policy, dan Content-Security-Policy di Nginx/Apache.</p>
+            <div class="tech-stack">
+              <span class="tech-tag">Nginx</span>
+              <span class="tech-tag">Apache</span>
+              <span class="tech-tag">HSTS</span>
+              <span class="tech-tag">CSP</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn">Docs</a>
+              <a href="#" class="btn btn-secondary">Config</a>
+            </div>
+          </div>
+          <!-- 4 -->
+          <div class="project-card">
+            <div class="project-image">LEMP Stack</div>
+            <h3>Deploy LEMP untuk Aplikasi</h3>
+            <p>Provisioning Nginx + PHP-FPM + MySQL (MariaDB), optimasi PHP-FPM, dan skema backup database terjadwal.</p>
+            <div class="tech-stack">
+              <span class="tech-tag">Nginx</span>
+              <span class="tech-tag">PHP-FPM</span>
+              <span class="tech-tag">MySQL</span>
+              <span class="tech-tag">Composer</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn">Docs</a>
+              <a href="#" class="btn btn-secondary">Config</a>
+            </div>
+          </div>
+          <!-- 5 -->
+          <div class="project-card">
+            <div class="project-image">HTTPS & Certbot</div>
+            <h3>HTTPS & Otomasi Sertifikat</h3>
+            <p>Instalasi Let's Encrypt (certbot), konfigurasi auto-renewal, redirect 301 ke HTTPS, dan preload HSTS.</p>
+            <div class="tech-stack">
+              <span class="tech-tag">TLS</span>
+              <span class="tech-tag">Let's Encrypt</span>
+              <span class="tech-tag">Certbot</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn">Docs</a>
+              <a href="#" class="btn btn-secondary">Config</a>
+            </div>
+          </div>
+          <!-- 6 -->
+          <div class="project-card">
+            <div class="project-image">Backup & Automation</div>
+            <h3>Backup & Recovery</h3>
+            <p>Script backup terjadwal menggunakan cron + rsync/restic, verifikasi restore, dan rotasi log dengan logrotate.</p>
+            <div class="tech-stack">
+              <span class="tech-tag">Bash</span>
+              <span class="tech-tag">Cron</span>
+              <span class="tech-tag">rsync</span>
+              <span class="tech-tag">restic</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn">Docs</a>
+              <a href="#" class="btn btn-secondary">Config</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <a href="index.html#services" class="back-btn" aria-label="Kembali">←</a>
+</body>
+</html>
