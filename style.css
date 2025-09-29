@@ -557,7 +557,7 @@ span {
     bottom: 0;
     width: 100%;
     padding: 40px 0;
-    background-color: var(--snd-bg-color);
+    background-color: var(--bg-color);
 }
 
 .footer .social {

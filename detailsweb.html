@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="styleweb.css">
   <title>Project Details - Portfolio</title>
 </head>
@@ -16,7 +16,7 @@
         <a href="index.html#services" class="back-btn" title="Back to Home" aria-label="Back">
           <i class="bx bx-chevron-left"></i>
         </a>
-        <a href="index.html" class="logo">Portfolio Details</a>
+        <a href="index.html" class="logo">Web Develeopment</a>
       </div>
       <nav>
         <ul class="nav-links">
@@ -31,31 +31,43 @@
 
   <main class="main-content">
     <div class="container">
-      <div class="detail-header">
-        <h1 id="title">Loading...</h1>
-        <p id="subtitle" class="subtitle"></p>
+      <section class="detail-header">
+        <h1>Featured Projects</h1>
+        <p id="subtitle" class="subtitle">A collection of web/app projects I have worked on.</p>
         <div id="chips" class="chips"></div>
-      </div>
-      <section class="skills-section" id="skillsSection" hidden>
-        <h2>Technologies & Tools</h2>
-        <div class="skills-grid" id="skillsGrid"></div>
-      </section>
-      <section class="projects-section">
-        <h2>Featured Projects</h2>
         <div class="projects-grid" id="projectsGrid"></div>
       </section>
     </div>
   </main>
-  <div class="lightbox" id="lightbox" aria-hidden="true"> <button id="lbClose" title="Close">✕</button> <button
-      id="lbPrev" title="Previous">‹</button>
-    <div class="lb-body">
-      <div class="lb-frame"> <img id="lbImg" alt="Project Preview"> </div> <!-- Caption read-only -->
-      <div class="lb-caption">
-        <div id="lbText" class="lb-text"></div>
+
+  <!-- footer section code -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="social" aria-label="Social links">
+        <a href="https://www.linkedin.com/in/gibranfaktiananwar/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+        </a>
+        <a href="https://github.com/Gibranfaktiananwar" target="_blank" rel="noopener" aria-label="GitHub">
+          <i class="fa-brands fa-github" aria-hidden="true"></i>
+        </a>
+        <a href="https://medium.com/@gibranfktian" target="_blank" rel="noopener" aria-label="Medium">
+          <i class="fa-brands fa-medium" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.instagram.com/gibranfktian/" target="_blank" rel="noopener" aria-label="Instagram">
+          <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+        </a>
       </div>
-    </div> <button id="lbNext" title="Next">›</button>
-  </div>
-  <script src="scriptweb.js"></script>
+
+      <p class="copyright">
+        &copy; 2025 Gibran Faktian Anwar. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+
+  <script src="scriptweb.js?v=3"></script>
+  <script src="https://kit.fontawesome.com/71cd389c2b.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
 </body>
 
 </html>
