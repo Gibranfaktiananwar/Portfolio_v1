@@ -1,5 +1,4 @@
 * {
-    
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -11,10 +10,16 @@
 }
 
 :root {
-    --bg-color: #fff;
+    --bg-color: #ffffff;
     --snd-bg-color: #d5fdf9;
-    --text-color: #000;
+    --text-color: #000000;
     --main-color: #007f73;
+}
+
+/* Force light theme */
+html, body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
 }
 
 html {
@@ -693,38 +698,3 @@ span {
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

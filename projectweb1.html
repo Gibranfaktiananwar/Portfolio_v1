@@ -2,25 +2,15 @@
 <html lang="id">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title id="pgTitle">Project – Detail</title>
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-  <!-- CSS global kamu tetap dipakai -->
-  <link rel="stylesheet" href="styleweb.css">
-
-  <!-- Tambahan khusus halaman detail -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="styleweb.css" />
   <style>
-    body {
-      display: flex;
-      /* jadikan kolom */
-      flex-direction: column;
-      min-height: 100vh;
-      /* tetap pakai tinggi layar */
-    }
-
+    /* ====== dasar ====== */
     :root {
-      --pd-max: 1160px;
+      --pd-max: 1270px;
       --pd-gap: 28px;
       --pd-card: rgba(255, 255, 255, .10);
       --pd-stroke: rgba(255, 255, 255, .18);
@@ -28,59 +18,74 @@
       --bg1: #083d3b;
       --bg2: #0f8278;
       --bg3: #14b8a6;
+      --readable: 66ch;
+      /* lebar baca nyaman desktop */
     }
 
-    /* Matikan background langsung di html/body, biar digambar sekali lewat ::before */
+    /* FIX: pastikan perhitungan width tidak bocor */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
     html,
     body {
       background: transparent !important;
+      overflow-x: hidden;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     body::before {
       content: "";
       position: fixed;
-      /* tetap menutup saat scroll */
       inset: 0;
       z-index: -1;
-      /* di belakang semua konten */
       background: linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 55%, var(--bg3) 100%);
-      /* trik anti banding di sebagian mobile GPU */
       transform: translateZ(0);
       will-change: transform;
     }
 
+    /* ====== layout utama ====== */
     .main-content {
-      /* akan dioverride JS sesuai tinggi navbar */
-      padding-top: 72px;
-      /* Reduced from default calculation */
-      /* fallback jika JS belum jalan */
+      padding-top: 50px;
       padding-bottom: 32px;
-      /* ruang napas bawah */
       flex: 1 0 auto;
+      margin-top: 74px;
     }
 
     .main-content .container {
       max-width: var(--pd-max);
       margin: 0 auto;
-      padding: 0 20px;
+      /* FIX: padding kiri-kanan konsisten & responsif */
+      padding-inline: clamp(14px, 4vw, 20px);
     }
 
-    /* ===== HERO ===== */
     .pd-hero {
       display: grid;
       grid-template-columns: 1.05fr .95fr;
       align-items: start;
-      /* penting: konten nempel atas */
       gap: var(--pd-gap);
       margin-top: 0;
     }
 
+    /* FIX: anak grid boleh menyusut agar tidak “mendorong” lebar */
+    .pd-hero>* {
+      min-width: 0;
+    }
+
     @media (max-width:1080px) {
       .pd-hero {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
       }
     }
 
+    /* ====== tipografi / blok kiri ====== */
     .pd-title {
       font-size: clamp(30px, 4.2vw, 48px);
       margin: .25rem 0 .6rem;
@@ -88,16 +93,27 @@
     }
 
     .pd-lead {
-      opacity: .95;
-      font-size: 1.06rem;
-      line-height: 1.65;
+      max-width: var(--readable);
       margin: 0 0 16px;
-      max-width: 58ch;
+      font-size: 1.06rem;
+      line-height: 1.7;
+      opacity: .95;
+      text-align: justify;
+      text-justify: inter-word;
+      hyphens: auto;
+      overflow-wrap: anywhere;
+      hanging-punctuation: first allow-end;
+    }
+
+    @supports (text-wrap:pretty) {
+      .pd-lead {
+        text-wrap: pretty;
+      }
     }
 
     .pd-stats {
       display: grid;
-      grid-template-columns: repeat(2, minmax(180px, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
       margin: 18px 0;
       max-width: 420px;
@@ -130,6 +146,7 @@
       flex-wrap: wrap;
       gap: 12px;
       margin: 18px 0 8px;
+      max-width: var(--readable);
     }
 
     .pd-btn {
@@ -163,6 +180,21 @@
       border-color: #2fd6d7;
     }
 
+    .pd-tech {
+      margin-top: 16px;
+      max-width: var(--readable);
+    }
+
+    .pd-tech-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.18rem;
+      font-weight: 700;
+      letter-spacing: .2px;
+      margin: 6px 0 10px;
+    }
+
     .pd-chips {
       display: flex;
       flex-wrap: wrap;
@@ -178,31 +210,27 @@
       font-size: .88rem;
     }
 
-    /* Kolom kanan berisi: gambar + fitur (menumpuk rapat) */
+    /* ====== blok kanan ====== */
     .pd-right {
       display: grid;
       gap: 18px;
       align-content: start;
+      min-width: 0;
     }
 
+    /* FIX: cegah overflow */
     .pd-mock {
       background: var(--pd-card);
-      border: 1px solid var(--pd-stroke);
-      border-radius: 18px;
-      padding: 18px;
+      border: 2px solid var(--pd-stroke);
+      border-radius: 15px;
+      padding: 17px;
       display: flex;
-      /* biar gambar menempel ke atas */
       align-items: flex-start;
       justify-content: center;
       box-shadow: var(--pd-soft);
-      min-height: 0;
-      /* hilangkan tinggi minimum berlebih */
       overflow: hidden;
-      /* Penting untuk efek zoom */
       cursor: pointer;
-      /* Menunjukkan gambar bisa di-hover */
       position: relative;
-      /* Untuk positioning yang lebih baik */
     }
 
     .pd-mock img {
@@ -210,43 +238,137 @@
       height: auto;
       border-radius: 12px;
       display: block;
-      transition: transform 0.3s ease, filter 0.3s ease;
-      /* Smooth transition */
+      transition: transform .3s ease, filter .3s ease;
       transform-origin: center;
-      /* Zoom dari tengah */
     }
 
-    /* Efek hover zoom pada gambar */
     .pd-mock:hover img {
       transform: scale(1.15);
-      /* Zoom 115% saat hover */
     }
 
-    /* Efek tambahan pada container saat hover */
     .pd-mock:hover {
       transform: translateY(-2px);
-      /* Sedikit naik */
-      box-shadow: 0 25px 45px rgba(0, 0, 0, .35);
-      /* Shadow lebih dramatis */
+      box-shadow: 0 25px 60px rgba(0, 0, 0, .35);
       border-color: rgba(255, 255, 255, .25);
-      /* Border lebih terang */
     }
 
-    /* ===== IMAGE MODAL ===== */
+    .pd-thumbs {
+      display: flex;
+      gap: 10px;
+      padding: 8px 14px 15px;
+      overflow-x: auto;
+      scrollbar-width: thin;
+      scrollbar-gutter: stable;
+    }
+
+    .pd-thumb {
+      flex: 0 0 auto;
+      width: 84px;
+      height: 58px;
+      border: none;
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .15s;
+    }
+
+    .pd-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+    }
+
+    .pd-thumb:hover {
+      transform: translateY(-2px);
+    }
+
+    .pd-thumb.active img {
+      box-shadow: 0 0 0 6px rgba(8, 77, 74, .40), 0 14px 16px rgba(0, 0, 0, .28);
+    }
+
+    .pd-section {
+      margin-top: 0;
+    }
+
+    .pd-section h2 {
+      font-size: 1.35rem;
+      margin-bottom: 14px;
+      letter-spacing: .2px;
+    }
+
+    .pd-features {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(2, minmax(280px, 1fr));
+    }
+
+    .pd-features li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      background: var(--pd-card);
+      border: 1px solid var(--pd-stroke);
+      border-radius: 14px;
+      padding: 12px 14px;
+      min-height: 64px;
+      transition: transform .15s, border-color .15s, box-shadow .15s, background .15s;
+    }
+
+    .pd-features li i {
+      font-size: 1.25rem;
+      margin-top: 2px;
+      color: #b8fff3;
+      flex: 0 0 auto;
+    }
+
+    /* ====== breadcrumb ====== */
+    .pd-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 1px 0 1px;
+      color: rgba(255, 255, 255, .85);
+      font-size: .90rem;
+    }
+
+    .pd-breadcrumb a {
+      color: inherit;
+      text-decoration: none;
+      opacity: .95;
+    }
+
+    .pd-breadcrumb a:hover {
+      text-decoration: underline;
+      opacity: 1;
+    }
+
+    .pd-breadcrumb .sep {
+      opacity: .5;
+    }
+
+    /* ====== modal (tidak diubah) ====== */
     .image-modal {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.9);
+      background: rgba(0, 0, 0, .9);
       z-index: 9999;
       display: flex;
       align-items: center;
       justify-content: center;
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
+      transition: opacity .3s ease, visibility .3s ease;
       cursor: pointer;
     }
 
@@ -269,16 +391,16 @@
       max-width: 100%;
       max-height: 100%;
       border-radius: 12px;
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-      transition: transform 0.3s ease;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, .5);
+      transition: transform .3s ease;
     }
 
     .modal-close {
       position: fixed;
-      top: 20px;
+      top: 33px;
       right: 20px;
-      background: rgba(0, 0, 0, 0.7);
-      border: 2px solid rgba(255, 255, 255, 0.3);
+      background: rgba(0, 0, 0, .7);
+      border: 2px solid rgba(255, 255, 255, .3);
       border-radius: 50%;
       width: 44px;
       height: 44px;
@@ -286,128 +408,62 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      color: white;
+      color: #fff;
       font-size: 22px;
-      transition: all 0.3s ease;
+      transition: all .3s ease;
       z-index: 10001;
       backdrop-filter: blur(10px);
     }
 
-    .modal-close:hover {
-      background: rgba(255, 255, 255, 0.15);
-      border-color: rgba(255, 255, 255, 0.5);
-      transform: scale(1.1);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Zoom indicator on image */
-    .pd-mock::after {
-      position: absolute;
-      bottom: 12px;
-      right: 12px;
-      background: rgba(0, 0, 0, 0.6);
-      color: white;
-      width: 32px;
-      height: 32px;
+    .modal-nav {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      z-index: 10002;
+      background: rgba(0, 0, 0, .65);
+      border: 2px solid rgba(255, 255, 255, .35);
       border-radius: 50%;
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 14px;
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      color: #fff;
+      font-size: 26px;
+      transition: transform .18s, background .18s, opacity .18s, border-color .18s;
+    }
+
+    .modal-nav.prev {
+      left: 25px;
+    }
+
+    .modal-nav.next {
+      right: 25px;
+    }
+
+    .modal-counter {
+      position: fixed;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, .7);
+      border: 2px solid rgba(255, 255, 255, .35);
+      color: #fff;
+      font-weight: 700;
+      font-size: 19px;
+      line-height: 1;
+      z-index: 10004;
+      backdrop-filter: blur(6px);
       pointer-events: none;
     }
 
-    .pd-mock:hover::after {
-      opacity: 1;
-    }
-
-    /* ===== SECTION FEATURES (sekarang di kolom kanan) ===== */
-    .pd-section {
-      margin-top: 0;
-    }
-
-    .pd-section h2 {
-      font-size: 1.35rem;
-      margin-bottom: 14px;
-      letter-spacing: .2px;
-    }
-
-    .pd-features {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: 12px;
-      grid-template-columns: repeat(2, minmax(280px, 1fr));
-    }
-
-    @media (max-width:900px) {
-      .pd-features {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .pd-features li {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      background: var(--pd-card);
-      border: 1px solid var(--pd-stroke);
-      border-radius: 14px;
-      padding: 12px 14px;
-      min-height: 64px;
-      transition: transform .15s, border-color .15s, box-shadow .15s, background .15s;
-      cursor: default;
-    }
-
-    .pd-features li:hover {
-      transform: translateY(-3px);
-      background: rgba(255, 255, 255, .14);
-      border-color: rgba(255, 255, 255, .32);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, .25);
-    }
-
-    .pd-features li i {
-      font-size: 1.25rem;
-      margin-top: 2px;
-      color: #b8fff3;
-      flex: 0 0 auto;
-      transition: color .15s ease, transform .15s ease;
-    }
-
-    .pd-features li:hover i {
-      color: #e8fff9;
-      transform: scale(1.06);
-    }
-
-    .pd-features li span {
-      line-height: 1.55;
-    }
-
-    .pd-tech {
-      margin-top: 16px;
-    }
-
-    .pd-tech-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 1.18rem;
-      font-weight: 700;
-      letter-spacing: .2px;
-      margin: 6px 0 10px;
-    }
-
-    /* footer section code */
-
-    /* ===== Footer ===== */
+    /* ====== FOOTER ====== */
     .footer {
       width: 100%;
       background: var(--footer-bg);
       padding: 8px 0 8px;
-      /* ↓ lebih rapat dari 40px */
       position: relative;
       margin-top: auto !important;
     }
@@ -423,14 +479,11 @@
       justify-content: center;
       align-items: center;
       gap: 14px;
-      /* kontrol jarak icon */
       margin-bottom: 6px;
-      /* ↓ tadinya 25px */
     }
 
     .footer .social a {
       width: 40px;
-      /* sedikit lebih kecil */
       height: 40px;
       display: inline-flex;
       align-items: center;
@@ -438,139 +491,140 @@
       border-radius: 50%;
       text-decoration: none;
       border: 1.5px solid var(--footer-accent);
-      /* ↓ tipis, lebih halus */
       color: var(--footer-fg);
       transition: transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
     }
 
-    .footer .social a:hover {
-      background: var(--footer-accent);
-      color: #0f8278;
-      /* kontras saat hover */
-      box-shadow: 0 6px 18px rgba(0, 0, 0, .25);
-      transform: translateY(-4px) scale(1.08);
-      /* ↓ lebih elegan dari -10px & 1.2 */
-    }
-
     .footer .copyright {
       margin: 6px 0 0;
-      /* ↓ tadinya 20px */
       text-align: center;
       font-size: 14px;
-      /* ↓ 16 → 14 agar tidak "berat" */
       color: var(--footer-fg-dim);
       letter-spacing: .2px;
     }
 
-    .main-content,
-    .pd-hero,
-    .pd-right {
-      background: transparent !important;
-    }
+    /* ====== MOBILE FIX ====== */
+    @media (max-width:768px) {
 
-    .navbar {
-      margin-bottom: 0 !important;
-    }
-
-    /* Responsif untuk efek zoom */
-    @media (max-width: 768px) {
-      .pd-mock:hover img {
-        transform: scale(1.1);
-        /* Zoom lebih kecil di mobile */
+      /* padding kiri-kanan seragam */
+      .main-content .container {
+        padding-inline: 16px;
       }
 
-      .pd-mock:hover {
-        transform: translateY(-1px);
-        /* Movement lebih kecil di mobile */
+      /* kolom tunggal yang benar-benar muat layar */
+      .pd-hero {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
       }
 
-      .modal-content {
-        max-width: 95vw;
-        max-height: 95vh;
+      /* semua blok di kolom kiri mengikuti lebar container */
+      .pd-title,
+      .pd-lead,
+      .pd-stats,
+      .pd-cta,
+      .pd-tech,
+      .pd-section {
+        max-width: 100%;
       }
 
-      .modal-close {
-        display: none;
-        /* Hide close button on mobile */
-      }
-    }
-
-    /* responsif kecil */
-    @media (max-width:480px) {
-      .footer .social {
-        gap: 10px;
+      .pd-lead {
+        font-size: 1rem;
+        line-height: 1.8;
       }
 
-      .footer .social a {
-        width: 36px;
-        height: 36px;
-      }
-
-      .footer .copyright {
-        font-size: 13px;
-      }
-    }
-
-    /* list fitur lebih rapat sedikit di mobile */
-    @media (max-width: 900px) {
+      /* fitur jadi 1 kolom agar tidak mepet kanan */
       .pd-features {
+        grid-template-columns: 1fr;
         gap: 10px;
+      }
+
+      /* elemen besar sedikit dipadatkan */
+      .pd-mock {
+        padding: 14px;
+      }
+
+      .pd-cta .pd-btn {
+        padding: 10px 14px;
       }
     }
 
-    /* mobile phones: tambah ruang bawah agar tak mepet */
+    /* layar kecil banget */
     @media (max-width:560px) {
       .main-content {
-        padding-top: 5px !important;
-        /* Reduced for mobile */
+        padding-top: 1px !important;
         padding-bottom: 40px !important;
       }
 
-      /* dari 88 → 40 */
-      .pd-section {
-        margin-bottom: 4px !important;
+      .pd-breadcrumb {
+        margin: 2px 0 10px;
+        font-size: .78rem;
       }
 
-      /* dari 8 → 4 */
-      .pd-hero {
-        gap: 16px !important;
+      .modal-counter {
+        bottom: 12px;
+        padding: 6px 10px;
+        font-size: 13px;
       }
 
-      /* dari var(--pd-gap)=28 → 16 */
-      .pd-mock {
-        padding: 14px !important;
+      .modal-nav {
+        width: 33px;
+        height: 33px;
+        font-size: 28px;
       }
 
-      /* sedikit lebih rapat */
-      .pd-features {
-        gap: 8px !important;
+      .modal-nav.prev {
+        left: -1px;
       }
 
-      /* list fitur lebih rapat */
-      .pd-section h2 {
-        margin-bottom: 10px !important;
+      .modal-nav.next {
+        right: -1px;
+      }
+
+      .pd-thumb {
+        width: 72px;
+        height: 50px;
       }
     }
 
-    /* Sedikit ubah sudut di layar <=360px agar transisi warna lebih mulus */
+    @media (max-width:900px) {
+      .pd-features {
+        gap: 10px;
+      }
+    }
+
     @media (max-width:360px) {
       body::before {
         background: linear-gradient(120deg, var(--bg1) 0%, var(--bg2) 55%, var(--bg3) 100%);
+      }
+    }
+
+    /* navbar responsif */
+    @media (max-width:768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .main-content {
+        margin-top: 90px;
+        padding-top: 8px;
+      }
+    }
+
+    @media (min-width:1400px) {
+      .navbar .brand {
+        margin-left: -2rem;
       }
     }
   </style>
 </head>
 
 <body>
-
-  <!-- NAVBAR (tidak diubah) -->
   <header class="navbar">
     <div class="nav-container">
       <div class="brand">
-        <a href="detailsweb.html" class="back-btn" title="Back" aria-label="Back">
-          <i class="bx bx-chevron-left"></i>
-        </a>
-        <a href="index.html" class="logo">Project Details</a>
+        <a href="detailsweb.html" class="back-btn" title="Back to Home" aria-label="Back"><i
+            class="bx bx-chevron-left"></i></a>
+        <a href="index.html" class="logo">Web Development</a>
       </div>
       <nav>
         <ul class="nav-links">
@@ -585,9 +639,13 @@
 
   <main class="main-content">
     <div class="container">
-      <!-- ===== HERO ===== -->
+      <nav class="pd-breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html#services">Experiences</a><span class="sep">/</span>
+        <a href="detailsweb.html">Web Development</a><span class="sep">/</span>
+        <span id="crumbTitle">Model Tester NER</span>
+      </nav>
+
       <section class="pd-hero">
-        <!-- Kolom kiri (teks) -->
         <div>
           <h1 id="pTitle" class="pd-title">Loading…</h1>
           <p id="pLead" class="pd-lead"></p>
@@ -604,25 +662,19 @@
           </div>
 
           <div class="pd-cta">
-            <a id="btnCode" class="pd-btn primary" target="_blank" rel="noopener">
-              <i class='bx bx-play-circle'></i> Github
-            </a>
+            <a id="btnCode" class="pd-btn primary" target="_blank" rel="noopener"><i class='bx bx-play-circle'></i>
+              Github</a>
           </div>
 
           <div class="pd-tech">
-            <h3 class="pd-tech-title">
-              <i class='bx bx-code-curly'></i>
-              Technologies Used
-            </h3>
+            <h3 class="pd-tech-title"><i class='bx bx-code-curly'></i>Technologies Used</h3>
             <div id="techList" class="pd-chips"></div>
           </div>
         </div>
 
-        <!-- Kolom kanan (gambar + key features) -->
         <div class="pd-right">
-          <div class="pd-mock" id="imagePreview">
-            <img id="pCover" alt="Preview">
-          </div>
+          <div class="pd-mock" id="imagePreview"><img id="pCover" alt="Preview"></div>
+          <div class="pd-thumbs" id="thumbStrip"></div>
 
           <section class="pd-section">
             <h2>Key Features</h2>
@@ -633,135 +685,128 @@
     </div>
   </main>
 
-  <!-- Image Modal -->
+  <!-- Modal -->
   <div class="image-modal" id="imageModal">
     <div class="modal-content" id="modalContent">
-      <div class="modal-close" id="modalClose">
-        <i class='bx bx-x'></i>
-      </div>
+      <div class="modal-counter" id="modalCounter"></div>
+      <div class="modal-close" id="modalClose"><i class='bx bx-x'></i></div>
+      <button class="modal-nav prev" id="modalPrev" aria-label="Previous"><i class='bx bx-chevron-left'></i></button>
+      <button class="modal-nav next" id="modalNext" aria-label="Next"><i class='bx bx-chevron-right'></i></button>
       <img class="modal-image" id="modalImage" alt="Full Preview">
     </div>
   </div>
 
   <script>
-    // ---- data detail per id ----
+    /* ---- data ---- */
     const PROJECT_DETAIL = {
       "model-tester-ner": {
         title: "Model Tester NER",
-        lead: "AutoChat adalah solusi otomatisasi untuk mengirim pesan ke saluran Discord secara terjadwal. Pengguna dapat menentukan saluran tujuan, isi pesan, dan interval penundaan pengiriman pesan. Program ini berjalan 24/7, memungkinkan pengiriman pesan otomatis tanpa intervensi manual, sehingga memudahkan promosi atau komunikasi di Discord secara efisien.",
+        lead: "A modern, responsive portfolio website built with vanilla JavaScript and CSS3, featuring dynamic content loading from JSON data. This project showcases advanced web development techniques including smooth animations, responsive design, and optimized performance. The website implements a glass-morphism design aesthetic with dark theme, featuring smooth scrolling navigation, animated typing effects, and interactive project galleries. The architecture allows for easy content updates through JSON configuration files, making it maintainable and scalable.",
         cover: "assets/web/card1/ner.jpeg",
+        images: ["assets/web/card1/ner.jpeg", "assets/web/card1/ner2.jpeg", "assets/web/card1/ner3.jpeg", "assets/web/card1/ner4.jpeg", "assets/web/card1/ner4.jpeg", "assets/web/card1/ner4.jpeg", "assets/web/card1/ner4.jpeg", "assets/web/card1/ner4.jpeg", "assets/web/card1/ner4.jpeg"],
         demo: "#",
         code: "https://github.com/your/repo",
         technologies: ["Python", "FastAPI", "Uvicorn", "Docker", "HTML", "CSS", "JS", "HTML", "CSS", "JS", "HTML", "CSS", "JS"],
-        features: [
-          "Form uji teks & unggah file (.txt/.csv).",
-          "Highlight entitas PER/ORG/LOC realtime.",
-          "Ekspor hasil prediksi ke CSV.",
-          "Deployment containerized (Docker)."
-        ]
-      },
+        features: ["Form uji teks & unggah file (.txt/.csv).", "Highlight entitas PER/ORG/LOC realtime.", "Ekspor hasil prediksi ke CSV.", "Deployment containerized (Docker)."]
+      }
     };
 
-    // ---- render ----
+    /* ---- render ---- */
     const $ = s => document.querySelector(s);
     const params = new URLSearchParams(location.search);
-    const id = params.get("id") || "model-tester-ner"; // Default untuk demo
-
-    const data = PROJECT_DETAIL[id] || {
-      title: "Project Not Found",
-      lead: "ID proyek tidak dikenali. Kembali ke halaman daftar.",
-      cover: "",
-      demo: "#", code: "#",
-      technologies: [], features: []
-    };
+    const id = params.get("id") || "model-tester-ner";
+    const data = PROJECT_DETAIL[id] || { title: "Project Not Found", lead: "ID proyek tidak dikenali. Kembali ke halaman daftar.", cover: "", demo: "#", code: "#", technologies: [], features: [] };
 
     $("#pgTitle").textContent = data.title + " – Project Detail";
     $("#pTitle").textContent = data.title;
     $("#pLead").textContent = data.lead;
+    document.getElementById('crumbTitle').textContent = (data.title || '').trim() || 'Model Tester NER';
 
-    const img = $("#pCover");
-    if (data.cover) {
-      img.src = data.cover;
-      img.alt = data.title;
-    } else {
-      img.style.display = "none";
+    const mainImg = document.getElementById('pCover');
+    const thumbsWrap = document.getElementById('thumbStrip');
+    const gallery = (Array.isArray(data.images) && data.images.length ? data.images : (data.cover ? [data.cover] : []));
+    let current = 0;
+
+    function renderMain() {
+      if (!gallery.length) { document.getElementById('imagePreview').style.display = 'none'; return; }
+      mainImg.src = gallery[current];
+      mainImg.alt = data.title + ' – preview ' + (current + 1);
     }
+    function renderThumbs() {
+      if (!thumbsWrap) return;
+      thumbsWrap.innerHTML = gallery.map((src, i) => `
+        <button class="pd-thumb ${i === current ? 'active' : ''}" data-i="${i}" aria-label="Preview ${i + 1}">
+          <img src="${src}" alt="thumb ${i + 1}">
+        </button>`).join('');
+      thumbsWrap.querySelectorAll('.pd-thumb').forEach(btn => {
+        btn.addEventListener('click', () => {
+          current = +btn.dataset.i; renderMain();
+          thumbsWrap.querySelectorAll('.pd-thumb').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+        });
+      });
+    }
+    renderMain(); renderThumbs();
 
-    // tombol di kiri tetap pakai demo (sesuai kodemu semula)
     $("#btnCode").href = data.demo || "#";
-
     $("#statTech").textContent = data.technologies.length;
     $("#statFeat").textContent = data.features.length;
-
     $("#techList").innerHTML = data.technologies.map(t => `<span class="pd-chip">${t}</span>`).join("");
-    $("#featureList").innerHTML = data.features.map(f => `
-      <li><i class='bx bx-check-circle'></i><span>${f}</span></li>
-    `).join("");
+    $("#featureList").innerHTML = data.features.map(f => `<li><i class='bx bx-check-circle'></i><span>${f}</span></li>`).join("");
 
-    // ---- Image Modal Functionality ----
-    const imagePreview = $("#imagePreview");
-    const imageModal = $("#imageModal");
-    const modalImage = $("#modalImage");
-    const modalClose = $("#modalClose");
-    const modalContent = $("#modalContent");
+    /* ---- modal ---- */
+    const imagePreview = $("#imagePreview"), imageModal = $("#imageModal"),
+      modalImage = $("#modalImage"), modalClose = $("#modalClose"),
+      modalContent = $("#modalContent"), modalPrev = document.getElementById('modalPrev'),
+      modalNext = document.getElementById('modalNext'), modalCounter = document.getElementById('modalCounter');
 
-    // Open modal when clicking image preview
-    imagePreview.addEventListener('click', () => {
-      if (data.cover) {
-        modalImage.src = data.cover;
-        modalImage.alt = data.title;
-        imageModal.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent background scrolling
-      }
-    });
-
-    // Close modal when clicking close button
-    modalClose.addEventListener('click', (e) => {
-      e.stopPropagation();
-      closeModal();
-    });
-
-    // Close modal when clicking outside the image
-    imageModal.addEventListener('click', (e) => {
-      if (e.target === imageModal) {
-        closeModal();
-      }
-    });
-
-    // Close modal when clicking modal content but not the image
-    modalContent.addEventListener('click', (e) => {
-      if (e.target === modalContent) {
-        closeModal();
-      }
-    });
-
-    // Close modal with Escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && imageModal.classList.contains('active')) {
-        closeModal();
-      }
-    });
-
-    function closeModal() {
-      imageModal.classList.remove('active');
-      document.body.style.overflow = ''; // Restore scrolling
+    function updateCounter() {
+      if (!modalCounter) return;
+      if (gallery.length <= 1) { modalCounter.style.display = 'none'; }
+      else { modalCounter.style.display = ''; modalCounter.textContent = (current + 1) + ' / ' + gallery.length; }
     }
-  </script>
+    function setModalImageByIndex(i) {
+      modalImage.src = gallery[i]; modalImage.alt = data.title + ' – preview ' + (i + 1);
+      mainImg.src = gallery[i];
+      if (thumbsWrap) { thumbsWrap.querySelectorAll('.pd-thumb').forEach((b, idx) => b.classList.toggle('active', idx === i)); }
+      updateCounter();
+    }
+    function updateModalNav() {
+      const atStart = (current === 0), atEnd = (current === gallery.length - 1), show = (gallery.length > 1);
+      modalPrev.style.display = show ? '' : 'none';
+      modalNext.style.display = show ? '' : 'none';
+      modalPrev.disabled = atStart; modalNext.disabled = atEnd;
+      modalPrev.classList.toggle('disabled', atStart); modalNext.classList.toggle('disabled', atEnd);
+    }
+    imagePreview.addEventListener('click', () => {
+      if (!gallery.length) return;
+      setModalImageByIndex(current);
+      imageModal.classList.add('active'); document.body.style.overflow = 'hidden'; updateModalNav();
+    });
+    modalPrev.addEventListener('click', (e) => { e.stopPropagation(); if (current > 0) { current--; setModalImageByIndex(current); updateModalNav(); } });
+    modalNext.addEventListener('click', (e) => { e.stopPropagation(); if (current < gallery.length - 1) { current++; setModalImageByIndex(current); updateModalNav(); } });
+    function closeModal() { imageModal.classList.remove('active'); document.body.style.overflow = ''; }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && imageModal.classList.contains('active')) closeModal();
+      if (!imageModal.classList.contains('active')) return;
+      if (e.key === 'ArrowLeft' && current > 0) { current--; setModalImageByIndex(current); updateModalNav(); }
+      if (e.key === 'ArrowRight' && current < gallery.length - 1) { current++; setModalImageByIndex(current); updateModalNav(); }
+    });
+    document.getElementById('modalClose').addEventListener('click', (e) => { e.stopPropagation(); closeModal(); });
+    imageModal.addEventListener('click', (e) => { if (e.target === imageModal) closeModal(); });
+    modalContent.addEventListener('click', (e) => { if (e.target === modalContent) closeModal(); });
 
-  <script>
+    /* ---- kompensasi tinggi navbar ---- */
     (function () {
-      const nav = document.querySelector('.navbar');
-      const main = document.querySelector('.main-content');
+      const nav = document.querySelector('.navbar'), main = document.querySelector('.main-content');
       if (!nav || !main) return;
-
       function applyTopPad() {
-        const h = nav.getBoundingClientRect().height || 56;   // tinggi real navbar
+        const h = nav.getBoundingClientRect().height || 56;
         const isMobile = window.innerWidth <= 560;
-        const extra = isMobile ? -56 : -60;                     // Negative value to reduce spacing
-        main.style.paddingTop = Math.max(20, h + extra) + 'px'; // Minimum 20px padding
+        const extra = isMobile ? -70 : -74;
+        main.style.paddingTop = Math.max(20, h + extra) + 'px';
       }
-      applyTopPad();
-      window.addEventListener('resize', applyTopPad);
+      applyTopPad(); window.addEventListener('resize', applyTopPad);
     })();
   </script>
 
