@@ -19,10 +19,11 @@
       --bg2: #0f8278;
       --bg3: #14b8a6;
       --readable: 66ch;
-      /* lebar baca nyaman desktop */
+
+      /* lebar target untuk .pd-stats dan tombol Github agar sama */
+      --stats-maxw: 650px;
     }
 
-    /* FIX: pastikan perhitungan width tidak bocor */
     *,
     *::before,
     *::after {
@@ -36,7 +37,7 @@
     }
 
     body {
-      display: flex;
+      display: flex;  
       flex-direction: column;
       min-height: 100vh;
     }
@@ -62,7 +63,6 @@
     .main-content .container {
       max-width: var(--pd-max);
       margin: 0 auto;
-      /* FIX: padding kiri-kanan konsisten & responsif */
       padding-inline: clamp(14px, 4vw, 20px);
     }
 
@@ -74,7 +74,6 @@
       margin-top: 0;
     }
 
-    /* FIX: anak grid boleh menyusut agar tidak “mendorong” lebar */
     .pd-hero>* {
       min-width: 0;
     }
@@ -111,12 +110,14 @@
       }
     }
 
+    /* ====== STATS (ikon + angka + label) ====== */
     .pd-stats {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
+      gap: 16px;
       margin: 18px 0;
-      max-width: 420px;
+      max-width: var(--stats-maxw);
+      /* <- samakan dengan tombol Github */
     }
 
     .pd-stat {
@@ -124,34 +125,83 @@
       border: 1px solid var(--pd-stroke);
       border-radius: 16px;
       padding: 14px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
       min-height: 84px;
+
+      /* layout horizontal: ikon kiri, konten kanan */
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      align-items: center;
+      gap: 14px;
     }
 
+    /* ikon bulat via pseudo-element (tanpa ubah HTML) */
+    .pd-stat::before {
+      content: "";
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      border: 1px solid var(--pd-stroke);
+      background:
+        radial-gradient(60% 60% at 30% 30%, rgba(255, 255, 255, .18), rgba(255, 255, 255, 0) 70%),
+        rgba(255, 255, 255, .08);
+      /* warna ikon mengikuti teks (terang), jangan ubah tema */
+      background-color: rgba(255, 255, 255, .85);
+      -webkit-mask-position: center;
+      -webkit-mask-repeat: no-repeat;
+      -webkit-mask-size: 60%;
+      mask-position: center;
+      mask-repeat: no-repeat;
+      mask-size: 60%;
+    }
+
+    /* ikon berbeda untuk box 1 dan 2 */
+    .pd-stat:nth-child(1)::before {
+      content: "";
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      /* warna bulat */
+
+      -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='white' d='M8 9l-4 3 4 3v2l-6-5 6-5v2zm8-4l6 5-6 5v-2l4-3-4-3V5z'/></svg>") center/60% no-repeat;
+      mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='white' d='M8 9l-4 3 4 3v2l-6-5 6-5v2zm8-4l6 5-6 5v-2l4-3-4-3V5z'/></svg>") center/60% no-repeat;
+    }
+
+
+    .pd-stat:nth-child(2)::before {
+      content: "";
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+
+      -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='white' d='M12 2L22 7L12 12L2 7L12 2zm0 7L22 14L12 19L2 14L12 9zm0 7L22 21L12 26L2 21L12 16z'/></svg>") center/60% no-repeat;
+      mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='white' d='M12 2L22 7L12 12L2 7L12 2zm0 7L22 14L12 19L2 14L12 9zm0 7L22 21L12 26L2 21L12 16z'/></svg>") center/60% no-repeat;
+    }
+
+    /* angka + label */
     .pd-num {
       font-weight: 800;
       font-size: 1.5rem;
       line-height: 1;
+      margin-bottom: 4px;
     }
 
     .pd-lbl {
-      opacity: .88;
+      opacity: .9;
       font-size: .95rem;
     }
 
+    /* ====== CTA (tombol Github) – disamakan lebarnya dengan .pd-stats ====== */
     .pd-cta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin: 18px 0 8px;
-      max-width: var(--readable);
+      margin: 12px 0 8px;
+      max-width: var(--stats-maxw);
+      /* <- kunci: sama dengan .pd-stats */
     }
 
     .pd-btn {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
+      /* center icon+text */
       gap: 8px;
       padding: 12px 16px;
       border-radius: 12px;
@@ -160,6 +210,9 @@
       color: #eafff7;
       text-decoration: none;
       transition: transform .15s, background .15s, border-color .15s, box-shadow .15s;
+
+      width: 100%;
+      /* <- tombol full width, sama panjang dengan .pd-stats */
     }
 
     .pd-btn:hover {
@@ -218,7 +271,6 @@
       min-width: 0;
     }
 
-    /* FIX: cegah overflow */
     .pd-mock {
       background: var(--pd-card);
       border: 2px solid var(--pd-stroke);
@@ -354,7 +406,7 @@
       opacity: .5;
     }
 
-    /* ====== modal (tidak diubah) ====== */
+    /* ====== modal ====== */
     .image-modal {
       position: fixed;
       top: 0;
@@ -505,19 +557,15 @@
 
     /* ====== MOBILE FIX ====== */
     @media (max-width:768px) {
-
-      /* padding kiri-kanan seragam */
       .main-content .container {
         padding-inline: 16px;
       }
 
-      /* kolom tunggal yang benar-benar muat layar */
       .pd-hero {
         grid-template-columns: minmax(0, 1fr);
         gap: 16px;
       }
 
-      /* semua blok di kolom kiri mengikuti lebar container */
       .pd-title,
       .pd-lead,
       .pd-stats,
@@ -532,23 +580,16 @@
         line-height: 1.8;
       }
 
-      /* fitur jadi 1 kolom agar tidak mepet kanan */
       .pd-features {
         grid-template-columns: 1fr;
         gap: 10px;
       }
 
-      /* elemen besar sedikit dipadatkan */
       .pd-mock {
         padding: 14px;
       }
-
-      .pd-cta .pd-btn {
-        padding: 10px 14px;
-      }
     }
 
-    /* layar kecil banget */
     @media (max-width:560px) {
       .main-content {
         padding-top: 1px !important;
@@ -598,7 +639,6 @@
       }
     }
 
-    /* navbar responsif */
     @media (max-width:768px) {
       .nav-links {
         display: none;
@@ -652,18 +692,23 @@
 
           <div class="pd-stats">
             <div class="pd-stat">
-              <div id="statTech" class="pd-num">–</div>
-              <div class="pd-lbl">Total Teknologi</div>
+              <div>
+                <div id="statTech" class="pd-num">–</div>
+                <div class="pd-lbl">Total Teknologi</div>
+              </div>
             </div>
             <div class="pd-stat">
-              <div id="statFeat" class="pd-num">–</div>
-              <div class="pd-lbl">Fitur Utama</div>
+              <div>
+                <div id="statFeat" class="pd-num">–</div>
+                <div class="pd-lbl">Fitur Utama</div>
+              </div>
             </div>
           </div>
 
           <div class="pd-cta">
-            <a id="btnCode" class="pd-btn primary" target="_blank" rel="noopener"><i class='bx bx-play-circle'></i>
-              Github</a>
+            <a id="btnCode" class="pd-btn primary" target="_blank" rel="noopener">
+              <i class='bx bx-play-circle'></i> Github
+            </a>
           </div>
 
           <div class="pd-tech">
@@ -703,7 +748,7 @@
         title: "Model Tester NER",
         lead: "A modern, responsive portfolio website built with vanilla JavaScript and CSS3, featuring dynamic content loading from JSON data. This project showcases advanced web development techniques including smooth animations, responsive design, and optimized performance. The website implements a glass-morphism design aesthetic with dark theme, featuring smooth scrolling navigation, animated typing effects, and interactive project galleries. The architecture allows for easy content updates through JSON configuration files, making it maintainable and scalable.",
         cover: "assets/web/card1/ner.jpeg",
-        images: ["assets/web/card1/ner.jpeg", "assets/web/card1/ner2.jpeg", "assets/web/card1/ner3.jpeg", "assets/web/card1/ner4.jpeg", "assets/web/card1/ner4.jpeg", "assets/web/card1/ner4.jpeg", "assets/web/card1/ner4.jpeg", "assets/web/card1/ner4.jpeg", "assets/web/card1/ner4.jpeg"],
+        images: ["assets/web/card1/ner.jpeg", "assets/web/card1/ner2.jpeg", "assets/web/card1/ner3.jpeg", "assets/web/card1/ner4.jpeg"],
         demo: "#",
         code: "https://github.com/your/repo",
         technologies: ["Python", "FastAPI", "Uvicorn", "Docker", "HTML", "CSS", "JS", "HTML", "CSS", "JS", "HTML", "CSS", "JS"],
@@ -748,6 +793,7 @@
     }
     renderMain(); renderThumbs();
 
+    /* isi angka */
     $("#btnCode").href = data.demo || "#";
     $("#statTech").textContent = data.technologies.length;
     $("#statFeat").textContent = data.features.length;
