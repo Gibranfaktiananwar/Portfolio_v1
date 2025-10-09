@@ -330,7 +330,7 @@ span {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: 25px;
 }
 
 .services-container .services-box {
@@ -341,7 +341,7 @@ span {
     border-radius: 2rem;
     border: 0.3rem solid var(--bg-color);
     transition: 0.3s ease; 
-    margin-bottom: 2rem;
+    margin-bottom: 1px;
 }
 
 .services-container .services-box:hover {
@@ -372,6 +372,7 @@ span {
 
 .testimonial {
     background: var(--snd-bg-color);
+    margin-top: 10px;
 }
 
 .testimonial-item h1 {

@@ -19,11 +19,23 @@ body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     color: #fff;
-    background: #0f8278;
-    /* fallback solid */
-    background: linear-gradient(135deg, #083d3b 0%, #0f8278 55%, #14b8a6 100%);
+    background: transparent !important;
+    /* supaya gradasi bisa dikontrol oleh pseudo-element di bawah */
     min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
 }
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(135deg, #083d3b 0%, #0f8278 55%, #14b8a6 100%);
+    transform: translateZ(0);
+    will-change: transform;
+}
+
 
 body.no-scroll {
     overflow: hidden;
@@ -690,29 +702,32 @@ body.no-scroll {
 }
 
 /* actions row */
-.card-actions{
-  display: flex;
-  align-items: center;      /* vertikal rata tengah */
-  justify-content: space-between;
-  gap: 12px;
-  margin-top: auto;
-  padding-top: 4px;
+.card-actions {
+    display: flex;
+    align-items: center;
+    /* vertikal rata tengah */
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: auto;
+    padding-top: 4px;
 }
 
-.card-links{
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;          /* supaya rapi kalau mepet */
+.card-links {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    /* supaya rapi kalau mepet */
 }
 
-.card-link{
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  line-height: 1;
-  padding: .25rem 0;        /* sentuhan kecil agar sejajar */
+.card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    line-height: 1;
+    padding: .25rem 0;
+    /* sentuhan kecil agar sejajar */
 }
 
 
@@ -726,26 +741,31 @@ body.no-scroll {
 }
 
 /* right CTA */
-.card-cta{
-  display: inline-flex;     /* pastikan ikon & teks sejajar */
-  align-items: center;
-  gap: 10px;
-  padding: .5rem .9rem;     /* bikin “pill” proporsional */
-  border-radius: 25px !important;
-  border: 2px solid #4fd1c7 !important;
-  background: transparent !important;
-  color: #fff !important;
-  text-decoration: none;    /* hilangkan underline */
-  font-weight: 700;
-  line-height: 1;           /* cegah tinggi berlebih */
-  white-space: nowrap;      /* biar tidak patah */
-  transition: transform .18s, background .18s, border-color .18s, box-shadow .18s;
+.card-cta {
+    display: inline-flex;
+    /* pastikan ikon & teks sejajar */
+    align-items: center;
+    gap: 10px;
+    padding: .5rem .9rem;
+    /* bikin “pill” proporsional */
+    border-radius: 25px !important;
+    border: 2px solid #4fd1c7 !important;
+    background: transparent !important;
+    color: #fff !important;
+    text-decoration: none;
+    /* hilangkan underline */
+    font-weight: 700;
+    line-height: 1;
+    /* cegah tinggi berlebih */
+    white-space: nowrap;
+    /* biar tidak patah */
+    transition: transform .18s, background .18s, border-color .18s, box-shadow .18s;
 }
 
-.card-cta i{
-  font-size: 1.05rem;
-  transform: translateX(0);
-  transition: transform .18s;
+.card-cta i {
+    font-size: 1.05rem;
+    transform: translateX(0);
+    transition: transform .18s;
 }
 
 .card-cta:hover {
@@ -754,30 +774,38 @@ body.no-scroll {
     border-color: rgba(255, 255, 255, .26);
 }
 
-.card-cta:hover i{ transform: translateX(2px); }
+.card-cta:hover i {
+    transform: translateX(2px);
+}
 
 /* responsif kecil */
 /* === Fix: tombol Details tetap kanan di mobile === */
-@media (max-width:600px){
-  .card-actions{
-    flex-direction: row !important;
-    align-items: center !important;
-    justify-content: space-between;
-    gap: 12px;
-  }
-  .btn-bar{
-    flex: 1 1 auto;
-    min-width: 0;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  .card-cta{
-    flex: 0 0 auto;          /* jangan ikut stretch */
-    width: auto;             /* biar nggak 100% */
-    white-space: nowrap;     /* teks tidak kepotong */
-    padding: .5rem .9rem;    /* ukuran pill tetap */
-  }
+@media (max-width:600px) {
+    .card-actions {
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between;
+        gap: 12px;
+    }
+
+    .btn-bar {
+        flex: 1 1 auto;
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .card-cta {
+        flex: 0 0 auto;
+        /* jangan ikut stretch */
+        width: auto;
+        /* biar nggak 100% */
+        white-space: nowrap;
+        /* teks tidak kepotong */
+        padding: .5rem .9rem;
+        /* ukuran pill tetap */
+    }
 }
 
 
@@ -791,36 +819,57 @@ body.no-scroll {
     overflow: hidden;
 }
 
-.code-link{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  text-decoration:none;
-  line-height:1;
-  color:#cfe7ff;                 /* teks biru muda */
-  opacity:.97;
-  transition:opacity .18s ease, transform .18s ease;
+.code-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    line-height: 1;
+    color: #cfe7ff;
+    /* teks biru muda */
+    opacity: .97;
+    transition: opacity .18s ease, transform .18s ease;
 }
 
-.code-link:hover{ opacity:1; transform:translateY(-1px); }
-
-.code-badge{
-  width:28px; height:28px;
-  border-radius:999px;
-  border:2px solid rgba(188,216,255,.9);   /* lingkaran tipis */
-  display:inline-flex; align-items:center; justify-content:center;
-  background:transparent;
+.code-link:hover {
+    opacity: 1;
+    transform: translateY(-1px);
 }
-.code-badge i{ font-size:17px; color:rgba(188,216,255,.95); }
 
-.code-text{ font-weight:600; letter-spacing:.2px; }
+.code-badge {
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    border: 2px solid rgba(188, 216, 255, .9);
+    /* lingkaran tipis */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+}
+
+.code-badge i {
+    font-size: 17px;
+    color: rgba(188, 216, 255, .95);
+}
+
+.code-text {
+    font-weight: 600;
+    letter-spacing: .2px;
+}
 
 /* kecil */
-@media (max-width:600px){
-  .code-text{ font-size:0.95rem; }
+@media (max-width:600px) {
+    .code-text {
+        font-size: 0.95rem;
+    }
 }
 
-.btn-bar{ display:flex; align-items:center; gap:1rem; }
+.btn-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
 
 
 /* responsif kecil */
