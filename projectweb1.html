@@ -591,6 +591,7 @@
     }
 
     /* Tablet narrow (768–980px) */
+    /* Tablet narrow (768–980px) */
     @media (min-width:768px) and (max-width:980px) {
 
       .pd-stats,
@@ -613,10 +614,12 @@
       }
 
       .pd-lead {
-        max-width: 72ch;
-        text-align: left;
+        max-width: 100%;
+        text-align: justify;
+        text-justify: inter-word;
         line-height: 1.65;
-        margin-bottom: 18px
+        margin-bottom: 18px;
+        padding-inline: 0;
       }
     }
 
@@ -802,6 +805,7 @@
     const PROJECT_DETAIL = {
       "model-tester-ner": {
         title: "Model Tester NER",
+        // min 500 char
         lead: "A modern, responsive portfolio website built with vanilla JavaScript and CSS3, featuring dynamic content loading from JSON data. This project showcases advanced web development techniques including smooth animations, responsive design, and optimized performance. The website implements a glass-morphism design aesthetic with dark theme, featuring smooth scrolling navigation, animated typing effects, and interactive project galleries. The architecture allows for easy content updates through JSON configuration files, making it maintainable and scalable.",
         cover: "assets/web/card1/ner.jpeg",
         images: ["assets/web/card1/ner.jpeg", "assets/web/card1/ner2.jpeg", "assets/web/card1/ner3.jpeg", "assets/web/card1/ner4.jpeg"],
