@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title id="pgTitle">Project – Detail</title>
+  <title id="pgTitle">Project - Detail</title>
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="styleweb.css" />
   <style>
@@ -735,7 +735,7 @@
       <nav class="pd-breadcrumb" aria-label="Breadcrumb">
         <a href="index.html#services">Experiences</a><span class="sep">/</span>
         <a href="detailsweb.html">Web Development</a><span class="sep">/</span>
-        <span id="crumbTitle">Model Tester NER</span>
+        <span id="crumbTitle">BosonPOS</span>
       </nav>
 
       <section class="pd-hero">
@@ -803,14 +803,14 @@
   <script>
     /* ---- data ---- */
     const PROJECT_DETAIL = {
-      "model-tester-ner": {
-        title: "Model Tester NER",
+      "BosonPOS": {
+        title: "BosonPOS",
         // min 500 char
         lead: "A modern and responsive web application for testing Named Entity Recognition (NER) in Indonesian based on the XLNet-BiLSTM-CRF architecture. The lightweight interface displays a text test form with a character counter and real-time entity highlighting (PER/ORG/LOC) that is neatly rendered in the user's sentence. The application supports uploading .txt/.csv files for batch processing and provides exporting results to text-formatted CSV files with labels for easy further analysis. The backend is built with FastAPI + Uvicorn (API /predict_text and /predict_file), designed to maintain token and character alignment for accurate entity spans.",
-        cover: "assets/web/card1/ner.jpeg",
-        images: ["assets/web/card1/ner.jpeg", "assets/web/card1/ner2.jpeg", "assets/web/card1/ner3.jpeg", "assets/web/card1/ner4.jpeg"],
+        cover: "assets/web/card2/img2.jpeg",
+        images: ["assets/web/card2/img2.jpeg"],
         demo: "#",
-        code: "https://github.com/Gibranfaktiananwar/Indonesia_ner_website",
+        code: "https://github.com/Gibranfaktiananwar/Boson_PO",
         technologies: ["Python", "FastAPI", "Uvicorn", "Docker", "HTML", "CSS", "JS"],
         features: [
           "Form for testing text typed by the user.",
@@ -824,13 +824,13 @@
     /* ---- helpers ---- */
     const $ = s => document.querySelector(s);
     const params = new URLSearchParams(location.search);
-    const id = params.get("id") || "model-tester-ner";
+    const id = params.get("id") || "BosonPOS";
     const data = PROJECT_DETAIL[id] || { title: "Project Not Found", lead: "ID proyek tidak dikenali. Kembali ke halaman daftar.", cover: "", demo: "#", code: "#", technologies: [], features: [] };
 
     $("#pgTitle").textContent = data.title + " – Project Detail";
     $("#pTitle").textContent = data.title;
     $("#pLead").textContent = data.lead;
-    document.getElementById('crumbTitle').textContent = (data.title || '').trim() || 'Model Tester NER';
+    document.getElementById('crumbTitle').textContent = (data.title || '').trim() || 'BosonPOS';
 
     /* ---- gallery ---- */
     const mainImg = document.getElementById('pCover');
