@@ -82,7 +82,7 @@ function card(p) {
     }
   </div>
 
-  <a class="card-cta" href="projectweb1.html?id=${encodeURIComponent(p.id)}">
+  <a class="card-cta" href="projectweb.html?id=${encodeURIComponent(p.id)}">
         <span>Details</span>
         <i class='bx bx-right-arrow-alt'></i>
       </a>
