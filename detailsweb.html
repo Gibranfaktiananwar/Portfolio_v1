@@ -7,6 +7,17 @@
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="styleweb.css">
   <title>Project Details - Portfolio</title>
+
+  <!-- Tambahan kecil agar tombol 'Details' benar-benar non-aktif -->
+  <style>
+    .card-cta.disabled {
+      pointer-events: none;
+      /* tidak bisa di-klik */
+      opacity: 0.6;
+      /* tampak non-aktif */
+      cursor: default;
+    }
+  </style>
 </head>
 
 <body>
@@ -40,30 +51,13 @@
     </div>
   </main>
 
-  <!-- footer section code -->
   <footer class="footer">
     <div class="footer-inner">
-      <!-- <div class="social" aria-label="Social links">
-        <a href="https://www.linkedin.com/in/gibranfaktiananwar/" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
-        </a>
-        <a href="https://github.com/Gibranfaktiananwar" target="_blank" rel="noopener" aria-label="GitHub">
-          <i class="fa-brands fa-github" aria-hidden="true"></i>
-        </a>
-        <a href="https://medium.com/@gibranfktian" target="_blank" rel="noopener" aria-label="Medium">
-          <i class="fa-brands fa-medium" aria-hidden="true"></i>
-        </a>
-        <a href="https://www.instagram.com/gibranfktian/" target="_blank" rel="noopener" aria-label="Instagram">
-          <i class="fa-brands fa-instagram" aria-hidden="true"></i>
-        </a>
-      </div> -->
-
       <p class="copyright">
         &copy; 2025 Gibran Faktian Anwar. All rights reserved.
       </p>
     </div>
   </footer>
-
 
   <script src="scriptweb.js?v=3"></script>
   <script src="https://kit.fontawesome.com/71cd389c2b.js" crossorigin="anonymous"></script>

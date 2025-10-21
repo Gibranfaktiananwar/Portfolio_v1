@@ -759,8 +759,9 @@
           </div>
 
           <div class="pd-cta">
-            <a id="btnCode" class="pd-btn primary"  target="_blank" rel="noopener">
-              <i class='bx bx-play-circle' href="https://github.com/Gibranfaktiananwar/Indonesia_ner_website"></i> Github
+            <a id="btnCode" class="pd-btn primary" target="_blank" rel="noopener">
+              <i class='bx bx-play-circle' href="https://github.com/Gibranfaktiananwar/Indonesia_ner_website"></i>
+              Github
             </a>
           </div>
 
@@ -822,17 +823,21 @@
       "BosonPOS": {
         title: "BosonPOS",
         // min 500 char
-        lead: "A modern and responsive web application for testing Named Entity Recognition (NER) in Indonesian based on the XLNet-BiLSTM-CRF architecture. The lightweight interface displays a text test form with a character counter and real-time entity highlighting (PER/ORG/LOC) that is neatly rendered in the user's sentence. The application supports uploading .txt/.csv files for batch processing and provides exporting results to text-formatted CSV files with labels for easy further analysis. The backend is built with FastAPI + Uvicorn (API /predict_text and /predict_file), designed to maintain token and character alignment for accurate entity spans.",
-        cover: "assets/web/card1/ner.jpeg",
-        images: ["assets/web/card1/ner.jpeg", "assets/web/card1/ner2.jpeg", "assets/web/card1/ner3.jpeg", "assets/web/card1/ner4.jpeg"],
+        lead: "Integrated point-of-sales web application to optimise product management and cross-branch purchasing processes. The system is equipped with role-based access control (RBAC) that allows administrators to create custom roles, set granular permissions (view-category, view-product, view-catalogue, view-cart, redeem-rewards, etc), and manage user accounts based on roles. The product management module supports a hierarchical category structure with detailed descriptions, full CRUD operations including image uploads, stock monitoring, and pricing information. The front-facing catalogue displays products in a responsive grid with real-time stock availability, prices in Rupiah, and an instant ‘Add to cart’ action. The shopping cart feature provides a customisable quantity interface, automatic per-item and total price calculations, and a concise checkout flow. Additionally, there is an inter-store inventory checker based on serial number input which, through inter-branch API integration, returns product details, location, and availability status.",
+        cover: "assets/web/card2/img1.jpeg",
+        images: ["assets/web/card2/img1.jpeg", "assets/web/card2/img2.jpeg", "assets/web/card2/img3.jpeg", "assets/web/card2/img4.jpeg", "assets/web/card2/img5.jpeg", "assets/web/card2/img6.jpeg", "assets/web/card2/img7.jpeg", "assets/web/card2/img8.jpeg"],
         demo: "#",
-        code: "https://github.com/Gibranfaktiananwar/Indonesia_ner_website",
-        technologies: ["Python", "FastAPI", "Uvicorn", "Docker", "HTML", "CSS", "JS"],
+        code: "https://github.com/Gibranfaktiananwar/Boson_POS",
+        technologies: ["Laravel", "PHP", "HTML", "Javascript", "JS", "CSS",  "Vite", "MYSQL", "Bootstrap"],
         features: [
-          "Form for testing text typed by the user.",
-          "File upload form (.txt/.csv).",
-          "Highlight PER/ORG/LOC entities in real time.",
-          "Export prediction results to CSV."
+          "Manage roles and permissions",
+          "Manage users and their roles",
+          "Manage product categories",
+          "Manage products, including stock, prices, and images",
+          "View product catalogue",
+          "Add products to basket with quantity",
+          "Review basket and total purchase",
+          "Check availability between stores (based on serial number)"
         ]
       }
     };
