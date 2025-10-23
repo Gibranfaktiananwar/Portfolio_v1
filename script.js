@@ -18,10 +18,6 @@ const typed = new Typed('.multiple-text', {
       loop: true
     });
 
-
-
-
-// Lightbox functionality
 // Lightbox functionality
 const lightbox = document.getElementById('certificateLightbox');
 const lightboxImg = document.getElementById('lightboxImage');
