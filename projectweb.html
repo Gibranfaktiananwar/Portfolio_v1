@@ -20,11 +20,10 @@
       --bg3: #14b8a6;
       --readable: 66ch;
       --stats-maxw: 650px;
-      /* key features spacing */
-      --feat-card-pad: 14px 16px;
-      --feat-head-mb: 6px;
-      --feat-list-gap: 8px;
-      --feat-item-pad: 8px 10px;
+      --mock-pad: 17px;
+      /* padding atas .pd-mock (desktop) */
+      --mock-bdr: 2px;
+      /* border .pd-mock */
     }
 
     *,
@@ -60,7 +59,7 @@
       padding-top: 50px;
       padding-bottom: 32px;
       flex: 1 0 auto;
-      margin-top: 74px
+      margin-top: 50px;
     }
 
     .main-content .container {
@@ -81,7 +80,12 @@
       min-width: 0
     }
 
-    /* ⬇️ Perbarui breakpoint: satu kolom hanya sampai 980px */
+    /* offset kiri agar sejajar puncak gambar kanan */
+    .pd-left {
+      padding-top: calc(var(--mock-pad) + var(--mock-bdr));
+    }
+
+    /* satu kolom sampai 980px */
     @media (max-width:980px) {
       .pd-hero {
         grid-template-columns: minmax(0, 1fr)
@@ -91,8 +95,9 @@
     /* ====== tipografi / kiri ====== */
     .pd-title {
       font-size: clamp(30px, 4.2vw, 48px);
-      margin: .25rem 0 .001rem;
-      letter-spacing: .2px
+      margin: 0 0 .001rem;
+      letter-spacing: .2px;
+      margin-top: -40px;
     }
 
     .pd-lead {
@@ -172,7 +177,7 @@
       font-weight: 800;
       font-size: 1.5rem;
       line-height: 1;
-      margin-bottom: 4px
+      margin-bottom: 1px
     }
 
     .pd-lbl {
@@ -188,9 +193,9 @@
       box-shadow: 0 10px 24px rgba(0, 0, 0, .30)
     }
 
-    /* ====== CTA (Github) ====== */
+    /* ====== CTA (Github + Medium) ====== */
     .pd-cta {
-      margin: 20px 0 8px;
+      margin: 12px 0 8px;
       max-width: var(--stats-maxw)
     }
 
@@ -198,7 +203,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 4px;
       padding: 12px 16px;
       border-radius: 12px;
       border: 1px solid var(--pd-stroke);
@@ -209,6 +214,11 @@
       width: 100%;
     }
 
+    .pd-btn+.pd-btn {
+      margin-top: 10px;
+    }
+
+    /* jarak antar tombol */
     .pd-btn:hover {
       transform: translateY(-1px);
       background: rgba(255, 255, 255, .16);
@@ -368,7 +378,7 @@
       background: var(--pd-card);
       border: 1px solid var(--pd-stroke);
       border-radius: 16px;
-      padding: var(--feat-card-pad);
+      padding: 14px 16px;
       box-shadow: 0 6px 18px rgba(0, 0, 0, .25);
       transition: transform .2s, box-shadow .2s, border-color .2s, background .2s
     }
@@ -384,7 +394,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: var(--feat-head-mb);
+      margin-bottom: 6px;
       font-weight: 800;
       letter-spacing: .3px
     }
@@ -400,7 +410,7 @@
       padding: 2px 0;
       display: flex;
       flex-direction: column;
-      gap: var(--feat-list-gap)
+      gap: 8px
     }
 
     .pd-features li {
@@ -408,7 +418,7 @@
       gap: 10px;
       align-items: flex-start;
       border-radius: 12px;
-      padding: var(--feat-item-pad);
+      padding: 8px 10px;
       background: transparent;
       border: 1px solid transparent;
       transition: background .15s, border-color .15s, box-shadow .15s, transform .15s
@@ -442,7 +452,9 @@
       gap: 6px;
       margin: 1px 0 1px;
       color: rgba(255, 255, 255, .85);
-      font-size: .90rem
+      font-size: 0.83rem;
+      position: relative;
+      transform: translateX(-19px);
     }
 
     .pd-breadcrumb a {
@@ -565,7 +577,7 @@
       pointer-events: none
     }
 
-    /* ====== MOBILE/TABLET ====== */
+    /* ====== RESPONSIVE (umum) ====== */
     @media (max-width:768px) {
       .main-content .container {
         padding-inline: 16px
@@ -588,10 +600,21 @@
       .pd-mock {
         padding: 14px
       }
+
+      :root {
+        --mock-pad: 14px;
+      }
+
+      .nav-links {
+        display: none
+      }
+
+      .main-content {
+        margin-top: 90px;
+        padding-top: 8px
+      }
     }
 
-    /* Tablet narrow (768–980px) */
-    /* Tablet narrow (768–980px) */
     @media (min-width:768px) and (max-width:980px) {
 
       .pd-stats,
@@ -623,63 +646,6 @@
       }
     }
 
-    /* MOBILE compact <=560px */
-    @media (max-width:560px) {
-      .main-content {
-        padding-top: 1px !important;
-        padding-bottom: 40px !important
-      }
-
-      .pd-breadcrumb {
-        margin: 2px 0 10px;
-        font-size: .78rem
-      }
-
-      .pd-thumb {
-        width: 72px;
-        height: 50px
-      }
-
-      .pd-stats {
-        gap: 12px
-      }
-
-      .pd-stat {
-        padding: 12px 12px;
-        min-height: auto;
-        grid-template-columns: 36px 1fr;
-        align-items: center;
-        gap: 10px
-      }
-
-      .pd-stat::before {
-        width: 36px;
-        height: 36px;
-        border-radius: 50%
-      }
-
-      .pd-stat>div {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        min-width: 0
-      }
-
-      .pd-num {
-        font-size: 1.22rem;
-        line-height: 1.1;
-        margin: 0 0 2px
-      }
-
-      .pd-lbl {
-        font-size: .88rem;
-        line-height: 1.2;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis
-      }
-    }
-
     @media (max-width:900px) {
       .pd-features {
         gap: 10px
@@ -692,20 +658,76 @@
       }
     }
 
-    @media (max-width:768px) {
-      .nav-links {
-        display: none
-      }
-
-      .main-content {
-        margin-top: 90px;
-        padding-top: 8px
-      }
-    }
-
     @media (min-width:1400px) {
       .navbar .brand {
         margin-left: -2rem
+      }
+    }
+
+    /* ====== MOBILE-ONLY FIX ====== */
+    @media (max-width:560px) {
+      .pd-hero {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .pd-left {
+        padding-top: 6px;
+      }
+
+      .pd-title {
+        margin-top: 0;
+        font-size: clamp(22px, 7vw, 30px);
+        line-height: 1.15;
+      }
+
+      .pd-lead {
+        text-align: justify;
+        font-size: .95rem;
+        line-height: 1.6;
+        margin-bottom: 14px;
+        word-break: break-word;
+        hyphens: none;
+      }
+
+      .pd-breadcrumb {
+        transform: none !important;
+        margin: 4px 0 8px;
+        font-size: .9rem;
+        flex-wrap: wrap;
+        gap: 4px;
+        display: none !important;
+        /* sembunyikan breadcrumb di mobile */
+      }
+
+      .pd-mock {
+        padding: 12px
+      }
+
+      .pd-mock:hover img {
+        transform: none !important
+      }
+
+      .pd-thumbs {
+        padding: 6px 10px 12px;
+        gap: 8px
+      }
+
+      .pd-thumb {
+        width: 68px;
+        height: 48px
+      }
+
+      .pd-stats,
+      .pd-cta,
+      .pd-tech {
+        max-width: 100%
+      }
+
+      .main-content {
+        margin-top: 0 !important;
+        padding-top: var(--nav-pad, 12px) !important;
+        padding-bottom: 32px !important;
       }
     }
   </style>
@@ -717,42 +739,34 @@
       <div class="brand">
         <a href="detailsweb.html" class="back-btn" title="Back to Home" aria-label="Back"><i
             class="bx bx-chevron-left"></i></a>
-        <a href="index.html" class="logo">Web Development</a>
+        <a href="#" class="logo">Web Development</a>
       </div>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="index.html#about">About</a></li>
-          <li><a href="index.html#services">Projects</a></li>
-          <li><a href="index.html#testimonial">Certificates</a></li>
-        </ul>
+      <nav class="pd-breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html#services">Experiences</a><span class="sep">/</span>
+        <a href="detailsweb.html">Web Development</a><span class="sep">/</span>
+        <span id="crumbTitle">Model Tester NER</span>
       </nav>
     </div>
   </header>
 
   <main class="main-content">
     <div class="container">
-      <nav class="pd-breadcrumb" aria-label="Breadcrumb">
-        <a href="index.html#services">Experiences</a><span class="sep">/</span>
-        <a href="detailsweb.html">Web Development</a><span class="sep">/</span>
-        <span id="crumbTitle">Model Tester NER</span>
-      </nav>
-
       <section class="pd-hero">
-        <div>
+        <!-- kolom kiri -->
+        <div class="pd-left">
           <h1 id="pTitle" class="pd-title">Loading…</h1>
           <p id="pLead" class="pd-lead"></p>
 
           <div class="pd-stats">
             <div class="pd-stat">
               <div>
-                <div id="statTech" class="pd-num">–</div>
+                <div id="statTech" class="pd-num">-</div>
                 <div class="pd-lbl">Total Technology</div>
               </div>
             </div>
             <div class="pd-stat">
               <div>
-                <div id="statFeat" class="pd-num">–</div>
+                <div id="statFeat" class="pd-num">-</div>
                 <div class="pd-lbl">Key Features</div>
               </div>
             </div>
@@ -760,8 +774,11 @@
 
           <div class="pd-cta">
             <a id="btnCode" class="pd-btn primary" target="_blank" rel="noopener">
-              <i class='bx bx-play-circle' href="https://github.com/Gibranfaktiananwar/Indonesia_ner_website"></i>
-              Github
+              <i class='bx bxl-github'></i>Github
+            </a>
+            <!-- Tombol Medium (opsional) -->
+            <a id="btnMedium" class="pd-btn primary" target="_blank" rel="noopener" style="display:none">
+              <i class='bx bxl-medium'></i>Medium
             </a>
           </div>
 
@@ -806,12 +823,12 @@
     const PROJECT_DETAIL = {
       "model-tester-ner": {
         title: "Model Tester NER",
-        // min 500 char
-        lead: "A modern and responsive web application for testing Named Entity Recognition (NER) in Indonesian based on the XLNet-BiLSTM-CRF architecture. The lightweight interface displays a text test form with a character counter and real-time entity highlighting (PER/ORG/LOC) that is neatly rendered in the user's sentence. The application supports uploading .txt/.csv files for batch processing and provides exporting results to text-formatted CSV files with labels for easy further analysis. The backend is built with FastAPI + Uvicorn (API /predict_text and /predict_file), designed to maintain token and character alignment for accurate entity spans.",
+        lead: "A modern and responsive web application for testing Named Entity Recognition (NER) in Indonesian based on the XLNet-BiLSTM-CRF architecture. The lightweight interface displays a text test form with a character counter and real-time entity highlighting (PER/ORG/LOC) that is neatly rendered in the user's sentence. The application supports uploading .txt/.csv files for batch processing and provides exporting results to text-formatted CSV files with labels for easy further analysis. The backend is built with FastAPI + Uvicorn (API /predict_text and /predict_file), designed to maintain token and character alignment for accurate entity.",
         cover: "assets/web/card1/ner.jpeg",
         images: ["assets/web/card1/ner.jpeg", "assets/web/card1/ner2.jpeg", "assets/web/card1/ner3.jpeg", "assets/web/card1/ner4.jpeg"],
         demo: "#",
         code: "https://github.com/Gibranfaktiananwar/Indonesia_ner_website",
+        medium: "https://medium.com/@gibranfktian/connecting-an-indonesian-ner-ai-model-to-a-website-using-python-73e019ec42d8",
         technologies: ["Python", "FastAPI", "Uvicorn", "Docker", "HTML", "CSS", "JS"],
         features: [
           "Form for testing text typed by the user.",
@@ -822,13 +839,13 @@
       },
       "BosonPOS": {
         title: "BosonPOS",
-        // min 500 char
         lead: "Integrated point-of-sales web application to optimise product management and cross-branch purchasing processes. The system is equipped with role-based access control (RBAC) that allows administrators to create custom roles, set granular permissions (view-category, view-product, view-catalogue, view-cart, redeem-rewards, etc), and manage user accounts based on roles. The product management module supports a hierarchical category structure with detailed descriptions, full CRUD operations including image uploads, stock monitoring, and pricing information. The front-facing catalogue displays products in a responsive grid with real-time stock availability, prices in Rupiah, and an instant ‘Add to cart’ action. The shopping cart feature provides a customisable quantity interface, automatic per-item and total price calculations, and a concise checkout flow. Additionally, there is an inter-store inventory checker based on serial number input which, through inter-branch API integration, returns product details, location, and availability status.",
         cover: "assets/web/card2/img1.jpeg",
-        images: ["assets/web/card2/img1.jpeg", "assets/web/card2/img2.jpeg", "assets/web/card2/img3.jpeg", "assets/web/card2/img4.jpeg", "assets/web/card2/img5.jpeg", "assets/web/card2/img6.jpeg", "assets/web/card2/img7.jpeg", "assets/web/card2/img8.jpeg"],
+        images: ["assets/web/card2/img1.jpeg", "assets/web/card2/img2.jpeg", "assets/web/card2/img21.jpeg", "assets/web/card2/img22.jpeg", "assets/web/card2/img3.jpeg", "assets/web/card2/img31.jpeg", "assets/web/card2/img32.jpeg", "assets/web/card2/img4.jpeg", "assets/web/card2/img41.jpeg", "assets/web/card2/img42.jpeg", "assets/web/card2/img5.jpeg", "assets/web/card2/img51.jpeg", "assets/web/card2/img52.jpeg", "assets/web/card2/img6.jpeg", "assets/web/card2/img61.jpeg", "assets/web/card2/img7.jpeg", "assets/web/card2/img8.jpeg"],
         demo: "#",
         code: "https://github.com/Gibranfaktiananwar/Boson_POS",
-        technologies: ["Laravel", "PHP", "HTML", "Javascript", "JS", "CSS",  "Vite", "MYSQL", "Bootstrap"],
+        medium: "",
+        technologies: ["Laravel", "PHP", "HTML", "Javascript", "JS", "CSS", "Vite", "MYSQL", "Bootstrap"],
         features: [
           "Manage roles and permissions",
           "Manage users and their roles",
@@ -846,7 +863,7 @@
     const $ = s => document.querySelector(s);
     const params = new URLSearchParams(location.search);
     const id = params.get("id") || "model-tester-ner";
-    const data = PROJECT_DETAIL[id] || { title: "Project Not Found", lead: "ID proyek tidak dikenali. Kembali ke halaman daftar.", cover: "", demo: "#", code: "#", technologies: [], features: [] };
+    const data = PROJECT_DETAIL[id] || { title: "Project Not Found", lead: "ID proyek tidak dikenali. Kembali ke halaman daftar.", cover: "", demo: "#", code: "#", medium: "", technologies: [], features: [] };
 
     $("#pgTitle").textContent = data.title + " – Project Detail";
     $("#pTitle").textContent = data.title;
@@ -880,8 +897,16 @@
     }
     renderMain(); renderThumbs();
 
-    /* ---- angka & list ---- */
+    /* ---- angka & list + tombol ---- */
     $("#btnCode").href = data.code || data.demo || "#";
+    const btnMedium = $("#btnMedium");
+    if (data.medium && typeof data.medium === "string" && data.medium.trim().length > 0) {
+      btnMedium.href = data.medium.trim();
+      btnMedium.style.display = "inline-flex";
+    } else {
+      btnMedium.style.display = "none";
+    }
+
     $("#statTech").textContent = data.technologies.length;
     $("#statFeat").textContent = data.features.length;
     $("#techList").innerHTML = data.technologies.map(t => `<span class="pd-chip">${t}</span>`).join("");
@@ -928,18 +953,28 @@
     document.getElementById('modalClose').addEventListener('click', (e) => { e.stopPropagation(); closeModal(); });
     imageModal.addEventListener('click', (e) => { if (e.target === imageModal) closeModal(); });
     modalContent.addEventListener('click', (e) => { if (e.target === modalContent) closeModal(); });
+  </script>
 
-    /* ---- kompensasi tinggi navbar ---- */
-    (function () {
-      const nav = document.querySelector('.navbar'), main = document.querySelector('.main-content');
-      if (!nav || !main) return;
-      function applyTopPad() {
-        const h = nav.getBoundingClientRect().height || 56;
-        const isMobile = window.innerWidth <= 560;
-        const extra = isMobile ? -70 : -74;
-        main.style.paddingTop = Math.max(20, h + extra) + 'px';
+  <!-- Kompensasi tinggi navbar: MOBILE-ONLY -->
+  <script>
+    (() => {
+      const nav = document.querySelector('.navbar');
+      const main = document.querySelector('.main-content');
+      const mq = window.matchMedia('(max-width: 560px)');
+
+      function applyMobilePad() {
+        if (!nav || !main) return;
+        if (mq.matches) {
+          const h = nav.getBoundingClientRect().height || 56;
+          main.style.setProperty('--nav-pad', (h + 8) + 'px'); // hanya mobile
+        } else {
+          main.style.removeProperty('--nav-pad');
+        }
       }
-      applyTopPad(); window.addEventListener('resize', applyTopPad);
+
+      applyMobilePad();
+      window.addEventListener('resize', applyMobilePad);
+      window.addEventListener('load', applyMobilePad);
     })();
   </script>
 

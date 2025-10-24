@@ -946,3 +946,49 @@ body.no-scroll {
         margin-left: -2rem;
     }
 }
+
+/* === FIX: Samakan tinggi card TANPA ubah warna/elemen === */
+.projects-grid {
+    align-items: stretch;
+    /* pastikan anak grid stretch */
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.project-card h3 {
+    line-height: 1.25;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /* max 2 baris */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: calc(1.25em * 2);
+    /* kunci tinggi 2 baris */
+}
+
+.project-card p {
+    line-height: 1.55;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    /* max 3 baris */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: calc(1.55em * 3);
+    /* kunci tinggi 3 baris */
+    /* margin-bottom sudah ada di atas, tidak diubah */
+}
+
+.card-actions {
+    margin-top: auto;
+    /* dorong ke bawah */
+}
+
+.btn-bar {
+    flex-wrap: wrap;
+    gap: .75rem;
+}

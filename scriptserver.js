@@ -1,20 +1,21 @@
 // ====== data projects ======
 const PROJECTS = [
   {
-    id: "",
-    title: "Cooming Soon Project",
-    desc: "Upcoming projects for web applications, Stay tuned.",
+    id: "deploy-aaPanel",
+    title: "Deploy a website with aaPanel & Cloudflare",
+    desc: "Learn how to deploy a website using aaPanel and Cloudflare for enhanced performance and security.",
     tech: [],
-    cover: "",
-    demo: "#", 
+    cover: "assets/server/card1/img1.jpeg",
+    demo: "",
     code: "",
   },
   {
-    id: "",
-    title: "Cooming Soon Project",
-    desc: "Upcoming projects for web applications, Stay tuned.",
+    id: "deploy-Docker",
+    title:
+      "Deploy a website using Docker, Uvicorn and Reverse Proxy with AaPanel.",
+    desc: "Learn how to deploy a website using Docker, Uvicorn and Reverse Proxy with AaPanel.",
     tech: [],
-    cover: "",
+    cover: "assets/server/card2/img1.jpeg",
     demo: "#",
     code: "",
   },
@@ -65,7 +66,9 @@ function card(p) {
   const hasId = typeof p.id === "string" && p.id.trim() !== "";
   const detailsCTA = hasId
     ? `
-      <a class="card-cta" href="projectserver.html?id=${encodeURIComponent(p.id)}">
+      <a class="card-cta" href="projectserver.html?id=${encodeURIComponent(
+        p.id
+      )}">
         <span>Details</span>
         <i class='bx bx-right-arrow-alt'></i>
       </a>`
