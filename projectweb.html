@@ -8,7 +8,6 @@
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="styledetails.css" />
   <style>
-    /* ====== dasar ====== */
     :root {
       --pd-max: 1270px;
       --pd-gap: 28px;
@@ -21,9 +20,8 @@
       --readable: 66ch;
       --stats-maxw: 650px;
       --mock-pad: 17px;
-      /* padding atas .pd-mock (desktop) */
       --mock-bdr: 2px;
-      /* border .pd-mock */
+      --feat-gap: 8px;
     }
 
     *,
@@ -54,12 +52,11 @@
       will-change: transform;
     }
 
-    /* ====== layout utama ====== */
     .main-content {
       padding-top: 50px;
       padding-bottom: 32px;
       flex: 1 0 auto;
-      margin-top: 50px;
+      margin-top: 50px
     }
 
     .main-content .container {
@@ -80,24 +77,21 @@
       min-width: 0
     }
 
-    /* offset kiri agar sejajar puncak gambar kanan */
     .pd-left {
-      padding-top: calc(var(--mock-pad) + var(--mock-bdr));
+      padding-top: calc(var(--mock-pad) + var(--mock-bdr))
     }
 
-    /* satu kolom sampai 980px */
     @media (max-width:980px) {
       .pd-hero {
         grid-template-columns: minmax(0, 1fr)
       }
     }
 
-    /* ====== tipografi / kiri ====== */
     .pd-title {
-      font-size: clamp(30px, 4.2vw, 48px);
+      font-size: clamp(30px, 4.2vw, 28px);
       margin: 0 0 .001rem;
       letter-spacing: .2px;
-      margin-top: -40px;
+      margin-top: -40px
     }
 
     .pd-lead {
@@ -124,7 +118,7 @@
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px;
-      margin: 25px 0;
+      margin: 25px 0 20px;
       max-width: var(--stats-maxw)
     }
 
@@ -138,7 +132,7 @@
       grid-template-columns: 52px 1fr;
       align-items: center;
       gap: 1px;
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+      transition: transform .18s, box-shadow .18s, border-color .18s, background .18s;
     }
 
     .pd-stat::before {
@@ -154,7 +148,7 @@
       -webkit-mask-size: 60%;
       mask-position: center;
       mask-repeat: no-repeat;
-      mask-size: 60%;
+      mask-size: 60%
     }
 
     .pd-stat:nth-child(1)::before {
@@ -193,7 +187,7 @@
       box-shadow: 0 10px 24px rgba(0, 0, 0, .30)
     }
 
-    /* ====== CTA (Github + Medium) ====== */
+    /* ====== CTA ====== */
     .pd-cta {
       margin: 12px 0 8px;
       max-width: var(--stats-maxw)
@@ -211,14 +205,13 @@
       color: #eafff7;
       text-decoration: none;
       transition: transform .15s, background .15s, border-color .15s, box-shadow .15s;
-      width: 100%;
+      width: 100%
     }
 
     .pd-btn+.pd-btn {
-      margin-top: 10px;
+      margin-top: 10px
     }
 
-    /* jarak antar tombol */
     .pd-btn:hover {
       transform: translateY(-1px);
       background: rgba(255, 255, 255, .16);
@@ -266,7 +259,7 @@
       background: var(--pd-card);
       border: 1px solid var(--pd-stroke);
       font-size: .88rem;
-      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease, background .15s ease;
+      transition: transform .15s, box-shadow .15s, border-color .15s, background .15s
     }
 
     .pd-chip:hover {
@@ -283,7 +276,6 @@
       box-shadow: 0 0 0 3px rgba(20, 184, 166, .25)
     }
 
-    /* ====== blok kanan ====== */
     .pd-right {
       display: grid;
       gap: 18px;
@@ -303,11 +295,13 @@
       overflow: hidden;
       cursor: pointer;
       position: relative;
+      aspect-ratio: 19/9
     }
 
     .pd-mock img {
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
       border-radius: 12px;
       display: block;
       transition: transform .3s ease, filter .3s ease;
@@ -326,8 +320,8 @@
 
     .pd-thumbs {
       display: flex;
-      gap: 10px;
-      padding: 8px 14px 15px;
+      gap: 9px;
+      padding: 8px 14px 13px;
       overflow-x: auto;
       scrollbar-width: thin;
       scrollbar-gutter: stable
@@ -410,7 +404,27 @@
       padding: 2px 0;
       display: flex;
       flex-direction: column;
-      gap: 8px
+      gap: var(--feat-gap);
+      overflow: auto;
+      max-height: var(--feat-maxh, none);
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      margin-right: -7px;
+      padding-right: 12px;
+      scrollbar-gutter: stable both-edges
+    }
+
+    .pd-features::-webkit-scrollbar {
+      width: 9px
+    }
+
+    .pd-features::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, .28);
+      border-radius: 10px
+    }
+
+    .pd-features::-webkit-scrollbar-track {
+      background: transparent
     }
 
     .pd-features li {
@@ -445,16 +459,15 @@
       transform: translateY(-1px)
     }
 
-    /* ====== breadcrumb ====== */
     .pd-breadcrumb {
       display: flex;
       align-items: center;
       gap: 6px;
       margin: 1px 0 1px;
       color: rgba(255, 255, 255, .85);
-      font-size: 0.83rem;
+      font-size: .82rem;
       position: relative;
-      transform: translateX(-19px);
+      transform: translateX(-19px)
     }
 
     .pd-breadcrumb a {
@@ -472,7 +485,6 @@
       opacity: .5
     }
 
-    /* ====== modal ====== */
     .image-modal {
       position: fixed;
       top: 0;
@@ -497,20 +509,25 @@
 
     .modal-content {
       position: relative;
-      max-width: 90vw;
-      max-height: 90vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: default
+      cursor: default;
+      max-width: 96vw;
+      max-height: 92vh;
+      padding: 0
     }
 
     .modal-image {
-      max-width: 100%;
-      max-height: 100%;
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 96vw;
+      max-height: 92vh;
+      object-fit: contain;
       border-radius: 12px;
       box-shadow: 0 25px 50px rgba(0, 0, 0, .5);
-      transition: transform .3s ease
+      transform: none !important
     }
 
     .modal-close {
@@ -577,7 +594,6 @@
       pointer-events: none
     }
 
-    /* ====== RESPONSIVE (umum) ====== */
     @media (max-width:768px) {
       .main-content .container {
         padding-inline: 16px
@@ -602,7 +618,7 @@
       }
 
       :root {
-        --mock-pad: 14px;
+        --mock-pad: 14px
       }
 
       .nav-links {
@@ -612,6 +628,16 @@
       .main-content {
         margin-top: 90px;
         padding-top: 8px
+      }
+
+      .modal-content {
+        max-width: 98vw;
+        max-height: 90vh
+      }
+
+      .modal-image {
+        max-width: 98vw;
+        max-height: 90vh
       }
     }
 
@@ -642,13 +668,13 @@
         text-justify: inter-word;
         line-height: 1.65;
         margin-bottom: 18px;
-        padding-inline: 0;
+        padding-inline: 0
       }
     }
 
     @media (max-width:900px) {
       .pd-features {
-        gap: 10px
+        gap: var(--feat-gap)
       }
     }
 
@@ -664,30 +690,29 @@
       }
     }
 
-    /* ====== MOBILE-ONLY FIX ====== */
     @media (max-width:560px) {
       .pd-hero {
         grid-template-columns: 1fr;
-        gap: 14px;
+        gap: 14px
       }
 
       .pd-left {
-        padding-top: 6px;
+        padding-top: 6px
       }
 
       .pd-title {
         margin-top: 0;
-        font-size: clamp(22px, 7vw, 30px);
-        line-height: 1.15;
+        margin-bottom: 2px;
+        font-size: clamp(25px, 7vw, 25px);
+        line-height: 1.15
       }
 
       .pd-lead {
-        text-align: justify;
         font-size: .95rem;
         line-height: 1.6;
         margin-bottom: 14px;
         word-break: break-word;
-        hyphens: none;
+        hyphens: none
       }
 
       .pd-breadcrumb {
@@ -696,12 +721,12 @@
         font-size: .9rem;
         flex-wrap: wrap;
         gap: 4px;
-        display: none !important;
-        /* sembunyikan breadcrumb di mobile */
+        display: none !important
       }
 
       .pd-mock {
-        padding: 12px
+        padding: 12px;
+        aspect-ratio: 19/9
       }
 
       .pd-mock:hover img {
@@ -727,7 +752,154 @@
       .main-content {
         margin-top: 0 !important;
         padding-top: var(--nav-pad, 12px) !important;
-        padding-bottom: 32px !important;
+        padding-bottom: 32px !important
+      }
+
+      .pd-features {
+        margin-right: -8px;
+        padding-right: 8px
+      }
+    }
+
+    .pd-stat>div {
+      min-width: 0;
+    }
+
+    .pd-lbl {
+      white-space: normal;
+      overflow: visible;
+      text-overflow: clip;
+      line-height: 1.2;
+    }
+
+    @media (max-width:560px) {
+      .pd-stats {
+        grid-template-columns: 1fr 1fr;
+        align-items: stretch;
+        gap: 12px;
+      }
+
+      .pd-stat {
+        grid-template-columns: clamp(34px, 9vw, 44px) 1fr;
+        padding: 12px clamp(10px, 3.2vw, 16px);
+        min-height: unset;
+        align-items: center;
+      }
+
+      .pd-stat::before {
+        width: clamp(30px, 9vw, 40px);
+        height: clamp(30px, 9vw, 40px);
+        border-radius: 10px;
+        -webkit-mask-size: 60%;
+        mask-size: 60%;
+      }
+
+      .pd-num {
+        font-size: clamp(1.05rem, 4.2vw, 1.4rem);
+        margin-bottom: 2px;
+        line-height: 1;
+      }
+
+      .pd-lbl {
+        font-size: clamp(.82rem, 2.8vw, .95rem);
+        letter-spacing: .1px;
+      }
+    }
+
+    @media (max-width:400px) {
+      .pd-stats {
+        gap: 10px;
+      }
+
+      .pd-stat {
+        grid-template-columns: clamp(30px, 10vw, 36px) 1fr;
+        padding: 10px 10px;
+      }
+
+      .pd-num {
+        font-size: clamp(1rem, 4.6vw, 1.25rem);
+      }
+
+      .pd-lbl {
+        font-size: clamp(.78rem, 3vw, .9rem);
+      }
+    }
+
+    @media (max-width:330px) {
+      .pd-stats {
+        gap: 8px;
+      }
+
+      .pd-stat {
+        grid-template-columns: 28px 1fr;
+        padding: 9px 9px;
+      }
+
+      .pd-num {
+        font-size: 1rem;
+      }
+
+      .pd-lbl {
+        font-size: .78rem;
+      }
+    }
+
+    @media (min-width:981px) and (max-width:1200px) {
+
+      .pd-hero {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+      }
+
+      .pd-left {
+        max-width: 100%;
+        padding-top: 0;
+      }
+
+      .pd-right {
+        display: grid;
+        gap: 18px;
+        align-content: start;
+      }
+
+      .pd-section {
+        margin-top: 8px;
+      }
+
+      .pd-stats,
+      .pd-cta,
+      .pd-tech {
+        max-width: 100%;
+      }
+
+      .pd-stats {
+        margin: 20px 0 16px;
+      }
+
+      .pd-cta {
+        margin: 12px 0 8px;
+      }
+
+      .pd-tech {
+        margin-top: 20px;
+      }
+
+      .pd-lead {
+        max-width: 100%;
+      }
+
+      .pd-title {
+        margin-top: 0;
+      }
+
+      .pd-breadcrumb {
+        font-size: 0.75rem;
+      }
+    }
+
+    @media (max-width:1000px) {
+      .pd-breadcrumb {
+        display: none !important;
       }
     }
   </style>
@@ -744,7 +916,7 @@
       <nav class="pd-breadcrumb" aria-label="Breadcrumb">
         <a href="index.html#services">Experiences</a><span class="sep">/</span>
         <a href="detailsweb.html">Web Development</a><span class="sep">/</span>
-        <span id="crumbTitle">Model Tester NER</span>
+        <span id="crumbTitle"></span>
       </nav>
     </div>
   </header>
@@ -772,11 +944,10 @@
             </div>
           </div>
 
-          <div class="pd-cta">
+          <div class="pd-cta" id="ctaBlock">
             <a id="btnCode" class="pd-btn primary" target="_blank" rel="noopener">
               <i class='bx bxl-github'></i>Github
             </a>
-            <!-- Tombol Medium (opsional) -->
             <a id="btnMedium" class="pd-btn primary" target="_blank" rel="noopener" style="display:none">
               <i class='bx bxl-medium'></i>Medium
             </a>
@@ -788,6 +959,7 @@
           </div>
         </div>
 
+        <!-- kolom kanan -->
         <div class="pd-right">
           <div class="pd-mock" id="imagePreview"><img id="pCover" alt="Preview"></div>
           <div class="pd-thumbs" id="thumbStrip"></div>
@@ -884,9 +1056,9 @@
     function renderThumbs() {
       if (!thumbsWrap) return;
       thumbsWrap.innerHTML = gallery.map((src, i) => `
-        <button class="pd-thumb ${i === current ? 'active' : ''}" data-i="${i}" aria-label="Preview ${i + 1}">
-          <img src="${src}" alt="thumb ${i + 1}">
-        </button>`).join('');
+          <button class="pd-thumb ${i === current ? 'active' : ''}" data-i="${i}" aria-label="Preview ${i + 1}">
+            <img src="${src}" alt="thumb ${i + 1}">
+          </button>`).join('');
       thumbsWrap.querySelectorAll('.pd-thumb').forEach(btn => {
         btn.addEventListener('click', () => {
           current = +btn.dataset.i; renderMain();
@@ -897,20 +1069,52 @@
     }
     renderMain(); renderThumbs();
 
-    /* ---- angka & list + tombol ---- */
-    $("#btnCode").href = data.code || data.demo || "#";
-    const btnMedium = $("#btnMedium");
-    if (data.medium && typeof data.medium === "string" && data.medium.trim().length > 0) {
+    /* ---- tombol CTA (posisi tetap) ---- */
+    const isFilled = v => (typeof v === "string") && v.trim() !== "" && v.trim() !== "#";
+    const btnCode = $("#btnCode"), btnMedium = $("#btnMedium"), ctaBlock = $("#ctaBlock");
+    const hasCode = isFilled(data.code), hasMedium = isFilled(data.medium);
+
+    if (hasCode && hasMedium) {
+      btnCode.href = data.code.trim();
+      btnCode.innerHTML = "<i class='bx bxl-github'></i>Github";
+      btnCode.style.display = "inline-flex";
       btnMedium.href = data.medium.trim();
+      btnMedium.innerHTML = "<i class='bx bxl-medium'></i>Medium";
       btnMedium.style.display = "inline-flex";
-    } else {
+    } else if (hasCode && !hasMedium) {
+      btnCode.href = data.code.trim();
+      btnCode.innerHTML = "<i class='bx bxl-github'></i>Github";
+      btnCode.style.display = "inline-flex";
       btnMedium.style.display = "none";
+    } else if (!hasCode && hasMedium) {
+      btnCode.href = data.medium.trim();
+      btnCode.innerHTML = "<i class='bx bxl-medium'></i>Medium";
+      btnCode.style.display = "inline-flex";
+      btnMedium.style.display = "none";
+    } else {
+      ctaBlock.style.display = "none";
     }
 
+    /* ---- numbers & lists ---- */
     $("#statTech").textContent = data.technologies.length;
     $("#statFeat").textContent = data.features.length;
     $("#techList").innerHTML = data.technologies.map(t => `<span class="pd-chip">${t}</span>`).join("");
     $("#featureList").innerHTML = data.features.map(f => `<li><i class='bx bx-check-circle'></i><span>${f}</span></li>`).join("");
+
+    (function clampFeatureListToFour() {
+      const list = document.getElementById('featureList');
+      const first = list.querySelector('li');
+      if (!first) return;
+      requestAnimationFrame(() => {
+        const styles = getComputedStyle(list);
+        const gap = parseFloat(styles.rowGap || styles.gap || 8);
+        const itemH = first.getBoundingClientRect().height;
+        const rows = Math.min(4, list.children.length);
+        const maxH = (itemH * rows) + (gap * (rows - 1));
+        list.style.setProperty('--feat-maxh', maxH + 'px');
+        list.setAttribute('aria-label', 'Key features (scroll for more)');
+      });
+    })();
 
     /* ---- modal ---- */
     const imagePreview = $("#imagePreview"), imageModal = $("#imageModal"),
@@ -953,28 +1157,11 @@
     document.getElementById('modalClose').addEventListener('click', (e) => { e.stopPropagation(); closeModal(); });
     imageModal.addEventListener('click', (e) => { if (e.target === imageModal) closeModal(); });
     modalContent.addEventListener('click', (e) => { if (e.target === modalContent) closeModal(); });
-  </script>
 
-  <!-- Kompensasi tinggi navbar: MOBILE-ONLY -->
-  <script>
     (() => {
-      const nav = document.querySelector('.navbar');
-      const main = document.querySelector('.main-content');
-      const mq = window.matchMedia('(max-width: 560px)');
-
-      function applyMobilePad() {
-        if (!nav || !main) return;
-        if (mq.matches) {
-          const h = nav.getBoundingClientRect().height || 56;
-          main.style.setProperty('--nav-pad', (h + 8) + 'px'); // hanya mobile
-        } else {
-          main.style.removeProperty('--nav-pad');
-        }
-      }
-
-      applyMobilePad();
-      window.addEventListener('resize', applyMobilePad);
-      window.addEventListener('load', applyMobilePad);
+      const nav = document.querySelector('.navbar'); const main = document.querySelector('.main-content'); const mq = window.matchMedia('(max-width: 560px)');
+      function applyMobilePad() { if (!nav || !main) return; if (mq.matches) { const h = nav.getBoundingClientRect().height || 56; main.style.setProperty('--nav-pad', (h + 7) + 'px'); } else { main.style.removeProperty('--nav-pad'); } }
+      applyMobilePad(); window.addEventListener('resize', applyMobilePad); window.addEventListener('load', applyMobilePad);
     })();
   </script>
 

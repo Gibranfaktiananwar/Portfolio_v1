@@ -1,41 +1,44 @@
-// ====== data projects ======
+// ====== Data Projects ======
 const PROJECTS = [
   {
-    id: "",
-    title: "Cooming Soon Project",
-    desc: "Upcoming projects for web applications, Stay tuned.",
+    id: "deploy-aaPanel",
+    title: "Deploy a website with aaPanel & Cloudflare",
+    desc: "Summary of the process of activating a website online via aaPanel and Cloudflare Zero Trust Tunnel.",
     tech: [],
-    cover: "",
-    demo: "#", 
+    cover: "assets/server/card1/img1.jpeg",
+    demo: "",
     code: "",
+    medium: "https://medium.com/@gibranfktian/deploy-a-website-with-aapanel-cloudflare-dc5ca5a68e41", 
   },
   {
-    id: "",
-    title: "Cooming Soon Project",
-    desc: "Upcoming projects for web applications, Stay tuned.",
+    id: "deploy-Docker",
+    title: "Deploy a website using Docker, Uvicorn and Reverse Proxy with AaPanel.",
+    desc: "Guide to deploying a website with Docker containers, Uvicorn ASGI server, and Reverse Proxy using aaPanel",
     tech: [],
-    cover: "",
-    demo: "#",
+    cover: "assets/server/card2/img1.jpeg",
+    demo: "",
+    code: "", 
+    medium: "https://medium.com/@gibranfktian/deploy-a-website-using-docker-uvicorn-and-reverse-proxy-with-aapanel-45fa99bced56", 
+  },
+  {
+    id: "own-server",
+    title: "Build Your Own Server With STB HG680P",
+    desc: "Guide to transforming an STB HG680P TV Set Top Box into a fully functional home server using Armbian OS and aaPanel",
+    tech: [],
+    cover: "assets/server/card3/img1.jpeg",
+    demo: "",
     code: "",
+    medium: "https://medium.com/@gibranfktian/build-your-own-server-with-stb-hg680p-8eb5d93df7f1",
   },
   {
-    id: "",
-    title: "Portfolio Website",
-    desc: "A personal portfolio website showcasing my projects and skills.",
+    id: "prtg-installation",
+    title: "Installation of PRTG Sensors on 72 Servers",
+    desc: "Installing and configuring PRTG Network Monitor on the server, including SNMP agent configuration on each VM.",
     tech: [],
-    cover: "",
+    cover: "assets/server/card4/img2.jpeg",
     demo: "#",
     code: "#",
-  },
-  // Coming soon: id dikosongkan -> tombol Details non-aktif
-  {
-    id: "",
-    title: "Cooming Soon Project",
-    desc: "Upcoming projects for web applications, Stay tuned.",
-    tech: [],
-    cover: "assets/resto-cover.png",
-    demo: "#",
-    code: "#",
+    medium: "#",
   },
   {
     id: "",
@@ -45,6 +48,7 @@ const PROJECTS = [
     cover: "assets/resto-cover.png",
     demo: "#",
     code: "#",
+    medium: "#",
   },
   {
     id: "",
@@ -54,18 +58,54 @@ const PROJECTS = [
     cover: "assets/resto-cover.png",
     demo: "#",
     code: "#",
+    medium: "#",
   },
 ];
 
 // ====== helpers ======
 const grid = document.getElementById("projectsGrid");
 
+function renderPrimaryBtn({ hasCode, hasMedium, code, medium }) {
+  if (hasCode) {
+    return `
+      <a class="code-link" href="${code}" target="_blank" rel="noopener">
+        <span class="code-badge"><i class='bx bxl-github'></i></span>
+        <span class="code-text">Code</span>
+      </a>`;
+  }
+  if (hasMedium) {
+    return `
+      <a class="code-link" href="${medium}" target="_blank" rel="noopener">
+        <span class="code-badge"><i class='bx bxl-medium'></i></span>
+        <span class="code-text">Medium</span>
+      </a>`;
+  }
+  return ``;
+}
+
+function renderSecondaryBtn({ hasCode, hasMedium, code, medium }) {
+  if (hasCode && hasMedium) {
+    return `
+      <a class="code-link" href="${medium}" target="_blank" rel="noopener">
+        <span class="code-badge"><i class='bx bxl-medium'></i></span>
+        <span class="code-text">Medium</span>
+      </a>`;
+  }
+  return ``;
+}
+
 function card(p) {
-  // if id kosong -> render CTA non-aktif (tanpa href)
   const hasId = typeof p.id === "string" && p.id.trim() !== "";
+  const hasCode =
+    typeof p.code === "string" && p.code.trim() !== "" && p.code !== "#";
+  const hasMedium =
+    typeof p.medium === "string" && p.medium.trim() !== "" && p.medium !== "#";
+
   const detailsCTA = hasId
     ? `
-      <a class="card-cta" href="projectdata.html?id=${encodeURIComponent(p.id)}">
+      <a class="card-cta" href="projectdata.html?id=${encodeURIComponent(
+        p.id
+      )}">
         <span>Details</span>
         <i class='bx bx-right-arrow-alt'></i>
       </a>`
@@ -96,14 +136,19 @@ function card(p) {
                  </a>`
               : ``
           }
-          ${
-            p.code && p.code !== "#"
-              ? `<a class="code-link" href="${p.code}" target="_blank" rel="noopener">
-                   <span class="code-badge"><i class='bx bxl-github'></i></span>
-                   <span class="code-text">Code</span>
-                 </a>`
-              : ``
-          }
+
+          ${renderPrimaryBtn({
+            hasCode,
+            hasMedium,
+            code: p.code,
+            medium: p.medium,
+          })}
+          ${renderSecondaryBtn({
+            hasCode,
+            hasMedium,
+            code: p.code,
+            medium: p.medium,
+          })}
         </div>
         ${detailsCTA}
       </div>

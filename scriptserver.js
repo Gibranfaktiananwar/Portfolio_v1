@@ -1,4 +1,4 @@
-// ====== data projects ======
+// ====== Data Projects ======
 const PROJECTS = [
   {
     id: "deploy-aaPanel",

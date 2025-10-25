@@ -8,7 +8,6 @@
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="styledetails.css" />
   <style>
-    /* ====== dasar ====== */
     :root {
       --pd-max: 1270px;
       --pd-gap: 28px;
@@ -89,7 +88,6 @@
       }
     }
 
-    /* ====== tipografi / kiri ====== */
     .pd-title {
       font-size: clamp(30px, 4.2vw, 28px);
       margin: 0 0 .001rem;
@@ -279,7 +277,6 @@
       box-shadow: 0 0 0 3px rgba(20, 184, 166, .25)
     }
 
-    /* ====== blok kanan (gambar) ====== */
     .pd-right {
       display: grid;
       gap: 18px;
@@ -697,7 +694,6 @@
       }
     }
 
-    /* ====== MOBILE-ONLY FIX ====== */
     @media (max-width:560px) {
       .pd-hero {
         grid-template-columns: 1fr;
@@ -769,36 +765,28 @@
       }
     }
 
-    /* === STAT: selalu 2 kolom & label adaptif tanpa ellipsis === */
     .pd-stat>div {
       min-width: 0;
     }
 
-    /* penting agar wrapping bisa jalan */
     .pd-lbl {
       white-space: normal;
-      /* boleh turun baris */
       overflow: visible;
-      /* jangan pakai ... */
       text-overflow: clip;
       line-height: 1.2;
     }
 
-    /* — mobile umum (≤560px): kecilkan ikon & tipografi secara fluid — */
     @media (max-width:560px) {
       .pd-stats {
         grid-template-columns: 1fr 1fr;
-        /* kunci: tetap dua kolom */
         align-items: stretch;
         gap: 12px;
       }
 
       .pd-stat {
         grid-template-columns: clamp(34px, 9vw, 44px) 1fr;
-        /* kolom ikon mengecil */
         padding: 12px clamp(10px, 3.2vw, 16px);
         min-height: unset;
-        /* tinggi mengikuti isi */
         align-items: center;
       }
 
@@ -818,12 +806,10 @@
 
       .pd-lbl {
         font-size: clamp(.82rem, 2.8vw, .95rem);
-        /* mengecil halus sesuai lebar */
         letter-spacing: .1px;
       }
     }
 
-    /* — layar mungil sekali (≤400px): rapatkan lagi agar tetap muat berdampingan — */
     @media (max-width:400px) {
       .pd-stats {
         gap: 10px;
@@ -843,7 +829,6 @@
       }
     }
 
-    /* — darurat super sempit (≤330px): kompak maksimal tapi tetap 2 kolom — */
     @media (max-width:330px) {
       .pd-stats {
         gap: 8px;
@@ -863,34 +848,28 @@
       }
     }
 
-    /* ==== 1024–1200px: Atur grid agar Key Features full-width di bawah ==== */
     @media (min-width:981px) and (max-width:1200px) {
 
-      /* Ubah menjadi single column layout */
       .pd-hero {
         grid-template-columns: minmax(0, 1fr);
         gap: 20px;
       }
 
-      /* Left column normal width */
       .pd-left {
         max-width: 100%;
         padding-top: 0;
       }
 
-      /* Right column tetap grid tapi dalam single column */
       .pd-right {
         display: grid;
         gap: 18px;
         align-content: start;
       }
 
-      /* Key Features di bawah dengan margin */
       .pd-section {
         margin-top: 8px;
       }
 
-      /* Sesuaikan spacing */
       .pd-stats,
       .pd-cta,
       .pd-tech {
@@ -913,18 +892,15 @@
         max-width: 100%;
       }
 
-      /* FIX: Hilangkan margin negatif pada title */
       .pd-title {
         margin-top: 0;
       }
 
-      /* FIX: Kecilkan breadcrumb */
       .pd-breadcrumb {
         font-size: 0.75rem;
       }
     }
 
-    /* Sembunyikan breadcrumb pada lebar <= 1000px */
     @media (max-width:1000px) {
       .pd-breadcrumb {
         display: none !important;
@@ -1019,7 +995,7 @@
   </div>
 
   <script>
-    /* ---- data ---- */
+    /* ---- Data ---- */
     const PROJECT_DETAIL = {
       "deploy-aaPanel": {
         title: "Deploy a website with aaPanel & Cloudflare",
@@ -1160,7 +1136,6 @@
     }
     renderMain(); renderThumbs();
 
-    /* ---- tombol CTA (posisi tetap) ---- */
     const isFilled = v => (typeof v === "string") && v.trim() !== "" && v.trim() !== "#";
     const btnCode = $("#btnCode"), btnMedium = $("#btnMedium"), ctaBlock = $("#ctaBlock");
     const hasCode = isFilled(data.code), hasMedium = isFilled(data.medium);
@@ -1174,13 +1149,11 @@
       btnMedium.innerHTML = "<i class='bx bxl-medium'></i>Medium";
       btnMedium.style.display = "inline-flex";
     } else if (hasCode && !hasMedium) {
-      // hanya CODE -> gunakan tombol pertama
       btnCode.href = data.code.trim();
       btnCode.innerHTML = "<i class='bx bxl-github'></i>Github";
       btnCode.style.display = "inline-flex";
       btnMedium.style.display = "none";
     } else if (!hasCode && hasMedium) {
-      // hanya MEDIUM -> gunakan tombol pertama (ganti icon+label)
       btnCode.href = data.medium.trim();
       btnCode.innerHTML = "<i class='bx bxl-medium'></i>Medium";
       btnCode.style.display = "inline-flex";
@@ -1189,13 +1162,11 @@
       ctaBlock.style.display = "none";
     }
 
-    /* ---- angka & list ---- */
     $("#statTech").textContent = data.technologies.length;
     $("#statFeat").textContent = data.features.length;
     $("#techList").innerHTML = data.technologies.map(t => `<span class="pd-chip">${t}</span>`).join("");
     $("#featureList").innerHTML = data.features.map(f => `<li><i class='bx bx-check-circle'></i><span>${f}</span></li>`).join("");
 
-    /* === Batasi Key Features ke 4 baris (dinamis) === */
     (function clampFeatureListToFour() {
       const list = document.getElementById('featureList');
       const first = list.querySelector('li');
@@ -1253,7 +1224,6 @@
     imageModal.addEventListener('click', (e) => { if (e.target === imageModal) closeModal(); });
     modalContent.addEventListener('click', (e) => { if (e.target === modalContent) closeModal(); });
 
-    /* Kompensasi tinggi navbar (mobile) */
     (() => {
       const nav = document.querySelector('.navbar'); const main = document.querySelector('.main-content'); const mq = window.matchMedia('(max-width: 560px)');
       function applyMobilePad() { if (!nav || !main) return; if (mq.matches) { const h = nav.getBoundingClientRect().height || 56; main.style.setProperty('--nav-pad', (h + 7) + 'px'); } else { main.style.removeProperty('--nav-pad'); } }

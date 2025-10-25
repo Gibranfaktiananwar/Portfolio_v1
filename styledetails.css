@@ -6,11 +6,9 @@
 
 :root {
     --footer-bg: transparent;
-    /* biarkan gradient halaman tetap terlihat */
     --footer-fg: #ffffff;
     --footer-fg-dim: rgba(255, 255, 255, .85);
     --footer-accent: #ffffff;
-    /* outline & hover */
     --footer-maxw: 1200px;
 }
 
@@ -20,7 +18,6 @@ body {
     line-height: 1.6;
     color: #fff;
     background: transparent !important;
-    /* supaya gradasi bisa dikontrol oleh pseudo-element di bawah */
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
@@ -60,20 +57,16 @@ body.no-scroll {
 .navbar .brand {
     margin-left: 0 !important;
     gap: .6rem;
-    /* jarak ikon ↔ teks */
 }
 
 .navbar .brand .back-btn {
     position: static !important;
-    /* ikut flow, sejajar judul */
     background: none !important;
-    /* hilangkan gradient/bulatan */
     border: 0 !important;
     width: 28px;
     height: 28px;
     padding: 0;
     margin-right: .2rem;
-    /* spasi kecil dari teks */
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -88,10 +81,8 @@ body.no-scroll {
 
 .navbar .brand .back-btn:hover {
     background: rgba(255, 255, 255, .12);
-    /* efek hover tipis (opsional) */
 }
 
-/* container tetap pakai padding kiri/kanan 2rem */
 .nav-container {
     max-width: 1300px;
     margin: 0 auto;
@@ -101,17 +92,13 @@ body.no-scroll {
     align-items: center;
 }
 
-
 .navbar .back-btn {
     width: 2rem;
-    /* sama dengan padding kiri container */
     height: 2rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    /* ikon berada di tengah slot */
     background: transparent !important;
-    /* hilangkan bulatan */
     border: none;
     padding: 0;
     color: #fff;
