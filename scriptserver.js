@@ -12,24 +12,23 @@ const PROJECTS = [
   },
   {
     id: "deploy-Docker",
-    title:
-      "Deploy a website using Docker, Uvicorn and Reverse Proxy with AaPanel.",
-    desc: "Learn how to deploy a website using Docker, Uvicorn and Reverse Proxy with AaPanel.",
+    title: "Deploy a website using Docker, Uvicorn and Reverse Proxy with AaPanel.",
+    desc: "Guide to deploying a website with Docker, Uvicorn, and Reverse Proxy using aaPanel.",
     tech: [],
     cover: "assets/server/card2/img1.jpeg",
-    demo: "#",
+    demo: "",
     code: "", 
-    medium: "", 
+    medium: "https://medium.com/@gibranfktian/deploy-a-website-using-docker-uvicorn-and-reverse-proxy-with-aapanel-45fa99bced56", 
   },
   {
-    id: "",
-    title: "Portfolio Website",
+    id: "own-server",
+    title: "Build Your Own Server With STB HG680P",
     desc: "A personal portfolio website showcasing my projects and skills.",
     tech: [],
     cover: "",
     demo: "#",
     code: "#",
-    medium: "#",
+    medium: "https://medium.com/@gibranfktian/build-your-own-server-with-stb-hg680p-8eb5d93df7f1",
   },
   // Coming soon
   {

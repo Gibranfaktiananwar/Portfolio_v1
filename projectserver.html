@@ -325,7 +325,7 @@
     .pd-thumbs {
       display: flex;
       gap: 9px;
-      padding: 8px 14px 15px;
+      padding: 8px 14px 13px;
       overflow-x: auto;
       scrollbar-width: thin;
       scrollbar-gutter: stable
@@ -413,7 +413,7 @@
       max-height: var(--feat-maxh, none);
       overscroll-behavior: contain;
       scrollbar-width: thin;
-      margin-right: -12px;
+      margin-right: -7px;
       padding-right: 12px;
       scrollbar-gutter: stable both-edges
     }
@@ -768,6 +768,168 @@
         padding-right: 8px
       }
     }
+
+    /* === STAT: selalu 2 kolom & label adaptif tanpa ellipsis === */
+    .pd-stat>div {
+      min-width: 0;
+    }
+
+    /* penting agar wrapping bisa jalan */
+    .pd-lbl {
+      white-space: normal;
+      /* boleh turun baris */
+      overflow: visible;
+      /* jangan pakai ... */
+      text-overflow: clip;
+      line-height: 1.2;
+    }
+
+    /* — mobile umum (≤560px): kecilkan ikon & tipografi secara fluid — */
+    @media (max-width:560px) {
+      .pd-stats {
+        grid-template-columns: 1fr 1fr;
+        /* kunci: tetap dua kolom */
+        align-items: stretch;
+        gap: 12px;
+      }
+
+      .pd-stat {
+        grid-template-columns: clamp(34px, 9vw, 44px) 1fr;
+        /* kolom ikon mengecil */
+        padding: 12px clamp(10px, 3.2vw, 16px);
+        min-height: unset;
+        /* tinggi mengikuti isi */
+        align-items: center;
+      }
+
+      .pd-stat::before {
+        width: clamp(30px, 9vw, 40px);
+        height: clamp(30px, 9vw, 40px);
+        border-radius: 10px;
+        -webkit-mask-size: 60%;
+        mask-size: 60%;
+      }
+
+      .pd-num {
+        font-size: clamp(1.05rem, 4.2vw, 1.4rem);
+        margin-bottom: 2px;
+        line-height: 1;
+      }
+
+      .pd-lbl {
+        font-size: clamp(.82rem, 2.8vw, .95rem);
+        /* mengecil halus sesuai lebar */
+        letter-spacing: .1px;
+      }
+    }
+
+    /* — layar mungil sekali (≤400px): rapatkan lagi agar tetap muat berdampingan — */
+    @media (max-width:400px) {
+      .pd-stats {
+        gap: 10px;
+      }
+
+      .pd-stat {
+        grid-template-columns: clamp(30px, 10vw, 36px) 1fr;
+        padding: 10px 10px;
+      }
+
+      .pd-num {
+        font-size: clamp(1rem, 4.6vw, 1.25rem);
+      }
+
+      .pd-lbl {
+        font-size: clamp(.78rem, 3vw, .9rem);
+      }
+    }
+
+    /* — darurat super sempit (≤330px): kompak maksimal tapi tetap 2 kolom — */
+    @media (max-width:330px) {
+      .pd-stats {
+        gap: 8px;
+      }
+
+      .pd-stat {
+        grid-template-columns: 28px 1fr;
+        padding: 9px 9px;
+      }
+
+      .pd-num {
+        font-size: 1rem;
+      }
+
+      .pd-lbl {
+        font-size: .78rem;
+      }
+    }
+
+    /* ==== 1024–1200px: Atur grid agar Key Features full-width di bawah ==== */
+    @media (min-width:981px) and (max-width:1200px) {
+
+      /* Ubah menjadi single column layout */
+      .pd-hero {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+      }
+
+      /* Left column normal width */
+      .pd-left {
+        max-width: 100%;
+        padding-top: 0;
+      }
+
+      /* Right column tetap grid tapi dalam single column */
+      .pd-right {
+        display: grid;
+        gap: 18px;
+        align-content: start;
+      }
+
+      /* Key Features di bawah dengan margin */
+      .pd-section {
+        margin-top: 8px;
+      }
+
+      /* Sesuaikan spacing */
+      .pd-stats,
+      .pd-cta,
+      .pd-tech {
+        max-width: 100%;
+      }
+
+      .pd-stats {
+        margin: 20px 0 16px;
+      }
+
+      .pd-cta {
+        margin: 12px 0 8px;
+      }
+
+      .pd-tech {
+        margin-top: 20px;
+      }
+
+      .pd-lead {
+        max-width: 100%;
+      }
+
+      /* FIX: Hilangkan margin negatif pada title */
+      .pd-title {
+        margin-top: 0;
+      }
+
+      /* FIX: Kecilkan breadcrumb */
+      .pd-breadcrumb {
+        font-size: 0.75rem;
+      }
+    }
+
+    /* Sembunyikan breadcrumb pada lebar <= 1000px */
+    @media (max-width:1000px) {
+      .pd-breadcrumb {
+        display: none !important;
+      }
+    }
   </style>
 </head>
 
@@ -885,14 +1047,28 @@
       },
       "deploy-Docker": {
         title: "Deploy a website using Docker, Uvicorn and Reverse Proxy with AaPanel.",
-        lead: "Here, I document the process of deploying a Python-based web application using a containerised approach...",
+        lead: "I documented the deployment process for a Python-based web application using a containerised approach: preparing a Dockerfile (Python 3.10), adding dependencies via requirements.txt, building the image (docker build), then running the Uvicorn container on port 8444 (docker run -d -p 8444:8444). After the container is running, I configure the Nginx reverse proxy in aaPanel so that the public domain forwards traffic to the application's IP address:port inside the container. I also emphasise requirements such as a server with aaPanel, Docker, and DNS that are already active/pointing to the site. Final result: the domain can access the application running inside Docker through the reverse proxy.",
         cover: "assets/server/card2/img1.jpeg",
-        images: ["assets/server/card2/img1.jpeg"],
+        images: [
+          "assets/server/card2/img2.jpeg",
+          "assets/server/card2/img3.jpeg",
+          "assets/server/card2/img4.jpeg",
+          "assets/server/card2/img5.jpeg",
+          "assets/server/card2/img6.jpeg",
+          "assets/server/card2/img7.jpeg",
+          "assets/server/card2/img8.jpeg",
+          "assets/server/card2/img9.jpeg"
+        ],
         demo: "#",
         code: "#",
         medium: "https://medium.com/@gibranfktian/deploy-a-website-using-docker-uvicorn-and-reverse-proxy-with-aapanel-45fa99bced56",
-        technologies: [".."],
-        features: [""]
+        technologies: ["aaPanel", "Docker", "Uvicorn", "Nginx", "Linux", "Python", "Reverse Proxy", "FastAPI", "Putty"],
+        features: [
+          "Containerised architecture.",
+          "Run Uvicorn (FastAPI) inside the container and expose the port.",
+          "Configure Nginx reverse proxy in aaPanel.",
+          "Domain forwards traffic to the application inside Docker.",
+        ]
       }
     };
 
@@ -921,9 +1097,9 @@
     function renderThumbs() {
       if (!thumbsWrap) return;
       thumbsWrap.innerHTML = gallery.map((src, i) => `
-        <button class="pd-thumb ${i === current ? 'active' : ''}" data-i="${i}" aria-label="Preview ${i + 1}">
-          <img src="${src}" alt="thumb ${i + 1}">
-        </button>`).join('');
+          <button class="pd-thumb ${i === current ? 'active' : ''}" data-i="${i}" aria-label="Preview ${i + 1}">
+            <img src="${src}" alt="thumb ${i + 1}">
+          </button>`).join('');
       thumbsWrap.querySelectorAll('.pd-thumb').forEach(btn => {
         btn.addEventListener('click', () => {
           current = +btn.dataset.i; renderMain();
