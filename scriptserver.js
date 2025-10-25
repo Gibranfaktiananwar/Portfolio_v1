@@ -3,11 +3,12 @@ const PROJECTS = [
   {
     id: "deploy-aaPanel",
     title: "Deploy a website with aaPanel & Cloudflare",
-    desc: "Learn how to deploy a website using aaPanel and Cloudflare for enhanced performance and security.",
+    desc: "Summary of the process of activating a website online via aaPanel and Cloudflare Zero Trust Tunnel.",
     tech: [],
     cover: "assets/server/card1/img1.jpeg",
     demo: "",
     code: "",
+    medium: "https://medium.com/@gibranfktian/deploy-a-website-with-aapanel-cloudflare-dc5ca5a68e41", 
   },
   {
     id: "deploy-Docker",
@@ -17,7 +18,8 @@ const PROJECTS = [
     tech: [],
     cover: "assets/server/card2/img1.jpeg",
     demo: "#",
-    code: "",
+    code: "", 
+    medium: "", 
   },
   {
     id: "",
@@ -27,8 +29,9 @@ const PROJECTS = [
     cover: "",
     demo: "#",
     code: "#",
+    medium: "#",
   },
-  // Coming soon: id dikosongkan -> tombol Details non-aktif
+  // Coming soon
   {
     id: "",
     title: "Cooming Soon Project",
@@ -37,15 +40,7 @@ const PROJECTS = [
     cover: "assets/resto-cover.png",
     demo: "#",
     code: "#",
-  },
-  {
-    id: "",
-    title: "Cooming Soon Project",
-    desc: "Upcoming projects for web applications, Stay tuned.",
-    tech: [],
-    cover: "assets/resto-cover.png",
-    demo: "#",
-    code: "#",
+    medium: "#",
   },
   {
     id: "",
@@ -55,15 +50,59 @@ const PROJECTS = [
     cover: "assets/resto-cover.png",
     demo: "#",
     code: "#",
+    medium: "#",
+  },
+  {
+    id: "",
+    title: "Cooming Soon Project",
+    desc: "Upcoming projects for web applications, Stay tuned.",
+    tech: [],
+    cover: "assets/resto-cover.png",
+    demo: "#",
+    code: "#",
+    medium: "#",
   },
 ];
 
 // ====== helpers ======
 const grid = document.getElementById("projectsGrid");
 
+function renderPrimaryBtn({ hasCode, hasMedium, code, medium }) {
+  if (hasCode) {
+    return `
+      <a class="code-link" href="${code}" target="_blank" rel="noopener">
+        <span class="code-badge"><i class='bx bxl-github'></i></span>
+        <span class="code-text">Code</span>
+      </a>`;
+  }
+  if (hasMedium) {
+    return `
+      <a class="code-link" href="${medium}" target="_blank" rel="noopener">
+        <span class="code-badge"><i class='bx bxl-medium'></i></span>
+        <span class="code-text">Medium</span>
+      </a>`;
+  }
+  return ``;
+}
+
+function renderSecondaryBtn({ hasCode, hasMedium, code, medium }) {
+  if (hasCode && hasMedium) {
+    return `
+      <a class="code-link" href="${medium}" target="_blank" rel="noopener">
+        <span class="code-badge"><i class='bx bxl-medium'></i></span>
+        <span class="code-text">Medium</span>
+      </a>`;
+  }
+  return ``;
+}
+
 function card(p) {
-  // if id kosong -> render CTA non-aktif (tanpa href)
   const hasId = typeof p.id === "string" && p.id.trim() !== "";
+  const hasCode =
+    typeof p.code === "string" && p.code.trim() !== "" && p.code !== "#";
+  const hasMedium =
+    typeof p.medium === "string" && p.medium.trim() !== "" && p.medium !== "#";
+
   const detailsCTA = hasId
     ? `
       <a class="card-cta" href="projectserver.html?id=${encodeURIComponent(
@@ -99,14 +138,19 @@ function card(p) {
                  </a>`
               : ``
           }
-          ${
-            p.code && p.code !== "#"
-              ? `<a class="code-link" href="${p.code}" target="_blank" rel="noopener">
-                   <span class="code-badge"><i class='bx bxl-github'></i></span>
-                   <span class="code-text">Code</span>
-                 </a>`
-              : ``
-          }
+
+          ${renderPrimaryBtn({
+            hasCode,
+            hasMedium,
+            code: p.code,
+            medium: p.medium,
+          })}
+          ${renderSecondaryBtn({
+            hasCode,
+            hasMedium,
+            code: p.code,
+            medium: p.medium,
+          })}
         </div>
         ${detailsCTA}
       </div>
