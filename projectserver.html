@@ -1069,7 +1069,57 @@
           "Configure Nginx reverse proxy in aaPanel.",
           "Domain forwards traffic to the application inside Docker.",
         ]
-      }
+      },
+      "own-server": {
+        title: "Build Your Own Server With STB HG680P",
+        lead: "I built a home server from an HG680P STB. I started by preparing boot media containing Armbian Jammy for the Amlogic chipset (the .img.gz file from the OPHUB release), then flashed it to an SD card using Balena Etcher/Rufus. After the STB powered on and connected to the LAN, I accessed it via PuTTY (STB's local IP), logged in as root/1234, performed basic configurations, and then installed aaPanel from the official script. In aaPanel, I performed initial configuration (menu bt options 5, 6, 8, 28; disabling SSL on 27), restarted the panel, and downloaded the required components from the App Store. Result, The HG680P STB successfully transformed into a server PC.",
+        cover: "assets/server/card3/img1.jpeg",
+        images: [
+          "assets/server/card3/img1.jpeg",
+          "assets/server/card3/img2.jpeg",
+          "assets/server/card3/img3.jpeg",
+          "assets/server/card3/img4.jpeg",
+          "assets/server/card3/img5.jpeg",
+          "assets/server/card3/img6.jpeg",
+          "assets/server/card3/img7.jpeg",
+          "assets/server/card3/img8.jpeg",
+        ],
+        demo: "#",
+        code: "#",
+        medium: "https://medium.com/@gibranfktian/deploy-a-website-using-docker-uvicorn-and-reverse-proxy-with-aapanel-45fa99bced56",
+        technologies: ["aaPanel", "Armbian OS", "STB HG680P", "Card Reader", "SD Card", " Balena Etcher", "Putty"],
+        features: [
+          "Hardware Repurposing",
+          "Complete Armbian OS Installation & Flashing Process",
+          "Remote Headless Server Access via SSH",
+          "aaPanel Web Control Panel Installation & Setup",
+          "Security & Configuration Optimization",
+          "Web Hosting Ready Platform",
+        ]
+      },
+      "prtg-installation": {
+        title: "Installation of PRTG Sensors on 72 Servers",
+        lead: "I have installed the PRTG Network Monitor sensor on 72 virtual machines to perform comprehensive infrastructure monitoring. I downloaded the PRTG installer from the official Paessler website and installed it on each virtual machine. After installation, I configured the admin account and set network parameters, including monitoring intervals. I added devices by entering their IP addresses, allowing PRTG to scan and detect services such as bandwidth and uptime, then selected relevant sensors such as SNMP. I configured the SNMP agent by setting AgentAddress for unique device identification and the rocommunity string for read-only access. The dashboard displays real-time graphs and reports. Additionally, I implemented security header hardening on the Apache server by enabling mod_headers, creating a custom configuration file with security headers (X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, and HSTS), and then activating the new configuration.",
+        cover: "assets/server/card4/img2.jpeg",
+        images: [
+          "assets/server/card4/img1.jpeg",
+          "assets/server/card4/img2.jpeg",
+          "assets/server/card4/img3.jpeg",
+          "assets/server/card4/img4.jpeg",
+        ],
+        demo: "#",
+        code: "#",
+        medium: "https://medium.com/@gibranfktian/deploy-a-website-using-docker-uvicorn-and-reverse-proxy-with-aapanel-45fa99bced56",
+        technologies: ["PRTG Network Monitor", "SNMP", "Apache", "Linux", "HTTP"],
+        features: [
+          "Real-time Infrastructure Monitoring & Visualization",
+          "Large-Scale Multi-Device Support",
+          "Automated Network Discovery & Scanning",
+          "SNMP Protocol Integration & Configuration",
+          "Intelligent Alert & Notification System",
+          "Apache Security Headers Hardening",
+        ]
+      },
     };
 
     /* ---- helpers ---- */
