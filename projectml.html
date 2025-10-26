@@ -8,7 +8,6 @@
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="styledetails.css" />
   <style>
-    /* ====== dasar ====== */
     :root {
       --pd-max: 1270px;
       --pd-gap: 28px;
@@ -20,11 +19,9 @@
       --bg3: #14b8a6;
       --readable: 66ch;
       --stats-maxw: 650px;
-      /* key features spacing */
-      --feat-card-pad: 14px 16px;
-      --feat-head-mb: 6px;
-      --feat-list-gap: 8px;
-      --feat-item-pad: 8px 10px;
+      --mock-pad: 17px;
+      --mock-bdr: 2px;
+      --feat-gap: 8px;
     }
 
     *,
@@ -60,7 +57,7 @@
       padding-top: 50px;
       padding-bottom: 32px;
       flex: 1 0 auto;
-      margin-top: 74px
+      margin-top: 50px
     }
 
     .main-content .container {
@@ -81,18 +78,21 @@
       min-width: 0
     }
 
-    /* ⬇️ Perbarui breakpoint: satu kolom hanya sampai 980px */
+    .pd-left {
+      padding-top: calc(var(--mock-pad) + var(--mock-bdr))
+    }
+
     @media (max-width:980px) {
       .pd-hero {
         grid-template-columns: minmax(0, 1fr)
       }
     }
 
-    /* ====== tipografi / kiri ====== */
     .pd-title {
-      font-size: clamp(30px, 4.2vw, 48px);
-      margin: .25rem 0 .001rem;
-      letter-spacing: .2px
+      font-size: clamp(30px, 4.2vw, 28px);
+      margin: 0 0 .001rem;
+      letter-spacing: .2px;
+      margin-top: -40px
     }
 
     .pd-lead {
@@ -119,7 +119,7 @@
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px;
-      margin: 25px 0;
+      margin: 25px 0 20px;
       max-width: var(--stats-maxw)
     }
 
@@ -133,7 +133,7 @@
       grid-template-columns: 52px 1fr;
       align-items: center;
       gap: 1px;
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+      transition: transform .18s, box-shadow .18s, border-color .18s, background .18s;
     }
 
     .pd-stat::before {
@@ -149,7 +149,7 @@
       -webkit-mask-size: 60%;
       mask-position: center;
       mask-repeat: no-repeat;
-      mask-size: 60%;
+      mask-size: 60%
     }
 
     .pd-stat:nth-child(1)::before {
@@ -172,7 +172,7 @@
       font-weight: 800;
       font-size: 1.5rem;
       line-height: 1;
-      margin-bottom: 4px
+      margin-bottom: 1px
     }
 
     .pd-lbl {
@@ -188,9 +188,9 @@
       box-shadow: 0 10px 24px rgba(0, 0, 0, .30)
     }
 
-    /* ====== CTA (Github) ====== */
+    /* ====== CTA ====== */
     .pd-cta {
-      margin: 20px 0 8px;
+      margin: 12px 0 8px;
       max-width: var(--stats-maxw)
     }
 
@@ -198,7 +198,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 4px;
       padding: 12px 16px;
       border-radius: 12px;
       border: 1px solid var(--pd-stroke);
@@ -206,7 +206,11 @@
       color: #eafff7;
       text-decoration: none;
       transition: transform .15s, background .15s, border-color .15s, box-shadow .15s;
-      width: 100%;
+      width: 100%
+    }
+
+    .pd-btn+.pd-btn {
+      margin-top: 10px
     }
 
     .pd-btn:hover {
@@ -256,7 +260,7 @@
       background: var(--pd-card);
       border: 1px solid var(--pd-stroke);
       font-size: .88rem;
-      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease, background .15s ease;
+      transition: transform .15s, box-shadow .15s, border-color .15s, background .15s
     }
 
     .pd-chip:hover {
@@ -273,7 +277,6 @@
       box-shadow: 0 0 0 3px rgba(20, 184, 166, .25)
     }
 
-    /* ====== blok kanan ====== */
     .pd-right {
       display: grid;
       gap: 18px;
@@ -293,11 +296,13 @@
       overflow: hidden;
       cursor: pointer;
       position: relative;
+      aspect-ratio: 19/9
     }
 
     .pd-mock img {
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
       border-radius: 12px;
       display: block;
       transition: transform .3s ease, filter .3s ease;
@@ -316,8 +321,8 @@
 
     .pd-thumbs {
       display: flex;
-      gap: 10px;
-      padding: 8px 14px 15px;
+      gap: 9px;
+      padding: 8px 14px 13px;
       overflow-x: auto;
       scrollbar-width: thin;
       scrollbar-gutter: stable
@@ -368,7 +373,7 @@
       background: var(--pd-card);
       border: 1px solid var(--pd-stroke);
       border-radius: 16px;
-      padding: var(--feat-card-pad);
+      padding: 14px 16px;
       box-shadow: 0 6px 18px rgba(0, 0, 0, .25);
       transition: transform .2s, box-shadow .2s, border-color .2s, background .2s
     }
@@ -384,7 +389,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: var(--feat-head-mb);
+      margin-bottom: 6px;
       font-weight: 800;
       letter-spacing: .3px
     }
@@ -400,7 +405,27 @@
       padding: 2px 0;
       display: flex;
       flex-direction: column;
-      gap: var(--feat-list-gap)
+      gap: var(--feat-gap);
+      overflow: auto;
+      max-height: var(--feat-maxh, none);
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      margin-right: -7px;
+      padding-right: 12px;
+      scrollbar-gutter: stable both-edges
+    }
+
+    .pd-features::-webkit-scrollbar {
+      width: 9px
+    }
+
+    .pd-features::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, .28);
+      border-radius: 10px
+    }
+
+    .pd-features::-webkit-scrollbar-track {
+      background: transparent
     }
 
     .pd-features li {
@@ -408,7 +433,7 @@
       gap: 10px;
       align-items: flex-start;
       border-radius: 12px;
-      padding: var(--feat-item-pad);
+      padding: 8px 10px;
       background: transparent;
       border: 1px solid transparent;
       transition: background .15s, border-color .15s, box-shadow .15s, transform .15s
@@ -442,7 +467,9 @@
       gap: 6px;
       margin: 1px 0 1px;
       color: rgba(255, 255, 255, .85);
-      font-size: .90rem
+      font-size: .82rem;
+      position: relative;
+      transform: translateX(-19px)
     }
 
     .pd-breadcrumb a {
@@ -460,7 +487,7 @@
       opacity: .5
     }
 
-    /* ====== modal ====== */
+    /* ====== Modal (FULL FIT) ====== */
     .image-modal {
       position: fixed;
       top: 0;
@@ -485,20 +512,25 @@
 
     .modal-content {
       position: relative;
-      max-width: 90vw;
-      max-height: 90vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: default
+      cursor: default;
+      max-width: 96vw;
+      max-height: 92vh;
+      padding: 0
     }
 
     .modal-image {
-      max-width: 100%;
-      max-height: 100%;
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 96vw;
+      max-height: 92vh;
+      object-fit: contain;
       border-radius: 12px;
       box-shadow: 0 25px 50px rgba(0, 0, 0, .5);
-      transition: transform .3s ease
+      transform: none !important
     }
 
     .modal-close {
@@ -565,7 +597,7 @@
       pointer-events: none
     }
 
-    /* ====== MOBILE/TABLET ====== */
+    /* ====== RESPONSIVE ====== */
     @media (max-width:768px) {
       .main-content .container {
         padding-inline: 16px
@@ -588,10 +620,31 @@
       .pd-mock {
         padding: 14px
       }
+
+      :root {
+        --mock-pad: 14px
+      }
+
+      .nav-links {
+        display: none
+      }
+
+      .main-content {
+        margin-top: 90px;
+        padding-top: 8px
+      }
+
+      .modal-content {
+        max-width: 98vw;
+        max-height: 90vh
+      }
+
+      .modal-image {
+        max-width: 98vw;
+        max-height: 90vh
+      }
     }
 
-    /* Tablet narrow (768–980px) */
-    /* Tablet narrow (768–980px) */
     @media (min-width:768px) and (max-width:980px) {
 
       .pd-stats,
@@ -619,70 +672,13 @@
         text-justify: inter-word;
         line-height: 1.65;
         margin-bottom: 18px;
-        padding-inline: 0;
-      }
-    }
-
-    /* MOBILE compact <=560px */
-    @media (max-width:560px) {
-      .main-content {
-        padding-top: 1px !important;
-        padding-bottom: 40px !important
-      }
-
-      .pd-breadcrumb {
-        margin: 2px 0 10px;
-        font-size: .78rem
-      }
-
-      .pd-thumb {
-        width: 72px;
-        height: 50px
-      }
-
-      .pd-stats {
-        gap: 12px
-      }
-
-      .pd-stat {
-        padding: 12px 12px;
-        min-height: auto;
-        grid-template-columns: 36px 1fr;
-        align-items: center;
-        gap: 10px
-      }
-
-      .pd-stat::before {
-        width: 36px;
-        height: 36px;
-        border-radius: 50%
-      }
-
-      .pd-stat>div {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        min-width: 0
-      }
-
-      .pd-num {
-        font-size: 1.22rem;
-        line-height: 1.1;
-        margin: 0 0 2px
-      }
-
-      .pd-lbl {
-        font-size: .88rem;
-        line-height: 1.2;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis
+        padding-inline: 0
       }
     }
 
     @media (max-width:900px) {
       .pd-features {
-        gap: 10px
+        gap: var(--feat-gap)
       }
     }
 
@@ -692,20 +688,222 @@
       }
     }
 
-    @media (max-width:768px) {
-      .nav-links {
-        display: none
-      }
-
-      .main-content {
-        margin-top: 90px;
-        padding-top: 8px
-      }
-    }
-
     @media (min-width:1400px) {
       .navbar .brand {
         margin-left: -2rem
+      }
+    }
+
+    @media (max-width:560px) {
+      .pd-hero {
+        grid-template-columns: 1fr;
+        gap: 14px
+      }
+
+      .pd-left {
+        padding-top: 6px
+      }
+
+      .pd-title {
+        margin-top: 0;
+        margin-bottom: 2px;
+        font-size: clamp(25px, 7vw, 25px);
+        line-height: 1.15
+      }
+
+      .pd-lead {
+        font-size: .95rem;
+        line-height: 1.6;
+        margin-bottom: 14px;
+        word-break: break-word;
+        hyphens: none
+      }
+
+      .pd-breadcrumb {
+        transform: none !important;
+        margin: 4px 0 8px;
+        font-size: .9rem;
+        flex-wrap: wrap;
+        gap: 4px;
+        display: none !important
+      }
+
+      .pd-mock {
+        padding: 12px;
+        aspect-ratio: 19/9
+      }
+
+      .pd-mock:hover img {
+        transform: none !important
+      }
+
+      .pd-thumbs {
+        padding: 6px 10px 12px;
+        gap: 8px
+      }
+
+      .pd-thumb {
+        width: 68px;
+        height: 48px
+      }
+
+      .pd-stats,
+      .pd-cta,
+      .pd-tech {
+        max-width: 100%
+      }
+
+      .main-content {
+        margin-top: 0 !important;
+        padding-top: var(--nav-pad, 12px) !important;
+        padding-bottom: 32px !important
+      }
+
+      .pd-features {
+        margin-right: -8px;
+        padding-right: 8px
+      }
+    }
+
+    .pd-stat>div {
+      min-width: 0;
+    }
+
+    .pd-lbl {
+      white-space: normal;
+      overflow: visible;
+      text-overflow: clip;
+      line-height: 1.2;
+    }
+
+    @media (max-width:560px) {
+      .pd-stats {
+        grid-template-columns: 1fr 1fr;
+        align-items: stretch;
+        gap: 12px;
+      }
+
+      .pd-stat {
+        grid-template-columns: clamp(34px, 9vw, 44px) 1fr;
+        padding: 12px clamp(10px, 3.2vw, 16px);
+        min-height: unset;
+        align-items: center;
+      }
+
+      .pd-stat::before {
+        width: clamp(30px, 9vw, 40px);
+        height: clamp(30px, 9vw, 40px);
+        border-radius: 10px;
+        -webkit-mask-size: 60%;
+        mask-size: 60%;
+      }
+
+      .pd-num {
+        font-size: clamp(1.05rem, 4.2vw, 1.4rem);
+        margin-bottom: 2px;
+        line-height: 1;
+      }
+
+      .pd-lbl {
+        font-size: clamp(.82rem, 2.8vw, .95rem);
+        letter-spacing: .1px;
+      }
+    }
+
+    @media (max-width:400px) {
+      .pd-stats {
+        gap: 10px;
+      }
+
+      .pd-stat {
+        grid-template-columns: clamp(30px, 10vw, 36px) 1fr;
+        padding: 10px 10px;
+      }
+
+      .pd-num {
+        font-size: clamp(1rem, 4.6vw, 1.25rem);
+      }
+
+      .pd-lbl {
+        font-size: clamp(.78rem, 3vw, .9rem);
+      }
+    }
+
+    @media (max-width:330px) {
+      .pd-stats {
+        gap: 8px;
+      }
+
+      .pd-stat {
+        grid-template-columns: 28px 1fr;
+        padding: 9px 9px;
+      }
+
+      .pd-num {
+        font-size: 1rem;
+      }
+
+      .pd-lbl {
+        font-size: .78rem;
+      }
+    }
+
+    @media (min-width:981px) and (max-width:1200px) {
+
+      .pd-hero {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+      }
+
+      .pd-left {
+        max-width: 100%;
+        padding-top: 0;
+      }
+
+      .pd-right {
+        display: grid;
+        gap: 18px;
+        align-content: start;
+      }
+
+      .pd-section {
+        margin-top: 8px;
+      }
+
+      .pd-stats,
+      .pd-cta,
+      .pd-tech {
+        max-width: 100%;
+      }
+
+      .pd-stats {
+        margin: 20px 0 16px;
+      }
+
+      .pd-cta {
+        margin: 12px 0 8px;
+      }
+
+      .pd-tech {
+        margin-top: 20px;
+      }
+
+      .pd-lead {
+        max-width: 100%;
+      }
+
+      .pd-title {
+        margin-top: 0;
+      }
+
+      .pd-breadcrumb {
+        font-size: 0.75rem;
+      }
+    }
+
+    @media (max-width:1000px) {
+      .pd-breadcrumb {
+        display: none !important;
       }
     }
   </style>
@@ -717,51 +915,45 @@
       <div class="brand">
         <a href="detailsserver.html" class="back-btn" title="Back to Home" aria-label="Back"><i
             class="bx bx-chevron-left"></i></a>
-        <a href="index.html" class="logo">Server Related</a>
+        <a href="#" class="logo">Server Related</a>
       </div>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="index.html#about">About</a></li>
-          <li><a href="index.html#services">Projects</a></li>
-          <li><a href="index.html#testimonial">Certificates</a></li>
-        </ul>
+      <nav class="pd-breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html#services">Experiences</a><span class="sep">/</span>
+        <a href="detailsserver.html">Server Related</a><span class="sep">/</span>
+        <span id="crumbTitle"></span>
       </nav>
     </div>
   </header>
 
   <main class="main-content">
     <div class="container">
-      <nav class="pd-breadcrumb" aria-label="Breadcrumb">
-        <a href="index.html#services">Experiences</a><span class="sep">/</span>
-        <a href="detailsweb.html">Web Development</a><span class="sep">/</span>
-        <span id="crumbTitle">Model Tester NER</span>
-      </nav>
-
       <section class="pd-hero">
-        <div>
+        <!-- kolom kiri -->
+        <div class="pd-left">
           <h1 id="pTitle" class="pd-title">Loading…</h1>
           <p id="pLead" class="pd-lead"></p>
 
           <div class="pd-stats">
             <div class="pd-stat">
               <div>
-                <div id="statTech" class="pd-num">–</div>
+                <div id="statTech" class="pd-num">-</div>
                 <div class="pd-lbl">Total Technology</div>
               </div>
             </div>
             <div class="pd-stat">
               <div>
-                <div id="statFeat" class="pd-num">–</div>
+                <div id="statFeat" class="pd-num">-</div>
                 <div class="pd-lbl">Key Features</div>
               </div>
             </div>
           </div>
 
-          <div class="pd-cta">
+          <div class="pd-cta" id="ctaBlock">
             <a id="btnCode" class="pd-btn primary" target="_blank" rel="noopener">
-              <i class='bx bx-play-circle' href="https://github.com/Gibranfaktiananwar/Indonesia_ner_website"></i>
-              Github
+              <i class='bx bxl-github'></i>Github
+            </a>
+            <a id="btnMedium" class="pd-btn primary" target="_blank" rel="noopener" style="display:none">
+              <i class='bx bxl-medium'></i>Medium
             </a>
           </div>
 
@@ -771,6 +963,7 @@
           </div>
         </div>
 
+        <!-- kolom kanan -->
         <div class="pd-right">
           <div class="pd-mock" id="imagePreview"><img id="pCover" alt="Preview"></div>
           <div class="pd-thumbs" id="thumbStrip"></div>
@@ -802,41 +995,114 @@
   </div>
 
   <script>
-    /* ---- data ---- */
+    /* ---- Data ---- */
     const PROJECT_DETAIL = {
-      "model-tester-ner": {
-        title: "Model Tester NER",
-        // min 500 char
-        lead: "...",
-        cover: "..",
-        images: [".."],
+      "deploy-aaPanel": {
+        title: "Deploy a website with aaPanel & Cloudflare",
+        lead: "Deploying a portfolio site with aaPanel and Cloudflare Zero Trust. I started by setting up a server with aaPanel already installed, then downloaded the necessary packages from the App Store. After that, I set up the local DNS via the hosts file, added the domain in the Website menu with port 1112, and tested access via IP:port. I uploaded the site ZIP to the web directory and extracted it. Next, I added the domain to Cloudflare, changed the nameservers, set up the Connector/Tunnel, created a published application route, and the website became publicly accessible.",
+        cover: "assets/server/card1/img1.jpeg",
+        images: [
+          "assets/server/card1/img1.jpeg",
+          "assets/server/card1/img2.jpeg",
+          "assets/server/card1/img3.jpeg",
+          "assets/server/card1/img4.jpeg",
+          "assets/server/card1/img5.jpeg",
+        ],
         demo: "#",
-        code: "...",
-        technologies: ["Python"],
+        code: "",
+        medium: "https://medium.com/@gibranfktian/deploy-a-website-with-aapanel-cloudflare-dc5ca5a68e41",
+        technologies: ["aaPanel", "Cloudflare", "name.com", "Nginx", "Zero Trust", "Linux"],
         features: [
-          "...",
+          "Free hosting utilises a combination of aaPanel & Cloudflare.",
+          "Configure local DNS.",
+          "Add the site in aaPanel with a custom port.",
+          "Onboarding the domain to Cloudflare.",
+          "Zero Trust Tunnel setup.",
+          "Published application route configuration."
         ]
       },
-      "BosonPOS": {
-        title: "BosonPOS",
-        // min 500 char
-        lead: "...",
-        cover: "..",
-        images: [".."],
+      "deploy-Docker": {
+        title: "Deploy a website using Docker, Uvicorn and Reverse Proxy with AaPanel.",
+        lead: "Deployment process for a Python-based web application using a containerised approach: preparing a Dockerfile (Python 3.10), adding dependencies via requirements.txt, building the image (docker build), then running the Uvicorn container on port 8444 (docker run -d -p 8444:8444). After the container is running, I configure the Nginx reverse proxy in aaPanel so that the public domain forwards traffic to the application's IP address:port inside the container. I also emphasise requirements such as a server with aaPanel, Docker, and DNS that are already active/pointing to the site. Final result: the domain can access the application running inside Docker through the reverse proxy.",
+        cover: "assets/server/card2/img1.jpeg",
+        images: [
+          "assets/server/card2/img2.jpeg",
+          "assets/server/card2/img3.jpeg",
+          "assets/server/card2/img4.jpeg",
+          "assets/server/card2/img5.jpeg",
+          "assets/server/card2/img6.jpeg",
+          "assets/server/card2/img7.jpeg",
+          "assets/server/card2/img8.jpeg",
+          "assets/server/card2/img9.jpeg"
+        ],
         demo: "#",
-        code: "...",
-        technologies: ["Python"],
+        code: "#",
+        medium: "https://medium.com/@gibranfktian/deploy-a-website-using-docker-uvicorn-and-reverse-proxy-with-aapanel-45fa99bced56",
+        technologies: ["aaPanel", "Docker", "Uvicorn", "Nginx", "Linux", "Python", "Reverse Proxy", "FastAPI", "Putty"],
         features: [
-          "...",
+          "Containerised architecture.",
+          "Run Uvicorn (FastAPI) inside the container and expose the port.",
+          "Configure Nginx reverse proxy in aaPanel.",
+          "Domain forwards traffic to the application inside Docker.",
         ]
-      }
+      },
+      "own-server": {
+        title: "Build Your Own Server With STB HG680P",
+        lead: "I built a home server from an HG680P STB. I started by preparing boot media containing Armbian Jammy for the Amlogic chipset (the .img.gz file from the OPHUB release), then flashed it to an SD card using Balena Etcher/Rufus. After the STB powered on and connected to the LAN, I accessed it via PuTTY (STB's local IP), logged in as root/1234, performed basic configurations, and then installed aaPanel from the official script. In aaPanel, I performed initial configuration (menu bt options 5, 6, 8, 28; disabling SSL on 27), restarted the panel, and downloaded the required components from the App Store. Result, The HG680P STB successfully transformed into a server PC.",
+        cover: "assets/server/card3/img1.jpeg",
+        images: [
+          "assets/server/card3/img1.jpeg",
+          "assets/server/card3/img2.jpeg",
+          "assets/server/card3/img3.jpeg",
+          "assets/server/card3/img4.jpeg",
+          "assets/server/card3/img5.jpeg",
+          "assets/server/card3/img6.jpeg",
+          "assets/server/card3/img7.jpeg",
+          "assets/server/card3/img8.jpeg",
+        ],
+        demo: "#",
+        code: "#",
+        medium: "https://medium.com/@gibranfktian/deploy-a-website-using-docker-uvicorn-and-reverse-proxy-with-aapanel-45fa99bced56",
+        technologies: ["aaPanel", "Armbian OS", "STB HG680P", "Card Reader", "SD Card", " Balena Etcher", "Putty"],
+        features: [
+          "Hardware Repurposing",
+          "Complete Armbian OS Installation & Flashing Process",
+          "Remote Headless Server Access via SSH",
+          "aaPanel Web Control Panel Installation & Setup",
+          "Security & Configuration Optimization",
+          "Web Hosting Ready Platform",
+        ]
+      },
+      "prtg-installation": {
+        title: "Installation of PRTG Sensors on 72 Servers",
+        lead: "I have installed the PRTG Network Monitor sensor on 72 virtual machines to perform comprehensive infrastructure monitoring. I downloaded the PRTG installer from the official Paessler website and installed it on each virtual machine. After installation, I configured the admin account and set network parameters, including monitoring intervals. I added devices by entering their IP addresses, allowing PRTG to scan and detect services such as bandwidth and uptime, then selected relevant sensors such as SNMP. I configured the SNMP agent by setting AgentAddress for unique device identification and the rocommunity string for read-only access. The dashboard displays real-time graphs and reports. Additionally, I implemented security header hardening on the Apache server by enabling mod_headers, creating a custom configuration file with security headers (X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, and HSTS), and then activating the new configuration.",
+        cover: "assets/server/card4/img2.jpeg",
+        images: [
+          "assets/server/card4/img1.jpeg",
+          "assets/server/card4/img2.jpeg",
+          "assets/server/card4/img3.jpeg",
+          "assets/server/card4/img4.jpeg",
+        ],
+        demo: "#",
+        code: "#",
+        medium: "https://medium.com/@gibranfktian/deploy-a-website-using-docker-uvicorn-and-reverse-proxy-with-aapanel-45fa99bced56",
+        technologies: ["PRTG Network Monitor", "SNMP", "Apache", "Linux", "HTTP"],
+        features: [
+          "Real-time Infrastructure Monitoring & Visualization",
+          "Large-Scale Multi-Device Support",
+          "Automated Network Discovery & Scanning",
+          "SNMP Protocol Integration & Configuration",
+          "Intelligent Alert & Notification System",
+          "Apache Security Headers Hardening",
+        ]
+      },
     };
 
     /* ---- helpers ---- */
     const $ = s => document.querySelector(s);
     const params = new URLSearchParams(location.search);
-    const id = params.get("id") || "model-tester-ner";
-    const data = PROJECT_DETAIL[id] || { title: "Project Not Found", lead: "ID proyek tidak dikenali. Kembali ke halaman daftar.", cover: "", demo: "#", code: "#", technologies: [], features: [] };
+    const id = params.get("id") || "deploy-aaPanel";
+    const data = PROJECT_DETAIL[id] || { title: "Project Not Found", lead: "ID proyek tidak dikenali. Kembali ke halaman daftar.", cover: "", demo: "#", code: "#", medium: "", technologies: [], features: [] };
 
     $("#pgTitle").textContent = data.title + " – Project Detail";
     $("#pTitle").textContent = data.title;
@@ -857,9 +1123,9 @@
     function renderThumbs() {
       if (!thumbsWrap) return;
       thumbsWrap.innerHTML = gallery.map((src, i) => `
-        <button class="pd-thumb ${i === current ? 'active' : ''}" data-i="${i}" aria-label="Preview ${i + 1}">
-          <img src="${src}" alt="thumb ${i + 1}">
-        </button>`).join('');
+          <button class="pd-thumb ${i === current ? 'active' : ''}" data-i="${i}" aria-label="Preview ${i + 1}">
+            <img src="${src}" alt="thumb ${i + 1}">
+          </button>`).join('');
       thumbsWrap.querySelectorAll('.pd-thumb').forEach(btn => {
         btn.addEventListener('click', () => {
           current = +btn.dataset.i; renderMain();
@@ -870,12 +1136,51 @@
     }
     renderMain(); renderThumbs();
 
-    /* ---- angka & list ---- */
-    $("#btnCode").href = data.code || data.demo || "#";
+    const isFilled = v => (typeof v === "string") && v.trim() !== "" && v.trim() !== "#";
+    const btnCode = $("#btnCode"), btnMedium = $("#btnMedium"), ctaBlock = $("#ctaBlock");
+    const hasCode = isFilled(data.code), hasMedium = isFilled(data.medium);
+
+    if (hasCode && hasMedium) {
+      btnCode.href = data.code.trim();
+      btnCode.innerHTML = "<i class='bx bxl-github'></i>Github";
+      btnCode.style.display = "inline-flex";
+
+      btnMedium.href = data.medium.trim();
+      btnMedium.innerHTML = "<i class='bx bxl-medium'></i>Medium";
+      btnMedium.style.display = "inline-flex";
+    } else if (hasCode && !hasMedium) {
+      btnCode.href = data.code.trim();
+      btnCode.innerHTML = "<i class='bx bxl-github'></i>Github";
+      btnCode.style.display = "inline-flex";
+      btnMedium.style.display = "none";
+    } else if (!hasCode && hasMedium) {
+      btnCode.href = data.medium.trim();
+      btnCode.innerHTML = "<i class='bx bxl-medium'></i>Medium";
+      btnCode.style.display = "inline-flex";
+      btnMedium.style.display = "none";
+    } else {
+      ctaBlock.style.display = "none";
+    }
+
     $("#statTech").textContent = data.technologies.length;
     $("#statFeat").textContent = data.features.length;
     $("#techList").innerHTML = data.technologies.map(t => `<span class="pd-chip">${t}</span>`).join("");
     $("#featureList").innerHTML = data.features.map(f => `<li><i class='bx bx-check-circle'></i><span>${f}</span></li>`).join("");
+
+    (function clampFeatureListToFour() {
+      const list = document.getElementById('featureList');
+      const first = list.querySelector('li');
+      if (!first) return;
+      requestAnimationFrame(() => {
+        const styles = getComputedStyle(list);
+        const gap = parseFloat(styles.rowGap || styles.gap || 8);
+        const itemH = first.getBoundingClientRect().height;
+        const rows = Math.min(4, list.children.length);
+        const maxH = (itemH * rows) + (gap * (rows - 1));
+        list.style.setProperty('--feat-maxh', maxH + 'px');
+        list.setAttribute('aria-label', 'Key features (scroll for more)');
+      });
+    })();
 
     /* ---- modal ---- */
     const imagePreview = $("#imagePreview"), imageModal = $("#imageModal"),
@@ -919,17 +1224,10 @@
     imageModal.addEventListener('click', (e) => { if (e.target === imageModal) closeModal(); });
     modalContent.addEventListener('click', (e) => { if (e.target === modalContent) closeModal(); });
 
-    /* ---- kompensasi tinggi navbar ---- */
-    (function () {
-      const nav = document.querySelector('.navbar'), main = document.querySelector('.main-content');
-      if (!nav || !main) return;
-      function applyTopPad() {
-        const h = nav.getBoundingClientRect().height || 56;
-        const isMobile = window.innerWidth <= 560;
-        const extra = isMobile ? -70 : -74;
-        main.style.paddingTop = Math.max(20, h + extra) + 'px';
-      }
-      applyTopPad(); window.addEventListener('resize', applyTopPad);
+    (() => {
+      const nav = document.querySelector('.navbar'); const main = document.querySelector('.main-content'); const mq = window.matchMedia('(max-width: 560px)');
+      function applyMobilePad() { if (!nav || !main) return; if (mq.matches) { const h = nav.getBoundingClientRect().height || 56; main.style.setProperty('--nav-pad', (h + 7) + 'px'); } else { main.style.removeProperty('--nav-pad'); } }
+      applyMobilePad(); window.addEventListener('resize', applyMobilePad); window.addEventListener('load', applyMobilePad);
     })();
   </script>
 

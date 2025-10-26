@@ -955,6 +955,10 @@
             <a id="btnMedium" class="pd-btn primary" target="_blank" rel="noopener" style="display:none">
               <i class='bx bxl-medium'></i>Medium
             </a>
+            <!-- Tambahan: tombol Dashboard -->
+            <a id="btnDashboard" class="pd-btn primary" target="_blank" rel="noopener" style="display:none">
+              <i class='bx bxs-dashboard'></i>Dashboard
+            </a>
           </div>
 
           <div class="pd-tech">
@@ -999,7 +1003,7 @@
     const PROJECT_DETAIL = {
       "mini-project": {
         title: "Python Mini Project for Stock Market Analysis",
-        lead: "I documented an end-to-end mini project for stock-market analysis using Python in a Jupyter notebook: defining a 4-ticker universe (AAPL/MSFT/AMZN/GOOGL), fetching the last ~3 months of OHLCV data via yfinance, and organizing it into tidy DataFrames for analysis. I then compared closing-price performance across tickers, computed simple moving averages to surface momentum shifts, visualized volatility over the period, and examined inter-stock relationships specifically the correlation between Apple and Google. The notebook outputs plots and summaries that make it easy to see which stock outperformed, how choppy each series was, and how tightly AAPL and GOOGL moved together in the same window.",
+        lead: "Mini project for stock-market analysis using Python in a Jupyter notebook: defining a 4-ticker universe (AAPL/MSFT/AMZN/GOOGL), fetching the last ~3 months of OHLCV data via yfinance, and organizing it into tidy DataFrames for analysis. I then compared closing-price performance across tickers, computed simple moving averages to surface momentum shifts, visualized volatility over the period, and examined inter-stock relationships specifically the correlation between Apple and Google. The notebook outputs plots and summaries that make it easy to see which stock outperformed, how choppy each series was, and how tightly AAPL and GOOGL moved together in the same window.",
         cover: "assets/data/card1/img1.png",
         images: [
           "assets/data/card1/img1.png",
@@ -1025,7 +1029,7 @@
       },
       "data-science-implementation": {
         title: "Solving Edutech Company Problems",
-        lead: "I conducted a comprehensive employee attrition analysis for Jaya Jaya Maju, a multinational company facing high turnover rates exceeding 16%. The project involved analyzing employee data to identify key factors contributing to attrition, with particular focus on overtime work patterns and marital status. I performed exploratory data analysis (EDA), created visualizations using Python libraries, and built an interactive Tableau dashboard to present findings to HR stakeholders. The analysis revealed that overtime work significantly influences employee departure, with the Research & Development department showing the highest attrition rate. I also developed a predictive model and provided actionable recommendations including work environment improvements, overtime reduction strategies, and enhanced tooling support to help the company reduce attrition and improve operational stability.",
+        lead: "Employee attrition analysis for Jaya Jaya Maju, a multinational company facing high turnover rates exceeding 16%. The project involved analyzing employee data to identify key factors contributing to attrition, with particular focus on overtime work patterns and marital status. I performed exploratory data analysis (EDA), created visualizations using Python libraries, and built an interactive Tableau dashboard to present findings to HR stakeholders. The analysis revealed that overtime work significantly influences employee departure, with the Research & Development department showing the highest attrition rate. I also developed a predictive model and provided actionable recommendations including work environment improvements, overtime reduction strategies, and enhanced tooling support to help the company reduce attrition and improve operational stability.",
         cover: "assets/data/card2/img1.jpeg",
         images: [
           "assets/data/card2/img1.jpeg",
@@ -1045,6 +1049,30 @@
           "Department-wise Analysis.",
           "Overtime Impact Assessment.",
           "Actionable Recommendations"
+        ]
+      },
+      "Bike-Rentals": {
+        title: "Bike Rentals Data Analysis",
+        lead: "Analysis of bike rental data to uncover patterns and business insights through exploratory data analysis and visualisation. The project involved data wrangling, cleaning missing values, handling duplicates, and transforming datasets for analysis. I performed correlation analysis to identify factors influencing rental demand, visualised seasonal trends using time-series plots, and examined weather impacts on rentals. I built an interactive Streamlit dashboard featuring filters for date ranges, weather conditions, and seasonal patterns. The analysis revealed key insights about peak rental hours, seasonal variations, and weather dependencies. Final result: a data-driven report with visualisations and an interactive web dashboard deployed for stakeholder decision-making.",
+        cover: "assets/data/card3/img1.jpeg",
+        images: [
+          "assets/data/card3/img1.jpeg",
+          "assets/data/card3/img2.jpeg",
+          "assets/data/card3/img3.jpeg",
+          "assets/data/card3/img4.jpeg",
+          "assets/data/card3/img5.jpeg",
+        ],
+        demo: "https://gibrandicodingbikeanalysis.streamlit.app/",
+        code: "https://github.com/Gibranfaktiananwar/Bike-Rentals-Data-Analysis",
+        medium: "",
+        technologies: ["Python", "Jupyter Notebook", "Pandas", "Streamlit", "Matplotlib", "Seaborn", "NumPy", "Conda"],
+        features: [
+          "Data wrangling and preprocessing.",
+          "Exploratory Data Analysis (EDA) with statistical summaries and correlation matrices.",
+          "Time-series visualisation showing seasonal and hourly rental patterns.",
+          "Weather impact analysis on bike rental demand.",
+          "Interactive Streamlit dashboard with filters and dynamic visualisations.",
+          "Business insights extraction from rental patterns and user behaviour."
         ]
       },
     };
@@ -1088,28 +1116,39 @@
     renderMain(); renderThumbs();
 
     const isFilled = v => (typeof v === "string") && v.trim() !== "" && v.trim() !== "#";
-    const btnCode = $("#btnCode"), btnMedium = $("#btnMedium"), ctaBlock = $("#ctaBlock");
-    const hasCode = isFilled(data.code), hasMedium = isFilled(data.medium);
+    const btnCode = $("#btnCode"), btnMedium = $("#btnMedium"), btnDashboard = $("#btnDashboard"), ctaBlock = $("#ctaBlock");
+    const hasCode = isFilled(data.code);
+    const hasMedium = isFilled(data.medium);
+    const dashboardLink = (data.dashboard ?? data.demo ?? "").trim();
+    const hasDashboard = isFilled(dashboardLink);
 
-    if (hasCode && hasMedium) {
+    // Tampilkan masing-masing tombol bila link valid
+    if (hasCode) {
       btnCode.href = data.code.trim();
       btnCode.innerHTML = "<i class='bx bxl-github'></i>Github";
       btnCode.style.display = "inline-flex";
+    } else {
+      btnCode.style.display = "none";
+    }
 
+    if (hasMedium) {
       btnMedium.href = data.medium.trim();
       btnMedium.innerHTML = "<i class='bx bxl-medium'></i>Medium";
       btnMedium.style.display = "inline-flex";
-    } else if (hasCode && !hasMedium) {
-      btnCode.href = data.code.trim();
-      btnCode.innerHTML = "<i class='bx bxl-github'></i>Github";
-      btnCode.style.display = "inline-flex";
-      btnMedium.style.display = "none";
-    } else if (!hasCode && hasMedium) {
-      btnCode.href = data.medium.trim();
-      btnCode.innerHTML = "<i class='bx bxl-medium'></i>Medium";
-      btnCode.style.display = "inline-flex";
-      btnMedium.style.display = "none";
     } else {
+      btnMedium.style.display = "none";
+    }
+
+    if (hasDashboard) {
+      btnDashboard.href = dashboardLink;
+      btnDashboard.innerHTML = "<i class='bx bxs-dashboard'></i>Dashboard";
+      btnDashboard.style.display = "inline-flex";
+    } else {
+      btnDashboard.style.display = "none";
+    }
+
+    // Sembunyikan blok CTA bila semua kosong
+    if (!hasCode && !hasMedium && !hasDashboard) {
       ctaBlock.style.display = "none";
     }
 
