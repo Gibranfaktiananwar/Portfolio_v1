@@ -913,13 +913,13 @@
   <header class="navbar">
     <div class="nav-container">
       <div class="brand">
-        <a href="detailsserver.html" class="back-btn" title="Back to Home" aria-label="Back"><i
+        <a href="detailsML.html" class="back-btn" title="Back to Home" aria-label="Back"><i
             class="bx bx-chevron-left"></i></a>
-        <a href="#" class="logo">Server Related</a>
+        <a href="#" class="logo">Machine Learning</a>
       </div>
       <nav class="pd-breadcrumb" aria-label="Breadcrumb">
         <a href="index.html#services">Experiences</a><span class="sep">/</span>
-        <a href="detailsserver.html">Server Related</a><span class="sep">/</span>
+        <a href="detailsML.html">Machine Learning</a><span class="sep">/</span>
         <span id="crumbTitle"></span>
       </nav>
     </div>
@@ -997,103 +997,86 @@
   <script>
     /* ---- Data ---- */
     const PROJECT_DETAIL = {
-      "deploy-aaPanel": {
-        title: "Deploy a website with aaPanel & Cloudflare",
-        lead: "Deploying a portfolio site with aaPanel and Cloudflare Zero Trust. I started by setting up a server with aaPanel already installed, then downloaded the necessary packages from the App Store. After that, I set up the local DNS via the hosts file, added the domain in the Website menu with port 1112, and tested access via IP:port. I uploaded the site ZIP to the web directory and extracted it. Next, I added the domain to Cloudflare, changed the nameservers, set up the Connector/Tunnel, created a published application route, and the website became publicly accessible.",
-        cover: "assets/server/card1/img1.jpeg",
+      "image-classification": {
+        title: "Image Classification Rock, Paper & Scissors",
+        lead: "Developing a deep learning model for image classification using a Convolutional Neural Network (CNN) architecture with TensorFlow and Keras. The workflow includes preparing data from the Google APIs dataset containing 2,892 diverse hand images, applying data augmentation techniques with ImageDataGenerator to improve model generalization, dividing the dataset into a 60% training set and a 40% validation set, building CNN layers with various convolution and pooling operations, training the model with callbacks for optimal performance, and evaluating the results through a confusion matrix and classification report with an accuracy above 95%, demonstrating robust performance in multi-class image classification tasks.",
+        cover: "assets/ml/card1/img1.jpeg",
         images: [
-          "assets/server/card1/img1.jpeg",
-          "assets/server/card1/img2.jpeg",
-          "assets/server/card1/img3.jpeg",
-          "assets/server/card1/img4.jpeg",
-          "assets/server/card1/img5.jpeg",
+          "assets/ml/card1/img1.jpeg",
         ],
         demo: "#",
-        code: "",
-        medium: "https://medium.com/@gibranfktian/deploy-a-website-with-aapanel-cloudflare-dc5ca5a68e41",
-        technologies: ["aaPanel", "Cloudflare", "name.com", "Nginx", "Zero Trust", "Linux"],
+        code: "https://github.com/Gibranfaktiananwar/Image-Classification-Rock-Paper-Scissors",
+        medium: "",
+        technologies: ["Python", "TensorFlow", "Keras", "Jupyter Notebook", "NumPy", "Matplotlib"],
         features: [
-          "Free hosting utilises a combination of aaPanel & Cloudflare.",
-          "Configure local DNS.",
-          "Add the site in aaPanel with a custom port.",
-          "Onboarding the domain to Cloudflare.",
-          "Zero Trust Tunnel setup.",
-          "Published application route configuration."
+          "CNN-based image classification architecture with multiple convolutional layers",
+          "Data augmentation using ImageDataGenerator (rotation, shift, zoom, flip)",
+          "Dropout regularization to prevent overfitting",
+          "Binary classification for rock, paper, scissors images",
+          "Model training monitoring with accuracy and loss visualization",
+          "Validation accuracy target of >85% achieved",
         ]
       },
-      "deploy-Docker": {
-        title: "Deploy a website using Docker, Uvicorn and Reverse Proxy with AaPanel.",
-        lead: "Deployment process for a Python-based web application using a containerised approach: preparing a Dockerfile (Python 3.10), adding dependencies via requirements.txt, building the image (docker build), then running the Uvicorn container on port 8444 (docker run -d -p 8444:8444). After the container is running, I configure the Nginx reverse proxy in aaPanel so that the public domain forwards traffic to the application's IP address:port inside the container. I also emphasise requirements such as a server with aaPanel, Docker, and DNS that are already active/pointing to the site. Final result: the domain can access the application running inside Docker through the reverse proxy.",
-        cover: "assets/server/card2/img1.jpeg",
+      "applied-ml": {
+        title: "Liver Disease Prediction",
+        lead: "Predicting liver disease using medical patient data from a Kaggle dataset containing 1,700 records with 11 variables. This project involved in-depth exploratory data analysis using correlation matrices and distribution diagrams, data preprocessing including one-hot encoding for categorical features, and training-testing data split (75%-25%). I implemented and compared four classification algorithms: Support Vector Machine, Logistic Regression, Random Forest, and K-Nearest Neighbors. After establishing baseline performance with default parameters, I tuned the hyperparameters using GridSearchCV with StratifiedKFold cross-validation to optimize the performance of each model. Evaluation used accuracy, precision, and recall metrics to assess model effectiveness. Random Forest emerged as the best-performing model after tuning, achieving 88% accuracy.",
+        cover: "assets/ml/card2/img1.jpeg",
         images: [
-          "assets/server/card2/img2.jpeg",
-          "assets/server/card2/img3.jpeg",
-          "assets/server/card2/img4.jpeg",
-          "assets/server/card2/img5.jpeg",
-          "assets/server/card2/img6.jpeg",
-          "assets/server/card2/img7.jpeg",
-          "assets/server/card2/img8.jpeg",
-          "assets/server/card2/img9.jpeg"
+          "assets/ml/card2/img1.jpeg",
+          "assets/ml/card2/img2.jpeg",
+          "assets/ml/card2/img3.jpeg",
         ],
         demo: "#",
-        code: "#",
-        medium: "https://medium.com/@gibranfktian/deploy-a-website-using-docker-uvicorn-and-reverse-proxy-with-aapanel-45fa99bced56",
-        technologies: ["aaPanel", "Docker", "Uvicorn", "Nginx", "Linux", "Python", "Reverse Proxy", "FastAPI", "Putty"],
+        code: "https://github.com/Gibranfaktiananwar/ML-Terapan-Proyek-Pertama",
+        medium: "",
+        technologies: ["Python", "Scikit-learn", "Seaborn", "Pandas", "Jupyter Notebook", "NumPy", "Matplotlib"],
         features: [
-          "Containerised architecture.",
-          "Run Uvicorn (FastAPI) inside the container and expose the port.",
-          "Configure Nginx reverse proxy in aaPanel.",
-          "Domain forwards traffic to the application inside Docker.",
+          "Multi-algorithm comparison",
+          "Hyperparameter optimization with GridSearchCV",
+          "StratifiedKFold cross-validation to handle imbalanced dataset",
+          "EDA with correlation analysis and distribution visualization",
+          "One-hot encoding for categorical feature transformation",
+          "Multiple evaluation metrics: accuracy, precision, recall",
+          "Baseline vs tuned model comparison",
         ]
       },
-      "own-server": {
-        title: "Build Your Own Server With STB HG680P",
-        lead: "I built a home server from an HG680P STB. I started by preparing boot media containing Armbian Jammy for the Amlogic chipset (the .img.gz file from the OPHUB release), then flashed it to an SD card using Balena Etcher/Rufus. After the STB powered on and connected to the LAN, I accessed it via PuTTY (STB's local IP), logged in as root/1234, performed basic configurations, and then installed aaPanel from the official script. In aaPanel, I performed initial configuration (menu bt options 5, 6, 8, 28; disabling SSL on 27), restarted the panel, and downloaded the required components from the App Store. Result, The HG680P STB successfully transformed into a server PC.",
-        cover: "assets/server/card3/img1.jpeg",
+      "Loan-Eligibility": {
+        title: "Loan Eligibility Prediction",
+        lead: "Developing a machine learning model to predict loan eligibility using the Naive Bayes algorithm. This project involves data preprocessing, including handling missing values, exploratory data analysis with visualization to understand feature distribution and correlation, and feature engineering to prepare the dataset. I implemented the Gaussian Naive Bayes classifier from scikit-learn, trained the model on historical loan application data, and evaluated its performance using accuracy metrics and confusion matrices. Each step in the Jupyter notebook is documented in detail with explanations to ensure reproducibility. This model analyzes applicant features such as income, credit history, and loan amount to determine the probability of approval, providing valuable insights.",
+        cover: "assets/ml/card3/img1.jpeg",
         images: [
-          "assets/server/card3/img1.jpeg",
-          "assets/server/card3/img2.jpeg",
-          "assets/server/card3/img3.jpeg",
-          "assets/server/card3/img4.jpeg",
-          "assets/server/card3/img5.jpeg",
-          "assets/server/card3/img6.jpeg",
-          "assets/server/card3/img7.jpeg",
-          "assets/server/card3/img8.jpeg",
+          "assets/ml/card3/img1.jpeg",
+          "assets/ml/card3/img2.jpeg",
+          "assets/ml/card3/img3.jpeg",
         ],
         demo: "#",
-        code: "#",
-        medium: "https://medium.com/@gibranfktian/deploy-a-website-using-docker-uvicorn-and-reverse-proxy-with-aapanel-45fa99bced56",
-        technologies: ["aaPanel", "Armbian OS", "STB HG680P", "Card Reader", "SD Card", " Balena Etcher", "Putty"],
+        code: "https://github.com/Gibranfaktiananwar/Loan-Eligibility-Prediction-using-Naive-Bayes_Mini-Python-Projects-For-Data-Science-",
+        medium: "",
+        technologies: ["Python", "Scikit-learn", "Pandas", "Jupyter Notebook", "NumPy", "Matplotlib"],
         features: [
-          "Hardware Repurposing",
-          "Complete Armbian OS Installation & Flashing Process",
-          "Remote Headless Server Access via SSH",
-          "aaPanel Web Control Panel Installation & Setup",
-          "Security & Configuration Optimization",
-          "Web Hosting Ready Platform",
+          "Implementation of Gaussian Naive Bayes for loan approval prediction",
+          "Handling missing values and data cleaning techniques",
+          "Transformation and preparation of features for optimal model performance",
         ]
       },
-      "prtg-installation": {
-        title: "Installation of PRTG Sensors on 72 Servers",
-        lead: "I have installed the PRTG Network Monitor sensor on 72 virtual machines to perform comprehensive infrastructure monitoring. I downloaded the PRTG installer from the official Paessler website and installed it on each virtual machine. After installation, I configured the admin account and set network parameters, including monitoring intervals. I added devices by entering their IP addresses, allowing PRTG to scan and detect services such as bandwidth and uptime, then selected relevant sensors such as SNMP. I configured the SNMP agent by setting AgentAddress for unique device identification and the rocommunity string for read-only access. The dashboard displays real-time graphs and reports. Additionally, I implemented security header hardening on the Apache server by enabling mod_headers, creating a custom configuration file with security headers (X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, and HSTS), and then activating the new configuration.",
-        cover: "assets/server/card4/img2.jpeg",
+      "Crawling-Twitter-Data": {
+        title: "Crawling Twitter Data for Dataset NER Bahasa Indonesia",
+        lead: "I created an Indonesian NER dataset from Twitter/X. I extracted tweets with tokens and the tweet-harvest library using keywords, date ranges, and language filters. I converted CSV to text, cleaned URLs/hashtags/mentions/special characters, filtered sentences ≥15 words, capitalized the first letter, and corrected punctuation. I compiled a gazetteer (PERSON/ORGANIZATION/LOCATION), merged it, then tagged it with a greedy longest-match algorithm (priority PER > ORG > LOC). Labels were converted to the BIO scheme, filtered to a minimum of 3 B labels per sentence, duplicated for augmentation, then split into train/val/test 80/10/10.",
+        cover: "assets/ml/card4/img1.jpeg",
         images: [
-          "assets/server/card4/img1.jpeg",
-          "assets/server/card4/img2.jpeg",
-          "assets/server/card4/img3.jpeg",
-          "assets/server/card4/img4.jpeg",
+          "assets/ml/card4/img1.jpeg",
         ],
         demo: "#",
-        code: "#",
-        medium: "https://medium.com/@gibranfktian/deploy-a-website-using-docker-uvicorn-and-reverse-proxy-with-aapanel-45fa99bced56",
-        technologies: ["PRTG Network Monitor", "SNMP", "Apache", "Linux", "HTTP"],
+        code: "https://github.com/Gibranfaktiananwar/Crawling-Twitter-Data-for-Dataset-NER-Bahasa-Indonesia",
+        medium: "https://medium.com/@gibranfktian/crawling-twitter-data-for-dataset-ner-bahasa-indonesia-ee3ffb29edc3",
+        technologies: ["Python", "Tweet harvest", "Pandas", "Jupyter Notebook"],
         features: [
-          "Real-time Infrastructure Monitoring & Visualization",
-          "Large-Scale Multi-Device Support",
-          "Automated Network Discovery & Scanning",
-          "SNMP Protocol Integration & Configuration",
-          "Intelligent Alert & Notification System",
-          "Apache Security Headers Hardening",
+          "Twitter/X data extraction using tweet-harvest library",
+          "Multi-stage text preprocessing pipeline",
+          "Gazetteer-based NER labeling with three entity types (PER, ORG, LOC)",
+          "BIO tagging scheme conversion",
+          "Automated dataset splitting",
+          "Duplicate handling and data quality control"
         ]
       },
     };
