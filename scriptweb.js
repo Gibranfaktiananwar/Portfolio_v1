@@ -21,13 +21,13 @@ const PROJECTS = [
     medium: "",
   },
   {
-    id: "Portfolio",
+    id: "portfolio",
     title: "Portfolio Website",
-    desc: "A personal portfolio website showcasing my projects and skills.",
+    desc: "A modern, responsive portfolio built with pure JavaScript and CSS, featuring interactive galleries, modal previews, and dynamic tech badges.",
     tech: [],
-    cover: "assets/coming-soon.jpeg",
+    cover: "assets/web/card3/img1.jpeg",
     demo: "#",
-    code: "#",
+    code: "https://github.com/Gibranfaktiananwar/Portfolio_v1",
     medium: "",
   },
   {
