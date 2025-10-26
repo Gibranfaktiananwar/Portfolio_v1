@@ -1,4 +1,4 @@
-// ====== data projects ======
+// ====== Data Projects ======
 const PROJECTS = [
   {
     id: "model-tester-ner",
@@ -8,6 +8,7 @@ const PROJECTS = [
     cover: "assets/web/card1/ner.jpeg",
     demo: "#",
     code: "https://github.com/Gibranfaktiananwar/Indonesia_ner_website",
+    medium: "https://medium.com/@gibranfktian/connecting-an-indonesian-ner-ai-model-to-a-website-using-python-73e019ec42d8", 
   },
   {
     id: "BosonPOS",
@@ -17,6 +18,7 @@ const PROJECTS = [
     cover: "assets/web/card2/img1.jpeg",
     demo: "#",
     code: "https://github.com/Gibranfaktiananwar/Boson_POS",
+    medium: "",
   },
   {
     id: "Portfolio",
@@ -26,16 +28,7 @@ const PROJECTS = [
     cover: "assets/resto-cover.png",
     demo: "#",
     code: "#",
-  },
-  // Coming soon: id dikosongkan -> tombol Details non-aktif
-  {
-    id: "",
-    title: "Cooming Soon Project",
-    desc: "Upcoming projects for web applications, Stay tuned.",
-    tech: [],
-    cover: "assets/resto-cover.png",
-    demo: "#",
-    code: "#",
+    medium: "",
   },
   {
     id: "",
@@ -45,6 +38,7 @@ const PROJECTS = [
     cover: "assets/resto-cover.png",
     demo: "#",
     code: "#",
+    medium: "#",
   },
   {
     id: "",
@@ -54,18 +48,64 @@ const PROJECTS = [
     cover: "assets/resto-cover.png",
     demo: "#",
     code: "#",
+    medium: "#",
+  },
+  {
+    id: "",
+    title: "Cooming Soon Project",
+    desc: "Upcoming projects for web applications, Stay tuned.",
+    tech: [],
+    cover: "assets/resto-cover.png",
+    demo: "#",
+    code: "#",
+    medium: "#",
   },
 ];
 
 // ====== helpers ======
 const grid = document.getElementById("projectsGrid");
 
+function renderPrimaryBtn({ hasCode, hasMedium, code, medium }) {
+  if (hasCode) {
+    return `
+      <a class="code-link" href="${code}" target="_blank" rel="noopener">
+        <span class="code-badge"><i class='bx bxl-github'></i></span>
+        <span class="code-text">Code</span>
+      </a>`;
+  }
+  if (hasMedium) {
+    return `
+      <a class="code-link" href="${medium}" target="_blank" rel="noopener">
+        <span class="code-badge"><i class='bx bxl-medium'></i></span>
+        <span class="code-text">Medium</span>
+      </a>`;
+  }
+  return ``;
+}
+
+function renderSecondaryBtn({ hasCode, hasMedium, code, medium }) {
+  if (hasCode && hasMedium) {
+    return `
+      <a class="code-link" href="${medium}" target="_blank" rel="noopener">
+        <span class="code-badge"><i class='bx bxl-medium'></i></span>
+        <span class="code-text">Medium</span>
+      </a>`;
+  }
+  return ``;
+}
+
 function card(p) {
-  // if id kosong -> render CTA non-aktif (tanpa href)
   const hasId = typeof p.id === "string" && p.id.trim() !== "";
+  const hasCode =
+    typeof p.code === "string" && p.code.trim() !== "" && p.code !== "#";
+  const hasMedium =
+    typeof p.medium === "string" && p.medium.trim() !== "" && p.medium !== "#";
+
   const detailsCTA = hasId
     ? `
-      <a class="card-cta" href="projectweb.html?id=${encodeURIComponent(p.id)}">
+      <a class="card-cta" href="projectweb.html?id=${encodeURIComponent(
+        p.id
+      )}">
         <span>Details</span>
         <i class='bx bx-right-arrow-alt'></i>
       </a>`
@@ -96,14 +136,19 @@ function card(p) {
                  </a>`
               : ``
           }
-          ${
-            p.code && p.code !== "#"
-              ? `<a class="code-link" href="${p.code}" target="_blank" rel="noopener">
-                   <span class="code-badge"><i class='bx bxl-github'></i></span>
-                   <span class="code-text">Code</span>
-                 </a>`
-              : ``
-          }
+
+          ${renderPrimaryBtn({
+            hasCode,
+            hasMedium,
+            code: p.code,
+            medium: p.medium,
+          })}
+          ${renderSecondaryBtn({
+            hasCode,
+            hasMedium,
+            code: p.code,
+            medium: p.medium,
+          })}
         </div>
         ${detailsCTA}
       </div>

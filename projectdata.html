@@ -997,19 +997,54 @@
   <script>
     /* ---- Data ---- */
     const PROJECT_DETAIL = {
-      "deploy-aaPanel": {
-        title: "Deploy a website with aaPanel & Cloudflare",
-        lead: "I documented the process of deploying a portfolio site with aaPanel and Cloudflare Zero Trust. I started by setting up a server with aaPanel already installed, then downloaded the necessary packages from the App Store. After that, I set up the local DNS via the hosts file, added the domain in the Website menu with port 1112, and tested access via IP:port. I uploaded the site ZIP to the web directory and extracted it. Next, I added the domain to Cloudflare, changed the nameservers, set up the Connector/Tunnel, created a published application route, and the website became publicly accessible.",
-        cover: "assets/server/card1/img1.jpeg",
+      "mini-project": {
+        title: "Python Mini Project for Stock Market Analysis",
+        lead: "I documented an end-to-end mini project for stock-market analysis using Python in a Jupyter notebook: defining a 4-ticker universe (AAPL/MSFT/AMZN/GOOGL), fetching the last ~3 months of OHLCV data via yfinance, and organizing it into tidy DataFrames for analysis. I then compared closing-price performance across tickers, computed simple moving averages to surface momentum shifts, visualized volatility over the period, and examined inter-stock relationships specifically the correlation between Apple and Google. The notebook outputs plots and summaries that make it easy to see which stock outperformed, how choppy each series was, and how tightly AAPL and GOOGL moved together in the same window.",
+        cover: "assets/data/card1/img1.png",
         images: [
-          "assets/server/card1/img1.jpeg",
+          "assets/data/card1/img1.png",
+          "assets/data/card1/img2.png",
+          "assets/data/card1/img3.png",
+          "assets/data/card1/img4.png",
+          "assets/data/card1/img5.png",
+          "assets/data/card1/img6.png",
+          "assets/data/card1/img7.png",
+          "assets/data/card1/img8.png"
         ],
         demo: "#",
-        code: "",
-        medium: "https://medium.com/@gibranfktian/deploy-a-website-with-aapanel-cloudflare-dc5ca5a68e41",
-        technologies: ["aaPanel", "Cloudflare", "name.com", "Nginx", "Zero Trust", "Linux"],
+        code: "https://github.com/Gibranfaktiananwar/python-mini-project-for-stock-market-analysis",
+        medium: "",
+        technologies: ["Python", "Jupyter Notebook", "Pandas", "yfinance", "Matplotlib", "Seaborn", "NumPy"],
         features: [
-          "Free hosting utilises a combination of aaPanel & Cloudflare.",
+          "Fetch historical prices for multiple tickers using yfinance.",
+          "Compare multi-ticker performance over the past 3 months (metric: Close).",
+          "Moving averages to flag trend/momentum changes.",
+          "Volatility visualization across all tickers within the window.",
+          "Correlation analysis between selected stock."
+        ]
+      },
+      "data-science-implementation": {
+        title: "Solving Edutech Company Problems",
+        lead: "I conducted a comprehensive employee attrition analysis for Jaya Jaya Maju, a multinational company facing high turnover rates exceeding 16%. The project involved analyzing employee data to identify key factors contributing to attrition, with particular focus on overtime work patterns and marital status. I performed exploratory data analysis (EDA), created visualizations using Python libraries, and built an interactive Tableau dashboard to present findings to HR stakeholders. The analysis revealed that overtime work significantly influences employee departure, with the Research & Development department showing the highest attrition rate. I also developed a predictive model and provided actionable recommendations including work environment improvements, overtime reduction strategies, and enhanced tooling support to help the company reduce attrition and improve operational stability.",
+        cover: "assets/data/card2/img1.jpeg",
+        images: [
+          "assets/data/card2/img1.jpeg",
+          "assets/data/card2/img2.jpeg",
+          "assets/data/card2/img3.jpeg",
+          "assets/data/card2/img4.jpeg",
+          "assets/data/card2/img5.jpeg",
+        ],
+        demo: "#",
+        code: "https://github.com/Gibranfaktiananwar/Submission-Pertama-Belajar-Penerapan-Data-Science",
+        medium: "",
+        technologies: ["Python", "Jupyter Notebook", "Pandas", "Scikit-learn", "Matplotlib", "Seaborn", "NumPy", "Tableau", "Conda"],
+        features: [
+          "Comprehensive Data Analysis.",
+          "Tableau visualization for HR team.",
+          "Built machine learning model to predict employee attrition risk.",
+          "Department-wise Analysis.",
+          "Overtime Impact Assessment.",
+          "Actionable Recommendations"
         ]
       },
     };
@@ -1017,13 +1052,13 @@
     /* ---- helpers ---- */
     const $ = s => document.querySelector(s);
     const params = new URLSearchParams(location.search);
-    const id = params.get("id") || "deploy-aaPanel";
+    const id = params.get("id") || "mini-project";
     const data = PROJECT_DETAIL[id] || { title: "Project Not Found", lead: "ID proyek tidak dikenali. Kembali ke halaman daftar.", cover: "", demo: "#", code: "#", medium: "", technologies: [], features: [] };
 
     $("#pgTitle").textContent = data.title + " – Project Detail";
     $("#pTitle").textContent = data.title;
     $("#pLead").textContent = data.lead;
-    document.getElementById('crumbTitle').textContent = (data.title || '').trim() || 'Model Tester NER';
+    document.getElementById('crumbTitle').textContent = (data.title || '').trim() || 'mini-project';
 
     /* ---- gallery ---- */
     const mainImg = document.getElementById('pCover');

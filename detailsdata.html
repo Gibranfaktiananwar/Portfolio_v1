@@ -14,6 +14,37 @@
       opacity: 0.6;
       cursor: default;
     }
+
+    .nav-links {
+      display: flex;
+      gap: 1.6rem;
+      align-items: center;
+    }
+
+    .nav-links li {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links a {
+      display: inline-flex;
+      align-items: center;
+      line-height: 1;
+    }
+
+    .nav-cta {
+      padding: .44rem .9rem;
+      border: 1.5px solid #fff;
+      border-radius: 999px;
+      color: #fff;
+      text-decoration: none;
+      transition: background .18s ease, transform .18s ease, opacity .18s ease;
+    }
+
+    .nav-cta:hover {
+      background: rgba(255, 255, 255, .12);
+      transform: translateY(-1px);
+    }
   </style>
 </head>
 
@@ -32,6 +63,10 @@
           <li><a href="index.html#about">About</a></li>
           <li><a href="index.html#services">Projects</a></li>
           <li><a href="index.html#testimonial">Certificates</a></li>
+          <li>
+            <a class="nav-cta" href="https://public.tableau.com/app/profile/gibran.faktian.anwar" target="_blank"
+              rel="noopener">Tableau</a>
+          </li>
         </ul>
       </nav>
     </div>
@@ -56,7 +91,7 @@
     </div>
   </footer>
 
-  <script src="scriptserver.js?v=3"></script>
+  <script src="scriptdata.js?v=3"></script>
   <script src="https://kit.fontawesome.com/71cd389c2b.js" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
 </body>
