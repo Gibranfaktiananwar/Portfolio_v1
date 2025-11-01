@@ -17,6 +17,7 @@ const typed = new Typed(".multiple-text", {
     "ML Engineer",
     "System Administrator",
     "Data Analyst",
+    "DevOps Engineer",
     "IT Support",
   ],
   typeSpeed: 80,
