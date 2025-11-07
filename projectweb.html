@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title id="pgTitle">Project – Detail</title>
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="shortcut icon" href="assets/favicon.png" type="image/png">
   <link rel="stylesheet" href="styledetails.css" />
   <style>
     :root {
@@ -1118,15 +1120,29 @@
     $("#techList").innerHTML = data.technologies.map(t => `<span class="pd-chip">${t}</span>`).join("");
     $("#featureList").innerHTML = data.features.map(f => `<li><i class='bx bx-check-circle'></i><span>${f}</span></li>`).join("");
 
+    // kondisi scroll fitur
     (function clampFeatureListToFour() {
       const list = document.getElementById('featureList');
       const first = list.querySelector('li');
       if (!first) return;
+
+      const total = list.children.length;
+      if (total <= 4) {
+        // kalau cuma 4 atau kurang, jangan scroll
+        list.style.overflow = 'visible';
+        list.style.setProperty('--feat-maxh', 'none');
+        list.style.marginRight = '0';
+        list.style.paddingRight = '0';
+        list.removeAttribute('aria-label');
+        return;
+      }
+
+      // kalau lebih dari 4, baru pakai batas + scroll
       requestAnimationFrame(() => {
         const styles = getComputedStyle(list);
         const gap = parseFloat(styles.rowGap || styles.gap || 8);
         const itemH = first.getBoundingClientRect().height;
-        const rows = Math.min(4, list.children.length);
+        const rows = 4;
         const maxH = (itemH * rows) + (gap * (rows - 1));
         list.style.setProperty('--feat-maxh', maxH + 'px');
         list.setAttribute('aria-label', 'Key features (scroll for more)');

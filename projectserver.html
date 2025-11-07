@@ -7,6 +7,8 @@
   <title id="pgTitle">Project – Detail</title>
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="styledetails.css" />
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="shortcut icon" href="assets/favicon.png" type="image/png">
   <style>
     :root {
       --pd-max: 1270px;
@@ -997,6 +999,7 @@
   <script>
     /* ---- Data ---- */
     const PROJECT_DETAIL = {
+      // row 1
       "deploy-aaPanel": {
         title: "Deploy a website with aaPanel & Cloudflare",
         lead: "Deploying a portfolio site with aaPanel and Cloudflare Zero Trust. I started by setting up a server with aaPanel already installed, then downloaded the necessary packages from the App Store. After that, I set up the local DNS via the hosts file, added the domain in the Website menu with port 1112, and tested access via IP:port. I uploaded the site ZIP to the web directory and extracted it. Next, I added the domain to Cloudflare, changed the nameservers, set up the Connector/Tunnel, created a published application route, and the website became publicly accessible.",
@@ -1073,6 +1076,7 @@
           "Web Hosting Ready Platform",
         ]
       },
+      // row 2
       "prtg-installation": {
         title: "Installation of PRTG Sensors on 72 Servers",
         lead: "I have installed the PRTG Network Monitor sensor on 72 virtual machines to perform comprehensive infrastructure monitoring. I downloaded the PRTG installer from the official Paessler website and installed it on each virtual machine. After installation, I configured the admin account and set network parameters, including monitoring intervals. I added devices by entering their IP addresses, allowing PRTG to scan and detect services such as bandwidth and uptime, then selected relevant sensors such as SNMP. I configured the SNMP agent by setting AgentAddress for unique device identification and the rocommunity string for read-only access. The dashboard displays real-time graphs and reports. Additionally, I implemented security header hardening on the Apache server by enabling mod_headers, creating a custom configuration file with security headers (X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, and HSTS), and then activating the new configuration.",
@@ -1094,6 +1098,112 @@
           "SNMP Protocol Integration & Configuration",
           "Intelligent Alert & Notification System",
           "Apache Security Headers Hardening",
+        ]
+      },
+      "deploy-azure": {
+        title: "Deploy Your Website Using App Services in Microsoft Azure and Customize Domain Name",
+        lead: "I documented the deployment process for a static website using Microsoft Azure App Services with automated CI/CD pipeline integration. The guide covers creating a GitHub repository for version control, configuring Azure App Services with PHP runtime stack in the Australia East region (compliant with allowed deployment regions), and enabling Continuous Deployment from GitHub. I demonstrated the custom domain configuration process including DNS record setup with CNAME records pointing to the Azure-generated domain, domain validation procedures, and SSL certificate binding. The deployment automatically generates a GitHub Actions workflow (.yml file) for seamless CI/CD integration, ensuring automatic updates whenever code changes are pushed to the repository.",
+        cover: "assets/server/card5/img2.jpeg",
+        images: [
+          "assets/server/card5/img1a.jpeg",
+          "assets/server/card5/img2.jpeg",
+          "assets/server/card5/img3.jpeg",
+          "assets/server/card5/img4.jpeg",
+          "assets/server/card5/img5.jpeg",
+          "assets/server/card5/img6.jpeg",
+          "assets/server/card5/img7.jpeg",
+          "assets/server/card5/img8.jpeg",
+          "assets/server/card5/img9.jpeg",
+          "assets/server/card5/img10.jpeg",
+          "assets/server/card5/img11.jpeg",
+          "assets/server/card5/img12.jpeg",
+        ],
+        demo: "#",
+        code: "#",
+        medium: "https://medium.com/@gibranfktian/deploy-your-website-using-app-services-in-microsoft-azure-and-customize-domain-name-087ddd8a822d",
+        technologies: ["Microsoft Azure", "Azure App Services", "GitHub", "GitHub Actions (CI/CD)", "DNS Management", "SSL/TLS Certificates"],
+        features: [
+          "Automated CI/CD pipeline with GitHub Actions integration",
+          "Custom domain configuration and DNS management",
+          "SSL certificate automatic provisioning and binding",
+          "No-database static website hosting",
+        ]
+      },
+      "prometheus-and-grafana": {
+        title: "Installing Prometheus and Grafana on Your Server",
+        lead: "I documented the complete installation and configuration process for Prometheus and Grafana monitoring stack on an ARM-based home server. The process includes downloading Prometheus and node_exporter packages from official sources, extracting them, and setting up proper Linux user/group permissions. I created systemd service daemons for both Prometheus and node_exporter to run them as background services with auto-start capability. Configuration involves editing prometheus.yml to define scrape jobs, opening necessary firewall ports (9090, 9100, 3000), and ensuring proper file ownership. After Prometheus is running, I installed Grafana following official documentation, configured it to use Prometheus as a data source, and imported a pre-built dashboard for Node Exporter metrics visualization. The final result provides a complete monitoring solution accessible via browser.",
+        cover: "assets/server/card6/img1.jpeg",
+        images: [
+          "assets/server/card6/img1.jpeg",
+          "assets/server/card6/img2.jpeg",
+          "assets/server/card6/img3.jpeg",
+          "assets/server/card6/img4.jpeg",
+          "assets/server/card6/img5.jpeg",
+          "assets/server/card6/img6.jpeg",
+          "assets/server/card6/img7.jpeg",
+          "assets/server/card6/img8.jpeg",
+          "assets/server/card6/img9.jpeg",
+          "assets/server/card6/img10.jpeg",
+          "assets/server/card6/img11.jpeg",
+          "assets/server/card6/img12.jpeg",
+          "assets/server/card6/img13.jpeg",
+          "assets/server/card6/img14.jpeg",
+          "assets/server/card6/img15.jpeg",
+          "assets/server/card6/img16.jpeg",
+          "assets/server/card6/img17.jpeg",
+          "assets/server/card6/img18.jpeg",
+          "assets/server/card6/img19.jpeg",
+          "assets/server/card6/img20.jpeg",
+        ],
+        demo: "#",
+        code: "#",
+        medium: "https://medium.com/@gibranfktian/installing-prometheus-and-grafana-on-stb-hg680p-913ec17edfc6",
+        technologies: ["Prometheus", "Grafana", "Node Exporter", "Linux (Armbian 25.08)", "UFW (Uncomplicated Firewall)", "Systemd", "YAML Configuration", "Time-Series Database"],
+        features: [
+          "Service daemon configuration for background operations",
+          "Prometheus setup with proper directory structure",
+          "Node Exporter integration for system metrics collection",
+          "UFW firewall configuration for secure port access",
+          "Grafana data source integration with Prometheus",
+          "Pre-built dashboard import for instant visualization",
+          "Auto-start service enablement for system reliability",
+        ]
+      },
+      // row 3
+      "alert-grafana": {
+        title: "Get Grafana Alerts via Telegram",
+        lead: "I documented the complete process of setting up Grafana alerting system integrated with Telegram for real-time server monitoring notifications. The implementation starts with creating a Telegram bot through BotFather to obtain the API token and chat ID. I configured Grafana contact points with the bot credentials and tested the connection to ensure notifications are delivered successfully. Next, I created alert rules for CPU monitoring using PromQL queries with customizable threshold values. To enhance readability, I developed custom notification templates using Go templating syntax that formats alert messages with labels, annotations, and dashboard links. Finally, I configured detailed alert messages with dynamic values for both CPU and memory usage, testing each alert by temporarily lowering thresholds to trigger notifications and verify proper delivery.",
+        cover: "assets/server/card7/img1.jpeg",
+        images: [
+          "assets/server/card7/img2.jpeg",
+          "assets/server/card7/img3.jpeg",
+          "assets/server/card7/img4.jpeg",
+          "assets/server/card7/img5.jpeg",
+          "assets/server/card7/img6.jpeg",
+          "assets/server/card7/img7.jpeg",
+          "assets/server/card7/img8.jpeg",
+          "assets/server/card7/img9.jpeg",
+          "assets/server/card7/img10.jpeg",
+          "assets/server/card7/img11.jpeg",
+          "assets/server/card7/img12.jpeg",
+          "assets/server/card7/img13.jpeg",
+          "assets/server/card7/img14.jpeg",
+          "assets/server/card7/img15.jpeg",
+          "assets/server/card7/img16.jpeg",
+          "assets/server/card7/img17.jpeg",
+        ],
+        demo: "#",
+        code: "#",
+        medium: "https://medium.com/@gibranfktian/get-grafana-alerts-via-telegram-d7d17814d55e",
+        technologies: ["Grafana", "Telegram Bot API", "PromQL (Prometheus Query Language)", "Go Templating", "Alert Rules", "Prometheus", "Node Exporter Metrics"],
+        features: [
+          "Telegram bot integration for real-time notifications",
+          "Grafana contact points configuration",
+          "Custom PromQL queries for CPU and memory monitoring",
+          "Dynamic threshold-based alert triggering",
+          "Custom notification templates using Go templating",
+          "Real-time notification delivery to Telegram",
+          "Customizable alert messages with dynamic metric values",
         ]
       },
     };
@@ -1167,15 +1277,30 @@
     $("#techList").innerHTML = data.technologies.map(t => `<span class="pd-chip">${t}</span>`).join("");
     $("#featureList").innerHTML = data.features.map(f => `<li><i class='bx bx-check-circle'></i><span>${f}</span></li>`).join("");
 
+    // === di sini kondisinya kita pasang ===
     (function clampFeatureListToFour() {
       const list = document.getElementById('featureList');
       const first = list.querySelector('li');
       if (!first) return;
+
+      const total = list.children.length;
+
+      // kalau key features <= 4, jangan pakai scroll
+      if (total <= 4) {
+        list.style.overflow = 'visible';
+        list.style.setProperty('--feat-maxh', 'none');
+        list.style.marginRight = '0';
+        list.style.paddingRight = '0';
+        list.removeAttribute('aria-label');
+        return;
+      }
+
+      // kalau > 4, baru hitung tinggi dan aktifkan scroll
       requestAnimationFrame(() => {
         const styles = getComputedStyle(list);
         const gap = parseFloat(styles.rowGap || styles.gap || 8);
         const itemH = first.getBoundingClientRect().height;
-        const rows = Math.min(4, list.children.length);
+        const rows = 4;
         const maxH = (itemH * rows) + (gap * (rows - 1));
         list.style.setProperty('--feat-maxh', maxH + 'px');
         list.setAttribute('aria-label', 'Key features (scroll for more)');

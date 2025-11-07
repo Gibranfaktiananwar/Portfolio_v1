@@ -7,6 +7,8 @@
   <title id="pgTitle">Project – Detail</title>
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="styledetails.css" />
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="shortcut icon" href="assets/favicon.png" type="image/png">
   <style>
     :root {
       --pd-max: 1270px;
@@ -1154,11 +1156,24 @@
       const list = document.getElementById('featureList');
       const first = list.querySelector('li');
       if (!first) return;
+
+      const total = list.children.length;
+      if (total <= 4) {
+        // tidak usah scroll
+        list.style.overflow = 'visible';
+        list.style.setProperty('--feat-maxh', 'none');
+        list.style.marginRight = '0';
+        list.style.paddingRight = '0';
+        list.removeAttribute('aria-label');
+        return;
+      }
+
+      // kalau lebih dari 4 → batasi tinggi dan boleh scroll
       requestAnimationFrame(() => {
         const styles = getComputedStyle(list);
         const gap = parseFloat(styles.rowGap || styles.gap || 8);
         const itemH = first.getBoundingClientRect().height;
-        const rows = Math.min(4, list.children.length);
+        const rows = 4;
         const maxH = (itemH * rows) + (gap * (rows - 1));
         list.style.setProperty('--feat-maxh', maxH + 'px');
         list.setAttribute('aria-label', 'Key features (scroll for more)');
