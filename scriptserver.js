@@ -8,17 +8,20 @@ const PROJECTS = [
     cover: "assets/server/card1/img1.jpeg",
     demo: "",
     code: "",
-    medium: "https://medium.com/@gibranfktian/deploy-a-website-with-aapanel-cloudflare-dc5ca5a68e41", 
+    medium:
+      "https://medium.com/@gibranfktian/deploy-a-website-with-aapanel-cloudflare-dc5ca5a68e41",
   },
   {
     id: "deploy-Docker",
-    title: "Deploy a website using Docker, Uvicorn and Reverse Proxy with AaPanel.",
+    title:
+      "Deploy a website using Docker, Uvicorn and Reverse Proxy with AaPanel.",
     desc: "Guide to deploying a website with Docker containers, Uvicorn ASGI server, and Reverse Proxy using aaPanel",
     tech: [],
     cover: "assets/server/card2/img1.jpeg",
     demo: "",
-    code: "", 
-    medium: "https://medium.com/@gibranfktian/deploy-a-website-using-docker-uvicorn-and-reverse-proxy-with-aapanel-45fa99bced56", 
+    code: "",
+    medium:
+      "https://medium.com/@gibranfktian/deploy-a-website-using-docker-uvicorn-and-reverse-proxy-with-aapanel-45fa99bced56",
   },
   {
     id: "own-server",
@@ -28,7 +31,8 @@ const PROJECTS = [
     cover: "assets/server/card3/img1.jpeg",
     demo: "",
     code: "",
-    medium: "https://medium.com/@gibranfktian/build-your-own-server-with-stb-hg680p-8eb5d93df7f1",
+    medium:
+      "https://medium.com/@gibranfktian/build-your-own-server-with-stb-hg680p-8eb5d93df7f1",
   },
   {
     id: "prtg-installation",
@@ -48,7 +52,8 @@ const PROJECTS = [
     cover: "assets/server/card5/img1.jpeg",
     demo: "#",
     code: "#",
-    medium: "https://medium.com/@gibranfktian/deploy-your-website-using-app-services-in-microsoft-azure-and-customize-domain-name-087ddd8a822d",
+    medium:
+      "https://medium.com/@gibranfktian/deploy-your-website-using-app-services-in-microsoft-azure-and-customize-domain-name-087ddd8a822d",
   },
   {
     id: "prometheus-and-grafana",
@@ -58,17 +63,19 @@ const PROJECTS = [
     cover: "assets/server/card6/img19.jpeg",
     demo: "#",
     code: "#",
-    medium: "https://medium.com/@gibranfktian/installing-prometheus-and-grafana-on-stb-hg680p-913ec17edfc6",
+    medium:
+      "https://medium.com/@gibranfktian/installing-prometheus-and-grafana-on-stb-hg680p-913ec17edfc6",
   },
   {
     id: "alert-grafana",
-    title: "Coming Soon Project",
+    title: "integrating Grafana alerting with Telegram bot for real-time server monitoring notifications with custom templates",
     desc: "Upcoming projects for server related, Stay tuned.",
     tech: [],
     cover: "assets/server/card7/img1.jpeg",
     demo: "#",
     code: "#",
-    medium: "https://medium.com/@gibranfktian/get-grafana-alerts-via-telegram-d7d17814d55e",
+    medium:
+      "https://medium.com/@gibranfktian/get-grafana-alerts-via-telegram-d7d17814d55e",
   },
   {
     id: "",
